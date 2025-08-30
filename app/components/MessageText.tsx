@@ -15,15 +15,15 @@ export default function MessageText({ role, text, id }: MessageTextProps) {
   const components = {
     code: ({ inline, className, children, ...props }: { inline?: boolean; className?: string; children?: React.ReactNode;[key: string]: any }) => {
       const match = /language-(\w+)/.exec(className || '')
-      if (inline) {
+      if (inline)
         return <code className={className} {...props}>{children}</code>
-      } else if (match && match[1] === 'markdown') {
+      else if (match && match[1] === 'markdown')
         return <ReactMarkdown remarkPlugins={[remarkGfm]}>{String(children).replace(/\n$/, '')}</ReactMarkdown>
-      } else {
+      else
         return <SyntaxHighlighter style={theme} wrapLongLines={true} language={match ? match[1] : undefined}>{String(children).replace(/\n$/, '')}</SyntaxHighlighter>
-      }
     },
-    p: ({ children }: { children?: React.ReactNode }) => <div>{children}</div>
+    p: ({ children }: { children?: React.ReactNode }) => <div>{children}</div>,
+
   }
   return (
     <div

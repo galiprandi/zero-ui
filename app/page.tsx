@@ -21,7 +21,7 @@ export default function Chat() {
   }, [messages])
 
   return (
-    <div className="flex flex-col w-4/5 max-w-[1120px] mx-auto stretch pb-[7em]">
+    <div className="flex flex-col w-4/5 max-w-[1120px] mx-auto stretch h-screen">
       {messages.map(message => (
         <div key={message.id} className="whitespace-pre-wrap">
           {message.parts.map((part, i) => {
@@ -47,7 +47,7 @@ export default function Chat() {
         </div>
       ))}
 
-      <div ref={messagesEndRef} />
+      <div ref={messagesEndRef} className="h-[calc(100vh-6em)]" />
 
       <form
         onSubmit={e => {
