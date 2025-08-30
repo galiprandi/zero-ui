@@ -10,13 +10,18 @@ export default function Chat() {
   const [input, setInput] = useState('')
   const { messages, sendMessage } = useChat()
   const messagesEndRef = useRef<HTMLDivElement>(null)
+  const lastScrollRef = useRef(Date.now())
 
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+    const now = Date.now()
+    if (now - lastScrollRef.current > 5000) {
+      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+      lastScrollRef.current = now
+    }
   }, [messages])
 
   return (
-    <div className="flex flex-col w-4/5 max-w-[1120px] py-24 mx-auto stretch overflow-y-auto overflow-x-hidden">
+    <div className="flex flex-col w-4/5 max-w-[1120px] mx-auto stretch pb-[7em]">
       {messages.map(message => (
         <div key={message.id} className="whitespace-pre-wrap">
           {message.parts.map((part, i) => {
