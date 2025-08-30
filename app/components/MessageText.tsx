@@ -1,4 +1,6 @@
 import React from 'react'
+import ReactMarkdown from 'react-markdown'
+import remarkGfm from 'remark-gfm'
 
 interface MessageTextProps {
   role: string
@@ -8,18 +10,31 @@ interface MessageTextProps {
 
 export default function MessageText({ role, text, id }: MessageTextProps) {
   const isUser = role === 'user'
+  const components = {
+    code: ({ inline, className, children, ...props }: { inline?: boolean; className?: string; children?: React.ReactNode; [key: string]: any }) => {
+      const match = /language-(\w+)/.exec(className || '')
+      if (inline) {
+        return <code className={className} {...props}>{children}</code>
+      } else if (match && match[1] === 'markdown') {
+        return <ReactMarkdown remarkPlugins={[remarkGfm]}>{String(children).replace(/\n$/, '')}</ReactMarkdown>
+      } else {
+        return <pre><code className={className} {...props}>{children}</code></pre>
+      }
+    },
+    p: ({ children }: { children?: React.ReactNode }) => <div>{children}</div>
+  }
   return (
     <div
       key={id}
       className={`flex ${isUser ? 'justify-end' : 'justify-start'} my-2`}
     >
       {isUser ? (
-        <div className="inline-block px-4 py-2 rounded-lg shadow-sm max-w-xs break-words bg-blue-100 text-blue-900">
+        <div className="block px-4 py-2 rounded-lg shadow-sm break-words bg-blue-100 text-blue-900">
           <span className="mr-2">👤</span>
-          {text}
+          <ReactMarkdown remarkPlugins={[remarkGfm]} components={components as any} key={text.length}>{text}</ReactMarkdown>
         </div>
       ) : (
-        <span className="mt-4 text-justify">{text}</span>
+        <div className="mt-4 text-justify w-full"><ReactMarkdown remarkPlugins={[remarkGfm]} components={components as any} key={text.length}>{text}</ReactMarkdown></div>
       )}
     </div>
   )
