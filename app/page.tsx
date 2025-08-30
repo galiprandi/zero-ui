@@ -5,12 +5,14 @@ import { useState, useRef, useEffect } from 'react'
 
 import MessageText from './components/MessageText'
 import ToolDetails from './components/ToolDetails'
+import useNavClick from './hooks/useNavClick'
 
 export default function Chat() {
   const [input, setInput] = useState('')
   const { messages, sendMessage } = useChat()
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const lastScrollRef = useRef(Date.now())
+  const navRef = useNavClick(sendMessage)
 
   useEffect(() => {
     const now = Date.now()
@@ -47,7 +49,20 @@ export default function Chat() {
         </div>
       ))}
 
-      <div ref={messagesEndRef} className="h-[calc(100vh-6em)]" />
+      <div ref={messagesEndRef} className="h-[calc(100vh-6em)]" >
+        <nav ref={navRef} className="user-options">
+          <button
+            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+          >
+            Si
+          </button>
+          <button
+            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors"
+          >
+            No
+          </button>
+        </nav>
+      </div>
 
       <form
         onSubmit={e => {
