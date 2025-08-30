@@ -13,6 +13,8 @@ export default function Chat() {
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const lastScrollRef = useRef(Date.now())
   const navRef = useNavClick(sendMessage)
+  const messagesLengthRef = useRef(messages.length)
+  const [navRemoved, setNavRemoved] = useState(false)
 
   useEffect(() => {
     const now = Date.now()
@@ -20,6 +22,13 @@ export default function Chat() {
       messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
       lastScrollRef.current = now
     }
+  }, [messages])
+
+  useEffect(() => {
+    if (messages.length > messagesLengthRef.current) {
+      setNavRemoved(false)
+    }
+    messagesLengthRef.current = messages.length
   }, [messages])
 
   return (
@@ -40,6 +49,7 @@ export default function Chat() {
                       role={message.role}
                       text={part.text}
                       id={partId}
+                      navRemoved={navRemoved}
                     />
                   )
                 default:
@@ -58,6 +68,7 @@ export default function Chat() {
           document.querySelectorAll('.user-options').forEach(nav => {
             if (nav !== navRef.current) nav.remove()
           })
+          setNavRemoved(true)
           sendMessage({ text: input })
           setInput('')
         }}

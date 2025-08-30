@@ -6,7 +6,7 @@ const useNavClick = (sendMessage: (message: { text: string }) => void) => {
   useEffect(() => {
     const handleClick = (e: Event) => {
       const target = e.target as HTMLElement
-      if (target.tagName === 'BUTTON' && target.closest('.user-options')) {
+      if (target.closest('.user-options') && target !== navRef.current) {
         sendMessage({ text: target.textContent || '' })
         // Remove the nav if it's not the static one
         const nav = target.closest('.user-options') as HTMLElement

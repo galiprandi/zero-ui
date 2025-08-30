@@ -9,9 +9,10 @@ interface MessageTextProps {
   role: string
   text: string
   id: string
+  navRemoved: boolean
 }
 
-export default function MessageText({ role, text, id }: MessageTextProps) {
+export default function MessageText({ role, text, id, navRemoved }: MessageTextProps) {
   const isUser = role === 'user'
   const components = {
     code: ({ inline, className, children, ...props }: { inline?: boolean; className?: string; children?: React.ReactNode;[key: string]: any }) => {
@@ -43,6 +44,7 @@ export default function MessageText({ role, text, id }: MessageTextProps) {
             const parts = text.split(navRegex)
             return parts.map((part, index) => {
               if (navRegex.test(part)) {
+                if (navRemoved) return ''
                 const unescaped = part.replace(/&lt;/g, '<').replace(/&gt;/g, '>')
                 return <div key={index} dangerouslySetInnerHTML={{ __html: unescaped }} />
               } else {
