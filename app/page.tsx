@@ -1,7 +1,7 @@
 'use client'
 
 import { useChat } from '@ai-sdk/react'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 import MessageText from './components/MessageText'
 import ToolDetails from './components/ToolDetails'
@@ -9,8 +9,14 @@ import ToolDetails from './components/ToolDetails'
 export default function Chat() {
   const [input, setInput] = useState('')
   const { messages, sendMessage } = useChat()
+  const messagesEndRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
+  }, [messages])
+
   return (
-    <div className="flex flex-col w-4/5 max-w-[1120px] py-24 mx-auto stretch">
+    <div className="flex flex-col w-4/5 max-w-[1120px] py-24 mx-auto stretch overflow-y-auto overflow-x-hidden">
       {messages.map(message => (
         <div key={message.id} className="whitespace-pre-wrap">
           {message.parts.map((part, i) => {
@@ -35,6 +41,8 @@ export default function Chat() {
           })}
         </div>
       ))}
+
+      <div ref={messagesEndRef} />
 
       <form
         onSubmit={e => {
