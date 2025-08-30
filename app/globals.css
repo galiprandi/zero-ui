@@ -27,11 +27,12 @@ body {
 
 .user-options {
   position: fixed;
-  bottom: 5rem;
+  bottom: 6rem;
   left: 50%;
   transform: translateX(-50%);
-  width: 80%;
   max-width: 1120px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 2rem;
+
 }

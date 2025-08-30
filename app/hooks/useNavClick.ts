@@ -6,22 +6,20 @@ const useNavClick = (sendMessage: (message: { text: string }) => void) => {
   useEffect(() => {
     const handleClick = (e: Event) => {
       const target = e.target as HTMLElement
-      if (target.tagName === 'BUTTON') {
+      if (target.tagName === 'BUTTON' && target.closest('.user-options')) {
         sendMessage({ text: target.textContent || '' })
+        // Remove the nav if it's not the static one
+        const nav = target.closest('.user-options') as HTMLElement
+        if (nav && (!navRef.current || !navRef.current.contains(target))) {
+          nav.remove()
+        }
       }
     }
 
-    if (navRef.current) {
-      const buttons = navRef.current.querySelectorAll('button')
-      buttons.forEach(button => {
-        button.addEventListener('click', handleClick)
-      })
+    document.addEventListener('click', handleClick)
 
-      return () => {
-        buttons.forEach(button => {
-          button.removeEventListener('click', handleClick)
-        })
-      }
+    return () => {
+      document.removeEventListener('click', handleClick)
     }
   }, [sendMessage])
 

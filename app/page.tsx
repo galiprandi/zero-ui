@@ -49,24 +49,15 @@ export default function Chat() {
         </div>
       ))}
 
-      <div ref={messagesEndRef} className="h-[calc(100vh-6em)]" >
-        <nav ref={navRef} className="user-options">
-          <button
-            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
-          >
-            Si
-          </button>
-          <button
-            className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors"
-          >
-            No
-          </button>
-        </nav>
-      </div>
+      <div ref={messagesEndRef} className="h-[calc(100vh-6em)]" />
 
       <form
         onSubmit={e => {
           e.preventDefault()
+          // Remove generated navs before sending
+          document.querySelectorAll('.user-options').forEach(nav => {
+            if (nav !== navRef.current) nav.remove()
+          })
           sendMessage({ text: input })
           setInput('')
         }}

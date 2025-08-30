@@ -37,7 +37,20 @@ export default function MessageText({ role, text, id }: MessageTextProps) {
         </div>
       ) : (
         <div className="mt-4 text-justify w-full leading-snug">
-          <ReactMarkdown remarkPlugins={[remarkGfm]} components={components as any} key={text.length}>{text}</ReactMarkdown></div>
+          <div style={{display: 'none'}} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-2 bg-green-500 hover:bg-green-700"></div>
+          {(() => {
+            const navRegex = /(&lt;nav className="user-options"[\s\S]*?&lt;\/nav&gt;)/
+            const parts = text.split(navRegex)
+            return parts.map((part, index) => {
+              if (navRegex.test(part)) {
+                const unescaped = part.replace(/&lt;/g, '<').replace(/&gt;/g, '>')
+                return <div key={index} dangerouslySetInnerHTML={{ __html: unescaped }} />
+              } else {
+                return <ReactMarkdown key={index} remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={components as any}>{part}</ReactMarkdown>
+              }
+            })
+          })()}
+        </div>
       )}
     </div>
   )
