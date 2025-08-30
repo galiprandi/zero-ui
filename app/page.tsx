@@ -14,16 +14,21 @@ export default function Chat() {
     <div className="flex flex-col w-full max-w-md py-24 mx-auto stretch">
       {messages.map(message => (
         <div key={message.id} className="whitespace-pre-wrap">
-          <MessageRole role={message.role} />
           {message.parts.map((part, i) => {
             const isTool = 'toolCallId' in part
+            const partId = `${message.id}-${i}`
             if (isTool)
               return <ToolDetails part={part} id={`${message.id}-${i}`} />
             else
               switch (part.type) {
                 case 'text':
                   return (
-                    <MessageText text={part.text} id={`${message.id}-${i}`} />
+                    <MessageText
+                      key={partId}
+                      role={message.role}
+                      text={part.text}
+                      id={partId}
+                    />
                   )
                 default:
                   return null
