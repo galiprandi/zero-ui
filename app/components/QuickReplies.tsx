@@ -10,31 +10,34 @@ export default function QuickReplies({ replies, onSelect, onDismiss }: QuickRepl
   if (!replies || replies.length === 0) return null
 
   return (
-    <div className="fixed bottom-16 left-1/2 transform -translate-x-1/2 w-4/5 max-w-[1120px] z-10">
-      <div className="quick-replies bg-white dark:bg-zinc-800 border border-zinc-300 dark:border-zinc-600 rounded-lg shadow-lg p-3 mb-2">
-        <div className="flex flex-wrap gap-2 justify-center">
-          {replies.map((reply, index) => (
-            <button
-              key={index}
-              onClick={() => onSelect(reply)}
-              className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg shadow-sm transition-all duration-200 hover:shadow-md active:scale-95 whitespace-nowrap"
-            >
-              {reply}
-            </button>
-          ))}
+    <div className="fixed bottom-16 left-1/2 transform -translate-x-1/2 w-4/5 max-w-[1120px] z-10 mb-8">
+      <div className="quick-replies flex gap-2 overflow-x-auto scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <button
+          onClick={(e) => {
+            e.preventDefault()
+            e.stopPropagation()
+            onDismiss()
+          }}
+          className="quick-reply-btn flex-shrink-0 px-3 py-1.5 text-sm font-medium text-gray-400 bg-gray-800 hover:bg-gray-700 active:bg-gray-600 rounded-full border border-gray-700 hover:border-gray-600 transition-all duration-200 whitespace-nowrap shadow-sm"
+          type="button"
+          title="Dismiss options"
+        >
+          ✕
+        </button>
+        {replies.map((reply, index) => (
           <button
+            key={index}
             onClick={(e) => {
               e.preventDefault()
               e.stopPropagation()
-              onDismiss()
+              onSelect(reply)
             }}
-            className="px-3 py-2 bg-gray-500 hover:bg-gray-600 text-white font-medium rounded-lg shadow-sm transition-all duration-200 hover:shadow-md active:scale-95 ml-2"
-            title="Dismiss options"
+            className="quick-reply-btn flex-shrink-0 px-3 py-1.5 text-sm font-medium text-gray-200 bg-gray-700 hover:bg-gray-600 active:bg-gray-500 rounded-full border border-gray-600 hover:border-gray-500 transition-all duration-200 whitespace-nowrap shadow-sm"
             type="button"
           >
-            ✕
+            {reply}
           </button>
-        </div>
+        ))}
       </div>
     </div>
   )

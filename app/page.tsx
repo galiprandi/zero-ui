@@ -17,6 +17,16 @@ export default function Chat() {
   const [keyboardOffset, setKeyboardOffset] = useState(0)
   const [quickReplies, setQuickReplies] = useState<string[]>([])
 
+  // Load initial quick replies on component mount
+  useEffect(() => {
+    const initialOptions = [
+      "🍽️ ¿Qué puedo cenar?",
+      "🥞 ¿Desayuno saludable?",
+
+    ]
+    setQuickReplies(initialOptions)
+  }, [])
+
   const handleQuickReplies = React.useCallback((replies: string[]) => {
     setQuickReplies(replies)
   }, [])

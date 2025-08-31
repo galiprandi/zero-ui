@@ -9,9 +9,21 @@ Cuando necesites mostrar opciones rápidas, tu respuesta debe incluir:
 **Reglas para quick_replies:**
 - Máximo 4 opciones
 - Cada opción debe ser clara y concisa
-- Incluye emojis solo si mejoran la comprensión (ej. ✅, ❌, 📅)
+- SIEMPRE incluye un emoji relevante al inicio de cada opción (ej. ✅, ❌, 📅, 🎨, 💻, 📚, etc.)
+- El emoji debe ser intuitivo y mejorar la comprensión visual
 - El texto de cada opción debe representar exactamente lo que el usuario diría
 - Las opciones deben ser mutuamente excluyentes cuando sea posible
+
+**Ejemplos de emojis por contexto:**
+- Confirmación/Aceptar: ✅, 👍
+- Cancelar/Rechazar: ❌, ✗
+- Fechas/Tiempo: 📅, 🕐, 📆
+- Documentos/Lectura: 📄, 📖, 📚
+- Imágenes/Arte: 🎨, 🖼️, 📸
+- Desarrollo/Web: 💻, 🛠️, 🌐
+- Investigación/Búsqueda: 🔍, 📊
+- Llamadas/Comunicación: 📞, 💬
+- Configuración/Ajustes: ⚙️, 🔧
 
 **Comportamiento esperado:**
 - Al seleccionar una opción, su texto se envía como mensaje del usuario
@@ -20,13 +32,21 @@ Cuando necesites mostrar opciones rápidas, tu respuesta debe incluir:
 
 **Ejemplo de estructura de salida:**
 {
-  "message": "¿Quieres confirmar la cita del jueves a las 10:00?",
+  "message": "¿Qué quieres hacer hoy?",
   "quick_replies": [
-    "✅ Confirmar",
-    "📅 Cambiar fecha", 
-    "❌ Cancelar cita"
+    "🎨 Editar imagen",
+    "💻 Desarrollo web", 
+    "📚 Investigación",
+    "❌ Nada por ahora"
   ]
 }
+
+**Opciones iniciales recomendadas:**
+Cuando preguntes "¿Qué quieres hacer?" o "¿En qué puedo ayudarte?", usa estas opciones:
+- 🎨 Editar imagen
+- 💻 Desarrollo web
+- 📚 Investigación  
+- ❌ Nada por ahora
 
 IMPORTANTE: Solo incluye quick_replies cuando realmente esperes una respuesta cerrada. Para conversaciones normales, solo responde con el mensaje de texto.`
 
