@@ -40,7 +40,7 @@ export default function MessageText({ role, text, id, navRemoved }: MessageTextP
         <div className="mt-4 text-justify w-full leading-snug">
           <div style={{display: 'none'}} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-2 bg-green-500 hover:bg-green-700"></div>
           {(() => {
-            const navRegex = /(&lt;nav className="user-options"[\s\S]*?&lt;\/nav&gt;)/
+            const navRegex = /(&lt;\w+ className="zero-ui"[\s\S]*?&lt;\/\w+&gt;)/
             const parts = text.split(navRegex)
             return parts.map((part, index) => {
               if (navRegex.test(part)) {

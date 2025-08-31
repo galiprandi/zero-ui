@@ -5,16 +5,17 @@ import { useState, useRef, useEffect } from 'react'
 
 import MessageText from './components/MessageText'
 import ToolDetails from './components/ToolDetails'
-import useNavClick from './hooks/useNavClick'
+import useZeroUi from './hooks/useZeroUi'
 
 export default function Chat() {
   const [input, setInput] = useState('')
   const { messages, sendMessage } = useChat()
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const lastScrollRef = useRef(Date.now())
-  const navRef = useNavClick(sendMessage)
+  const navRef = useZeroUi(sendMessage)
   const messagesLengthRef = useRef(messages.length)
   const [navRemoved, setNavRemoved] = useState(false)
+  const [keyboardOffset, setKeyboardOffset] = useState(0)
 
   useEffect(() => {
     const now = Date.now()
@@ -30,6 +31,21 @@ export default function Chat() {
     }
     messagesLengthRef.current = messages.length
   }, [messages])
+
+  useEffect(() => {
+    const vv = window.visualViewport
+    if (vv) {
+      const handleResize = () => {
+        const viewport = window.visualViewport
+        if (viewport) {
+          const heightDiff = window.innerHeight - viewport.height
+          setKeyboardOffset(heightDiff)
+        }
+      }
+      vv.addEventListener('resize', handleResize)
+      return () => vv.removeEventListener('resize', handleResize)
+    }
+  }, [])
 
   return (
     <div className="flex flex-col w-4/5 max-w-[1120px] mx-auto stretch h-screen">
@@ -65,7 +81,7 @@ export default function Chat() {
         onSubmit={e => {
           e.preventDefault()
           // Remove generated navs before sending
-          document.querySelectorAll('.user-options').forEach(nav => {
+          document.querySelectorAll('.zero-ui').forEach(nav => {
             if (nav !== navRef.current) nav.remove()
           })
           setNavRemoved(true)
@@ -74,10 +90,11 @@ export default function Chat() {
         }}
       >
         <input
-          className="fixed dark:bg-zinc-900 bottom-0 w-4/5 max-w-[1120px] p-2 mb-8 border border-zinc-300 dark:border-zinc-800 rounded shadow-xl left-1/2 transform -translate-x-1/2"
+          className="fixed dark:bg-zinc-900 w-4/5 max-w-[1120px] p-2 border border-zinc-300 dark:border-zinc-800 rounded shadow-xl left-1/2 transform -translate-x-1/2"
+          style={{ bottom: `${32 + keyboardOffset}px`, marginBottom: 0 }}
           value={input}
           placeholder="Say something..."
-          onChange={e => setInput(e.currentTarget.value)}
+          onChange={e => setInput(e.target.value)}
         />
       </form>
     </div>
