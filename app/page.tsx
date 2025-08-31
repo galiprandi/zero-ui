@@ -2,20 +2,34 @@
 
 import { useChat } from '@ai-sdk/react'
 import { useState, useRef, useEffect } from 'react'
+import React from 'react'
 
 import MessageText from './components/MessageText'
 import ToolDetails from './components/ToolDetails'
-import useZeroUi from './hooks/useZeroUi'
+import QuickReplies from './components/QuickReplies'
 
 export default function Chat() {
   const [input, setInput] = useState('')
   const { messages, sendMessage } = useChat()
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const lastScrollRef = useRef(Date.now())
-  const navRef = useZeroUi(sendMessage)
   const messagesLengthRef = useRef(messages.length)
-  const [navRemoved, setNavRemoved] = useState(false)
   const [keyboardOffset, setKeyboardOffset] = useState(0)
+  const [quickReplies, setQuickReplies] = useState<string[]>([])
+
+  const handleQuickReplies = React.useCallback((replies: string[]) => {
+    setQuickReplies(replies)
+  }, [])
+
+  const handleQuickReplySelect = React.useCallback((reply: string) => {
+    sendMessage({ text: reply })
+    setQuickReplies([])
+    setInput('')
+  }, [sendMessage])
+
+  const handleQuickReplyDismiss = React.useCallback(() => {
+    setQuickReplies([])
+  }, [])
 
   useEffect(() => {
     const now = Date.now()
@@ -27,7 +41,8 @@ export default function Chat() {
 
   useEffect(() => {
     if (messages.length > messagesLengthRef.current) {
-      setNavRemoved(false)
+      // Clear quick replies when new message arrives
+      setQuickReplies([])
     }
     messagesLengthRef.current = messages.length
   }, [messages])
@@ -65,7 +80,7 @@ export default function Chat() {
                       role={message.role}
                       text={part.text}
                       id={partId}
-                      navRemoved={navRemoved}
+                      onQuickReplies={handleQuickReplies}
                     />
                   )
                 default:
@@ -77,14 +92,15 @@ export default function Chat() {
 
       <div ref={messagesEndRef} className="h-[calc(100vh-6em)]" />
 
+      <QuickReplies
+        replies={quickReplies}
+        onSelect={handleQuickReplySelect}
+        onDismiss={handleQuickReplyDismiss}
+      />
+
       <form
         onSubmit={e => {
           e.preventDefault()
-          // Remove generated navs before sending
-          document.querySelectorAll('.zero-ui').forEach(nav => {
-            if (nav !== navRef.current) nav.remove()
-          })
-          setNavRemoved(true)
           sendMessage({ text: input })
           setInput('')
         }}

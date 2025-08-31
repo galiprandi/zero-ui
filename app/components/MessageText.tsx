@@ -9,11 +9,60 @@ interface MessageTextProps {
   role: string
   text: string
   id: string
-  navRemoved: boolean
+  onQuickReplies?: (replies: string[]) => void
 }
 
-export default function MessageText({ role, text, id, navRemoved }: MessageTextProps) {
+export default function MessageText({ role, text, id, onQuickReplies }: MessageTextProps) {
   const isUser = role === 'user'
+
+  // Parse message content and extract quick_replies using useMemo to avoid infinite loops
+  const { displayText, quickReplies } = React.useMemo(() => {
+    if (!isUser && text) {
+      try {
+        // Try to parse as JSON first
+        const parsed = JSON.parse(text)
+        if (parsed.quick_replies && Array.isArray(parsed.quick_replies)) {
+          // Extract message and quick_replies
+          const messageText = parsed.message || text
+          return {
+            displayText: messageText,
+            quickReplies: parsed.quick_replies
+          }
+        }
+      } catch (e) {
+        // Check if the text contains a JSON-like structure with quick_replies
+        const jsonMatch = text.match(/\{[\s\S]*"quick_replies"[\s\S]*\}/)
+        if (jsonMatch) {
+          try {
+            const parsed = JSON.parse(jsonMatch[0])
+            if (parsed.quick_replies && Array.isArray(parsed.quick_replies)) {
+              // Remove the JSON part from display text
+              const messageText = text.replace(jsonMatch[0], '').trim()
+              return {
+                displayText: messageText || parsed.message || text,
+                quickReplies: parsed.quick_replies
+              }
+            }
+          } catch (e2) {
+            // Not valid JSON, continue with normal rendering
+          }
+        }
+      }
+    }
+    // For normal messages or user messages, display as-is
+    return {
+      displayText: text,
+      quickReplies: null
+    }
+  }, [text, isUser])
+
+  // Call onQuickReplies when quickReplies change
+  React.useEffect(() => {
+    if (quickReplies && onQuickReplies) {
+      onQuickReplies(quickReplies)
+    }
+  }, [quickReplies, onQuickReplies])
+
   const components = {
     code: ({ inline, className, children, ...props }: { inline?: boolean; className?: string; children?: React.ReactNode;[key: string]: any }) => {
       const match = /language-(\w+)/.exec(className || '')
@@ -38,20 +87,7 @@ export default function MessageText({ role, text, id, navRemoved }: MessageTextP
         </div>
       ) : (
         <div className="mt-4 text-justify w-full leading-snug">
-          <div style={{display: 'none'}} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mx-2 bg-green-500 hover:bg-green-700"></div>
-          {(() => {
-            const navRegex = /(&lt;\w+ className="zero-ui"[\s\S]*?&lt;\/\w+&gt;)/
-            const parts = text.split(navRegex)
-            return parts.map((part, index) => {
-              if (navRegex.test(part)) {
-                if (navRemoved) return ''
-                const unescaped = part.replace(/&lt;/g, '<').replace(/&gt;/g, '>')
-                return <div key={index} dangerouslySetInnerHTML={{ __html: unescaped }} />
-              } else {
-                return <ReactMarkdown key={index} remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={components as any}>{part}</ReactMarkdown>
-              }
-            })
-          })()}
+          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={components as any}>{displayText}</ReactMarkdown>
         </div>
       )}
     </div>
