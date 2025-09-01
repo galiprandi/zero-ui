@@ -1,0 +1,82 @@
+[
+  {
+    "id": 1,
+    "name": "Alimentos",
+    "description": "Productos alimenticios básicos"
+  },
+  {
+    "id": 2,
+    "name": "Lácteos",
+    "description": "Productos lácteos y derivados"
+  },
+  {
+    "id": 3,
+    "name": "Panadería",
+    "description": "Productos de panadería y repostería"
+  },
+  {
+    "id": 4,
+    "name": "Bebidas",
+    "description": "Bebidas y refrescos"
+  },
+  {
+    "id": 5,
+    "name": "Aceites",
+    "description": "Aceites y grasas comestibles"
+  },
+  {
+    "id": 6,
+    "name": "Higiene",
+    "description": "Productos de higiene personal"
+  },
+  {
+    "id": 7,
+    "name": "Frutas y Verduras",
+    "description": "Frutas y verduras frescas"
+  },
+  {
+    "id": 8,
+    "name": "Limpieza",
+    "description": "Productos de limpieza del hogar"
+  },
+  {
+    "id": 9,
+    "name": "Condimentos",
+    "description": "Condimentos y especias"
+  },
+  {
+    "id": 10,
+    "name": "Chocolates",
+    "description": "Chocolates y golosinas"
+  },
+  {
+    "id": 11,
+    "name": "Aderezos",
+    "description": "Aderezos y salsas"
+  },
+  {
+    "id": 12,
+    "name": "Galletitas",
+    "description": "Galletitas y snacks"
+  },
+  {
+    "id": 13,
+    "name": "Carnes",
+    "description": "Carnes y productos cárnicos"
+  },
+  {
+    "id": 14,
+    "name": "Helados",
+    "description": "Helados y postres congelados"
+  },
+  {
+    "id": 15,
+    "name": "Enlatados",
+    "description": "Productos enlatados y conservas"
+  },
+  {
+    "id": 16,
+    "name": "Mermeladas",
+    "description": "Mermeladas y dulces"
+  }
+]

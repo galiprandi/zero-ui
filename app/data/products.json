@@ -1,0 +1,497 @@
+[
+  {
+    "ean": "7791234567890",
+    "name": "Arroz Gallo Oro 1kg",
+    "price": "250.00",
+    "categoryId": 1,
+    "description": "Arroz de grano largo para cocinar",
+    "image": "https://example.com/arroz.jpg",
+    "url": "https://vea.com.ar/arroz-gallo-oro"
+  },
+  {
+    "ean": "7792345678901",
+    "name": "Leche La Serenísima 1L",
+    "price": "180.00",
+    "categoryId": 2,
+    "description": "Leche entera fresca",
+    "image": "https://example.com/leche.jpg",
+    "url": "https://vea.com.ar/leche-serenisima"
+  },
+  {
+    "ean": "7793456789012",
+    "name": "Pan Lactal Bimbo 400g",
+    "price": "320.00",
+    "categoryId": 3,
+    "description": "Pan de molde blanco",
+    "image": "https://example.com/pan.jpg",
+    "url": "https://vea.com.ar/pan-lactal"
+  },
+  {
+    "ean": "7794567890123",
+    "name": "Coca Cola 2.25L",
+    "price": "450.00",
+    "categoryId": 4,
+    "description": "Gaseosa cola original",
+    "image": "https://example.com/coca.jpg",
+    "url": "https://vea.com.ar/coca-cola"
+  },
+  {
+    "ean": "7795678901234",
+    "name": "Aceite de Oliva Cocinero 500ml",
+    "price": "680.00",
+    "categoryId": 5,
+    "description": "Aceite de oliva extra virgen",
+    "image": "https://example.com/aceite.jpg",
+    "url": "https://vea.com.ar/aceite-cocinero"
+  },
+  {
+    "ean": "7796789012345",
+    "name": "Yogur Danone Natural 120g",
+    "price": "95.00",
+    "categoryId": 2,
+    "description": "Yogur natural sin azúcar",
+    "image": "https://example.com/yogur.jpg",
+    "url": "https://vea.com.ar/yogur-danone"
+  },
+  {
+    "ean": "7797890123456",
+    "name": "Fideos Matarazzo Spaghetti 500g",
+    "price": "210.00",
+    "categoryId": 1,
+    "description": "Pasta spaghetti número 3",
+    "image": "https://example.com/fideos.jpg",
+    "url": "https://vea.com.ar/fideos-matarazzo"
+  },
+  {
+    "ean": "7798901234567",
+    "name": "Jabón en Polvo Ala 800g",
+    "price": "290.00",
+    "categoryId": 8,
+    "description": "Detergente para lavar ropa",
+    "image": "https://example.com/jabon.jpg",
+    "url": "https://vea.com.ar/jabon-ala"
+  },
+  {
+    "ean": "7799012345678",
+    "name": "Manzanas Rojas 1kg",
+    "price": "350.00",
+    "categoryId": 7,
+    "description": "Manzanas frescas rojas",
+    "image": "https://example.com/manzanas.jpg",
+    "url": "https://vea.com.ar/manzanas-rojas"
+  },
+  {
+    "ean": "7790123456789",
+    "name": "Café Nescafé Dolce Gusto 16 cápsulas",
+    "price": "1250.00",
+    "categoryId": 4,
+    "description": "Cápsulas de café para máquina Dolce Gusto",
+    "image": "https://example.com/cafe.jpg",
+    "url": "https://vea.com.ar/cafe-nescafe"
+  },
+  {
+    "ean": "7791234567891",
+    "name": "Papel Higiénico Higienol 30m",
+    "price": "180.00",
+    "categoryId": 6,
+    "description": "Papel higiénico suave",
+    "image": "https://example.com/papel.jpg",
+    "url": "https://vea.com.ar/papel-higienol"
+  },
+  {
+    "ean": "7792345678902",
+    "name": "Huevos Color 12 unidades",
+    "price": "420.00",
+    "categoryId": 2,
+    "description": "Huevos frescos de gallinas camperas",
+    "image": "https://example.com/huevos.jpg",
+    "url": "https://vea.com.ar/huevos-color"
+  },
+  {
+    "ean": "7793456789013",
+    "name": "Cerveza Quilmes 1L",
+    "price": "280.00",
+    "categoryId": 4,
+    "description": "Cerveza lager rubia",
+    "image": "https://example.com/cerveza.jpg",
+    "url": "https://vea.com.ar/cerveza-quilmes"
+  },
+  {
+    "ean": "7794567890124",
+    "name": "Harina 0000 Pureza 1kg",
+    "price": "150.00",
+    "categoryId": 1,
+    "description": "Harina de trigo refinada",
+    "image": "https://example.com/harina.jpg",
+    "url": "https://vea.com.ar/harina-pureza"
+  },
+  {
+    "ean": "7795678901235",
+    "name": "Detergente Líquido Ariel 1L",
+    "price": "520.00",
+    "categoryId": 8,
+    "description": "Detergente líquido para ropa",
+    "image": "https://example.com/ariel.jpg",
+    "url": "https://vea.com.ar/detergente-ariel"
+  },
+  {
+    "ean": "7796789012346",
+    "name": "Bananas 1kg",
+    "price": "200.00",
+    "categoryId": 7,
+    "description": "Plátanos frescos",
+    "image": "https://example.com/bananas.jpg",
+    "url": "https://vea.com.ar/bananas"
+  },
+  {
+    "ean": "7797890123457",
+    "name": "Té Taragüi 50 saquitos",
+    "price": "360.00",
+    "categoryId": 4,
+    "description": "Té negro en saquitos",
+    "image": "https://example.com/te.jpg",
+    "url": "https://vea.com.ar/te-taragui"
+  },
+  {
+    "ean": "7798901234568",
+    "name": "Azúcar Ledesma 1kg",
+    "price": "220.00",
+    "categoryId": 1,
+    "description": "Azúcar blanca refinada",
+    "image": "https://example.com/azucar.jpg",
+    "url": "https://vea.com.ar/azucar-ledesma"
+  },
+  {
+    "ean": "7799012345679",
+    "name": "Shampoo Sedal 400ml",
+    "price": "480.00",
+    "categoryId": 6,
+    "description": "Shampoo para cabello normal",
+    "image": "https://example.com/shampoo.jpg",
+    "url": "https://vea.com.ar/shampoo-sedal"
+  },
+  {
+    "ean": "7790123456790",
+    "name": "Queso Cremoso La Serenísima 500g",
+    "price": "650.00",
+    "categoryId": 2,
+    "description": "Queso cremoso para untar",
+    "image": "https://example.com/queso.jpg",
+    "url": "https://vea.com.ar/queso-cremoso"
+  },
+  {
+    "ean": "7791234567892",
+    "name": "Galletitas Oreo 118g",
+    "price": "290.00",
+    "categoryId": 12,
+    "description": "Galletitas con crema de vainilla",
+    "image": "https://example.com/oreo.jpg",
+    "url": "https://vea.com.ar/galletitas-oreo"
+  },
+  {
+    "ean": "7792345678903",
+    "name": "Vinagre de Alcohol 500ml",
+    "price": "120.00",
+    "categoryId": 9,
+    "description": "Vinagre de alcohol blanco",
+    "image": "https://example.com/vinagre.jpg",
+    "url": "https://vea.com.ar/vinagre-alcohol"
+  },
+  {
+    "ean": "7793456789014",
+    "name": "Tomates 1kg",
+    "price": "180.00",
+    "categoryId": 7,
+    "description": "Tomates rojos frescos",
+    "image": "https://example.com/tomates.jpg",
+    "url": "https://vea.com.ar/tomates"
+  },
+  {
+    "ean": "7794567890125",
+    "name": "Cepillo de Dientes Colgate 1 unidad",
+    "price": "150.00",
+    "categoryId": 6,
+    "description": "Cepillo dental suave",
+    "image": "https://example.com/cepillo.jpg",
+    "url": "https://vea.com.ar/cepillo-colgate"
+  },
+  {
+    "ean": "7795678901236",
+    "name": "Manteca La Serenísima 200g",
+    "price": "380.00",
+    "categoryId": 2,
+    "description": "Manteca para cocinar",
+    "image": "https://example.com/manteca.jpg",
+    "url": "https://vea.com.ar/manteca-serenisima"
+  },
+  {
+    "ean": "7796789012347",
+    "name": "Sal Fina Dos Anclas 500g",
+    "price": "90.00",
+    "categoryId": 9,
+    "description": "Sal fina yodada",
+    "image": "https://example.com/sal.jpg",
+    "url": "https://vea.com.ar/sal-dos-anclas"
+  },
+  {
+    "ean": "7797890123458",
+    "name": "Chocolate Aguila 100g",
+    "price": "250.00",
+    "categoryId": 10,
+    "description": "Chocolate con leche",
+    "image": "https://example.com/chocolate.jpg",
+    "url": "https://vea.com.ar/chocolate-aguila"
+  },
+  {
+    "ean": "7798901234569",
+    "name": "Mayonesa Hellmann's 237g",
+    "price": "420.00",
+    "categoryId": 11,
+    "description": "Mayonesa clásica",
+    "image": "https://example.com/mayonesa.jpg",
+    "url": "https://vea.com.ar/mayonesa-hellmanns"
+  },
+  {
+    "ean": "7799012345680",
+    "name": "Cebollas 1kg",
+    "price": "140.00",
+    "categoryId": 7,
+    "description": "Cebollas blancas frescas",
+    "image": "https://example.com/cebollas.jpg",
+    "url": "https://vea.com.ar/cebollas"
+  },
+  {
+    "ean": "7790123456791",
+    "name": "Pasta Dental Colgate 90g",
+    "price": "220.00",
+    "categoryId": 6,
+    "description": "Pasta dental con flúor",
+    "image": "https://example.com/pasta.jpg",
+    "url": "https://vea.com.ar/pasta-colgate"
+  },
+  {
+    "ean": "7791234567893",
+    "name": "Salsa de Tomate Arcor 520g",
+    "price": "160.00",
+    "categoryId": 11,
+    "description": "Salsa de tomate natural",
+    "image": "https://example.com/salsa.jpg",
+    "url": "https://vea.com.ar/salsa-arcor"
+  },
+  {
+    "ean": "7792345678904",
+    "name": "Naranjas 1kg",
+    "price": "120.00",
+    "categoryId": 7,
+    "description": "Naranjas dulces",
+    "image": "https://example.com/naranjas.jpg",
+    "url": "https://vea.com.ar/naranjas"
+  },
+  {
+    "ean": "7793456789015",
+    "name": "Desodorante Axe 150ml",
+    "price": "350.00",
+    "categoryId": 6,
+    "description": "Desodorante en aerosol",
+    "image": "https://example.com/desodorante.jpg",
+    "url": "https://vea.com.ar/desodorante-axe"
+  },
+  {
+    "ean": "7794567890126",
+    "name": "Mermelada Arcor Durazno 250g",
+    "price": "280.00",
+    "categoryId": 16,
+    "description": "Mermelada de durazno",
+    "image": "https://example.com/mermelada.jpg",
+    "url": "https://vea.com.ar/mermelada-arcor"
+  },
+  {
+    "ean": "7795678901237",
+    "name": "Pollo Entero 1kg",
+    "price": "580.00",
+    "categoryId": 13,
+    "description": "Pollo fresco entero",
+    "image": "https://example.com/pollo.jpg",
+    "url": "https://vea.com.ar/pollo-entero"
+  },
+  {
+    "ean": "7796789012348",
+    "name": "Gaseosa Sprite 2.25L",
+    "price": "430.00",
+    "categoryId": 4,
+    "description": "Gaseosa lima-limón",
+    "image": "https://example.com/sprite.jpg",
+    "url": "https://vea.com.ar/sprite"
+  },
+  {
+    "ean": "7797890123459",
+    "name": "Lavandina Ayudín 1L",
+    "price": "190.00",
+    "categoryId": 8,
+    "description": "Desinfectante con lavandina",
+    "image": "https://example.com/lavandina.jpg",
+    "url": "https://vea.com.ar/lavandina-ayudin"
+  },
+  {
+    "ean": "7798901234570",
+    "name": "Limones 1kg",
+    "price": "160.00",
+    "categoryId": 7,
+    "description": "Limones frescos",
+    "image": "https://example.com/limones.jpg",
+    "url": "https://vea.com.ar/limones"
+  },
+  {
+    "ean": "7799012345681",
+    "name": "Champú Head & Shoulders 400ml",
+    "price": "550.00",
+    "categoryId": 6,
+    "description": "Champú anticaspa",
+    "image": "https://example.com/champu.jpg",
+    "url": "https://vea.com.ar/champu-head-shoulders"
+  },
+  {
+    "ean": "7790123456792",
+    "name": "Helado Vanila 1L",
+    "price": "480.00",
+    "categoryId": 14,
+    "description": "Helado de vainilla",
+    "image": "https://example.com/helado.jpg",
+    "url": "https://vea.com.ar/helado-vainilla"
+  },
+  {
+    "ean": "7791234567894",
+    "name": "Atún en Agua Gomes 170g",
+    "price": "320.00",
+    "categoryId": 15,
+    "description": "Atún en agua al natural",
+    "image": "https://example.com/atun.jpg",
+    "url": "https://vea.com.ar/atun-gomes"
+  },
+  {
+    "ean": "7792345678905",
+    "name": "Puré de Tomate Arcor 520g",
+    "price": "140.00",
+    "categoryId": 11,
+    "description": "Puré de tomate concentrado",
+    "image": "https://example.com/pure.jpg",
+    "url": "https://vea.com.ar/pure-arcor"
+  },
+  {
+    "ean": "7793456789016",
+    "name": "Papas 1kg",
+    "price": "100.00",
+    "categoryId": 7,
+    "description": "Papas blancas frescas",
+    "image": "https://example.com/papas.jpg",
+    "url": "https://vea.com.ar/papas"
+  },
+  {
+    "ean": "7794567890127",
+    "name": "Jabón de Tocador Dove 90g",
+    "price": "180.00",
+    "categoryId": 6,
+    "description": "Jabón hidratante",
+    "image": "https://example.com/jabon-dove.jpg",
+    "url": "https://vea.com.ar/jabon-dove"
+  },
+  {
+    "ean": "7795678901238",
+    "name": "Galletitas Pepitos 170g",
+    "price": "260.00",
+    "categoryId": 12,
+    "description": "Galletitas con chips de chocolate",
+    "image": "https://example.com/pepitos.jpg",
+    "url": "https://vea.com.ar/galletitas-pepitos"
+  },
+  {
+    "ean": "7796789012349",
+    "name": "Mostaza Savora 250g",
+    "price": "290.00",
+    "categoryId": 11,
+    "description": "Mostaza clásica",
+    "image": "https://example.com/mostaza.jpg",
+    "url": "https://vea.com.ar/mostaza-savora"
+  },
+  {
+    "ean": "7797890123460",
+    "name": "Zanahorias 1kg",
+    "price": "90.00",
+    "categoryId": 7,
+    "description": "Zanahorias frescas",
+    "image": "https://example.com/zanahorias.jpg",
+    "url": "https://vea.com.ar/zanahorias"
+  },
+  {
+    "ean": "7798901234571",
+    "name": "Crema Dental Close Up 90g",
+    "price": "210.00",
+    "categoryId": 6,
+    "description": "Crema dental menta",
+    "image": "https://example.com/closeup.jpg",
+    "url": "https://vea.com.ar/crema-closeup"
+  },
+  {
+    "ean": "7799012345682",
+    "name": "Mantequilla La Serenísima 100g",
+    "price": "280.00",
+    "categoryId": 2,
+    "description": "Mantequilla para untar",
+    "image": "https://example.com/mantequilla.jpg",
+    "url": "https://vea.com.ar/mantequilla-serenisima"
+  },
+  {
+    "ean": "7790123456793",
+    "name": "Ketchup Hellmann's 397g",
+    "price": "380.00",
+    "categoryId": 11,
+    "description": "Ketchup clásico",
+    "image": "https://example.com/ketchup.jpg",
+    "url": "https://vea.com.ar/ketchup-hellmanns"
+  },
+  {
+    "ean": "7791234567895",
+    "name": "Ajo 100g",
+    "price": "50.00",
+    "categoryId": 7,
+    "description": "Cabezas de ajo fresco",
+    "image": "https://example.com/ajo.jpg",
+    "url": "https://vea.com.ar/ajo"
+  },
+  {
+    "ean": "7792345678906",
+    "name": "Desodorante Rexona 150ml",
+    "price": "340.00",
+    "categoryId": 6,
+    "description": "Desodorante roll-on",
+    "image": "https://example.com/rexona.jpg",
+    "url": "https://vea.com.ar/desodorante-rexona"
+  },
+  {
+    "ean": "7793456789017",
+    "name": "Galletitas Terrabusi 170g",
+    "price": "240.00",
+    "categoryId": 12,
+    "description": "Galletitas dulces",
+    "image": "https://example.com/terrabusi.jpg",
+    "url": "https://vea.com.ar/galletitas-terrabusi"
+  },
+  {
+    "ean": "7794567890128",
+    "name": "Vinagre de Vino 500ml",
+    "price": "150.00",
+    "categoryId": 9,
+    "description": "Vinagre de vino tinto",
+    "image": "https://example.com/vinagre-vino.jpg",
+    "url": "https://vea.com.ar/vinagre-vino"
+  },
+  {
+    "ean": "7795678901239",
+    "name": "Peras 1kg",
+    "price": "220.00",
+    "categoryId": 7,
+    "description": "Peras verdes frescas",
+    "image": "https://example.com/peras.jpg",
+    "url": "https://vea.com.ar/peras"
+  }
+]
