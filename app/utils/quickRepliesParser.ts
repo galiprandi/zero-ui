@@ -1,24 +1,36 @@
 // Utility functions for parsing quick replies
 
 export function parseQuickReplies(text: string): string[] {
-  const lines = text.split('\n');
-  const quickRepliesIndex = lines.findIndex(line => line.trim().startsWith('QUICK_REPLIES:'));
+  const lines = text.split("\n");
+  const quickRepliesIndex = lines.findIndex((line) =>
+    line.trim().startsWith("QUICK_REPLIES:"),
+  );
   if (quickRepliesIndex !== -1) {
     const repliesLine = lines[quickRepliesIndex].trim();
-    const repliesPart = repliesLine.replace('QUICK_REPLIES:', '').trim();
-    return repliesPart.split(',').map(s => s.trim()).filter(s => s);
+    const repliesPart = repliesLine.replace("QUICK_REPLIES:", "").trim();
+    return repliesPart
+      .split(",")
+      .map((s) => s.trim())
+      .filter((s) => s);
   }
   return [];
 }
 
-export function parseQuickRepliesFromText(text: string): { message: string; quickReplies: string[] } | null {
-  const lines = text.split('\n');
-  const quickRepliesIndex = lines.findIndex(line => line.trim().startsWith('QUICK_REPLIES:'));
+export function parseQuickRepliesFromText(
+  text: string,
+): { message: string; quickReplies: string[] } | null {
+  const lines = text.split("\n");
+  const quickRepliesIndex = lines.findIndex((line) =>
+    line.trim().startsWith("QUICK_REPLIES:"),
+  );
   if (quickRepliesIndex !== -1) {
     const repliesLine = lines[quickRepliesIndex].trim();
-    const repliesPart = repliesLine.replace('QUICK_REPLIES:', '').trim();
-    const quickReplies = repliesPart.split(',').map(s => s.trim()).filter(s => s);
-    const message = lines.slice(0, quickRepliesIndex).join('\n').trim();
+    const repliesPart = repliesLine.replace("QUICK_REPLIES:", "").trim();
+    const quickReplies = repliesPart
+      .split(",")
+      .map((s) => s.trim())
+      .filter((s) => s);
+    const message = lines.slice(0, quickRepliesIndex).join("\n").trim();
     return { message, quickReplies };
   }
 

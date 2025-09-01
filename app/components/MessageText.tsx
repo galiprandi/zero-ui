@@ -1,4 +1,5 @@
-import React, { useEffect, useMemo } from "react";
+import type React from "react";
+import { useEffect, useMemo } from "react";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { materialDark as theme } from "react-syntax-highlighter/dist/esm/styles/prism";
