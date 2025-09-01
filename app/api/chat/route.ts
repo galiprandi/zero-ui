@@ -3,18 +3,16 @@ import {
   convertToModelMessages,
   stepCountIs,
   streamText,
-  tool,
   type UIMessage,
 } from "ai";
-import { number, object, string } from "zod";
 import {
   getMessageText,
+  logAssistantResponse,
   logRequestMeta,
-  logToolExecute,
-  logToolResult,
   parseQuickRepliesFromText,
 } from "@/app/lib/logger";
 import { system } from "@/app/prompts/system.prompt";
+import { defaultToolSet } from "@/app/tools/sets";
 
 export const maxDuration = 30;
 
@@ -32,7 +30,7 @@ export async function POST(req: Request) {
   const prevQuick = parseQuickRepliesFromText(prevAssistantText);
   const typedOrQuick =
     prevQuick && lastUserText
-      ? prevQuick.some((q) => q.trim() === lastUserText.trim())
+      ? prevQuick.some((q: string) => q.trim() === lastUserText.trim())
         ? "quick"
         : "typed"
       : last?.role === "user"
@@ -46,6 +44,7 @@ export async function POST(req: Request) {
     prevAssistantHasQuickReplies: Array.isArray(prevQuick),
     prevAssistantQuickRepliesCount: prevQuick?.length ?? 0,
     userInputType: typedOrQuick,
+    userMessage: lastUserText.slice(0, 200),
     model: "gpt-4.1-mini",
     stopWhenSteps: 5,
     systemPromptChars: system.length,
@@ -58,56 +57,12 @@ export async function POST(req: Request) {
     system,
 
     messages: convertToModelMessages(messages),
-    tools: {
-      weather: tool({
-        description: "Get the weather in a location (fahrenheit)",
-        inputSchema: object({
-          location: string().describe("The location to get the weather for"),
-        }),
-        execute: async ({ location }) => {
-          logToolExecute({
-            toolName: "weather",
-            input: { location },
-            ts: new Date().toISOString(),
-          });
-          const temperature = Math.round(Math.random() * (90 - 32) + 32);
-          const out = {
-            location,
-            temperature,
-          };
-          logToolResult({
-            toolName: "weather",
-            output: out,
-            ts: new Date().toISOString(),
-          });
-          return out;
-        },
-      }),
-      convertFahrenheitToCelsius: tool({
-        description: "Convert a temperature in fahrenheit to celsius",
-        inputSchema: object({
-          temperature: number().describe(
-            "The temperature in fahrenheit to convert",
-          ),
-        }),
-        execute: async ({ temperature }) => {
-          logToolExecute({
-            toolName: "convertFahrenheitToCelsius",
-            input: { temperature },
-            ts: new Date().toISOString(),
-          });
-          const celsius = Math.round((temperature - 32) * (5 / 9));
-          const out = {
-            celsius,
-          };
-          logToolResult({
-            toolName: "convertFahrenheitToCelsius",
-            output: out,
-            ts: new Date().toISOString(),
-          });
-          return out;
-        },
-      }),
+    tools: defaultToolSet.tools,
+    onFinish: ({ text }) => {
+      logAssistantResponse({
+        text: text.slice(0, 500),
+        ts: new Date().toISOString(),
+      });
     },
   });
 

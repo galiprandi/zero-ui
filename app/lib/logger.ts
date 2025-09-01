@@ -7,6 +7,7 @@ interface LogRequestMetaData {
   prevAssistantHasQuickReplies: boolean;
   prevAssistantQuickRepliesCount: number;
   userInputType: string;
+  userMessage: string;
   model: string;
   stopWhenSteps: number;
   systemPromptChars: number;
@@ -99,4 +100,13 @@ export function parseQuickRepliesFromText(text: string): string[] | null {
     }
   }
   return null;
+}
+
+export function logAssistantResponse(data: { text: string; ts: string }): void {
+  if (__DEV__) {
+    console.debug("[dev][server][chat] assistant response", {
+      text: data.text,
+      ts: data.ts,
+    });
+  }
 }
