@@ -2,7 +2,7 @@ import { useEffect, useMemo } from "react";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { materialDark as theme } from "react-syntax-highlighter/dist/esm/styles/prism";
-import rehypeRaw from "rehype-raw";
+// import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
 
 interface MessageTextProps {
@@ -96,7 +96,17 @@ export default function MessageText({
           </SyntaxHighlighter>
         );
     },
-    p: ({ children }: { children?: React.ReactNode }) => <div>{children}</div>,
+    p: ({ children }: { children?: React.ReactNode }) => (
+      <p className="my-1 leading-tight">{children}</p>
+    ),
+    ul: ({ children }: { children?: React.ReactNode }) => (
+      <ul className="my-1 pl-5 list-disc leading-tight space-y-0.5">
+        {children}
+      </ul>
+    ),
+    li: ({ children }: { children?: React.ReactNode }) => (
+      <li className="my-0">{children}</li>
+    ),
   };
   return (
     <div
@@ -104,7 +114,7 @@ export default function MessageText({
       className={`flex ${isUser ? "justify-end my-2" : "justify-start my-0"}`}
     >
       {isUser ? (
-        <div className="block px-4 py-2 rounded-full shadow-sm break-words bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100 leading-snug">
+        <div className="block px-4 py-2 rounded-full shadow-sm break-words bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100 leading-snug text-sm">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
             components={components}
@@ -114,10 +124,10 @@ export default function MessageText({
           </ReactMarkdown>
         </div>
       ) : (
-        <div className="text-justify w-full leading-snug">
+        <div className="text-justify w-full leading-tight">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
-            rehypePlugins={[rehypeRaw]}
+            // rehypePlugins={[rehypeRaw]}
             components={components}
           >
             {displayText}
