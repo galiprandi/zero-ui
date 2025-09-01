@@ -5,7 +5,7 @@ import { logToolExecute, logToolResult } from "../../lib/logger";
 
 export const getOffersTool = tool({
   description:
-    "Obtener ofertas actuales. Devuelve una lista de productos promocionales.",
+    "Get current offers. Returns a list of promotional products.",
   inputSchema: z.object({}),
   execute: async () => {
     logToolExecute({

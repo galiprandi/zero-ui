@@ -1,10 +1,3 @@
-import { openai } from "@ai-sdk/openai";
-import {
-  convertToModelMessages,
-  stepCountIs,
-  streamText,
-  type UIMessage,
-} from "ai";
 import {
   getMessageText,
   logAssistantResponse,
@@ -12,7 +5,14 @@ import {
   parseQuickRepliesFromText,
 } from "@/app/lib/logger";
 import { system } from "@/app/prompts/system.prompt";
-import { coreToolSet, shipmentToolSet } from "@/app/tools/sets";
+import { tools } from "@/app/tools/sets";
+import { openai } from "@ai-sdk/openai";
+import {
+  convertToModelMessages,
+  stepCountIs,
+  streamText,
+  type UIMessage,
+} from "ai";
 
 export const maxDuration = 30;
 
@@ -57,10 +57,7 @@ export async function POST(req: Request) {
     system,
 
     messages: convertToModelMessages(messages),
-    tools: {
-      ...coreToolSet.tools,
-      ...shipmentToolSet.tools,
-    },
+    tools,
     onFinish: ({ text }) => {
       logAssistantResponse({
         text: text.slice(0, 500),

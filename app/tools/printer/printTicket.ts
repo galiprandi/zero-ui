@@ -5,10 +5,10 @@ import { logToolExecute, logToolResult } from "../../lib/logger";
 
 export const printTicketTool = tool({
   description:
-    "Imprimir ticket para un producto. Útil para comprobantes de venta.",
+    "Print ticket for a product. Useful for sales receipts.",
   inputSchema: z.object({
-    ean: z.string().describe("Código EAN del producto"),
-    price: z.string().describe("Precio del producto"),
+    ean: z.string().describe("Product EAN code"),
+    price: z.string().describe("Product price"),
   }),
   execute: async ({ ean, price }) => {
     logToolExecute({
@@ -18,7 +18,7 @@ export const printTicketTool = tool({
     });
 
     printTicket(ean, price);
-    const result = { message: "Ticket impreso correctamente." };
+    const result = { message: "Ticket printed successfully." };
 
     logToolResult({
       toolName: "printTicket",
