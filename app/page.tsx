@@ -1,12 +1,11 @@
 "use client";
 
 import { useChat } from "@ai-sdk/react";
-import { useState, useRef, useEffect } from "react";
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import MessageText from "./components/MessageText";
-import ToolDetails from "./components/ToolDetails";
 import QuickReplies from "./components/QuickReplies";
+import ToolDetails from "./components/ToolDetails";
 
 export default function Chat() {
   const [input, setInput] = useState("");
@@ -36,24 +35,20 @@ export default function Chat() {
   );
 
   useEffect(() => {
-    const now = Date.now()
+    const now = Date.now();
     // Clear quick replies when new message arrives
     if (messages.length > messagesLengthRef.current) {
-      setQuickReplies([])
+      setQuickReplies([]);
     }
     if (now - lastScrollRef.current > 5000) {
-      messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
-      lastScrollRef.current = now
+      messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+      lastScrollRef.current = now;
     }
-    messagesLengthRef.current = messages.length
-  }, [messages.length])
-
-  
+    messagesLengthRef.current = messages.length;
+  }, [messages.length]);
 
   return (
-    <div
-      className="flex flex-col w-full max-w-[1120px] mx-auto h-screen px-[1em] py-[1em]"
-    >
+    <div className="flex flex-col w-full max-w-[1120px] mx-auto h-screen px-[1em] py-[1em]">
       <div className="flex-1 overflow-y-auto">
         {messages.map((message) => (
           <div key={message.id} className="whitespace-pre-wrap">

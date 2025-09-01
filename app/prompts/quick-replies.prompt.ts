@@ -48,11 +48,11 @@ Cuando preguntes "¿Qué quieres hacer?" o "¿En qué puedo ayudarte?", usa esta
 - 📚 Investigación  
 - ❌ Nada por ahora
 
-IMPORTANTE: Solo incluye quick_replies cuando realmente esperes una respuesta cerrada. Para conversaciones normales, solo responde con el mensaje de texto.`
+IMPORTANTE: Solo incluye quick_replies cuando realmente esperes una respuesta cerrada. Para conversaciones normales, solo responde con el mensaje de texto.`;
 
 export const initialQuickReplies = [
   "🎨 Editar imagen",
-  "💻 Desarrollo web", 
+  "💻 Desarrollo web",
   "📚 Investigación",
-  "❌ Nada por ahora"
-]
+  "❌ Nada por ahora",
+];

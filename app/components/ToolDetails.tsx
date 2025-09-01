@@ -1,21 +1,27 @@
-import React from 'react'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { oneLight } from 'react-syntax-highlighter/dist/cjs/styles/prism'
+import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { oneLight } from "react-syntax-highlighter/dist/cjs/styles/prism";
 
-interface ToolDetailsProps {
-  part: any
-  id: string
+interface Part {
+  type: string;
+  code?: string;
+  language?: string;
+  [key: string]: unknown;
 }
 
-export default function ToolDetails({ part, id }: ToolDetailsProps) {
-  let code = ''
-  let language = 'javascript'
-  if (part.type === 'code' && part.code) {
-    code = part.code
-    language = part.language || 'javascript'
+interface ToolDetailsProps {
+  part: Part;
+  id: string;
+}
+
+export default function ToolDetails({ part, id: _id }: ToolDetailsProps) {
+  let code = "";
+  let language = "javascript";
+  if (part.type === "code" && part.code) {
+    code = part.code;
+    language = part.language || "javascript";
   } else {
-    code = JSON.stringify(part, null, 2)
-    language = 'json'
+    code = JSON.stringify(part, null, 2);
+    language = "json";
   }
   return (
     <div className="text-right flex justify-end opacity-50">
@@ -30,5 +36,5 @@ export default function ToolDetails({ part, id }: ToolDetailsProps) {
         </SyntaxHighlighter>
       </details>
     </div>
-  )
+  );
 }
