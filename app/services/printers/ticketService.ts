@@ -1,7 +1,7 @@
 import categories from "../../data/categories.json";
 import { searchByEan } from "../products/searchByEan";
 
-export function printTicket(ean: string, price: string): void {
+export function printTicket(ean: string, price: string) {
   const product = searchByEan(ean);
   if (!product) {
     console.log(`Producto con EAN ${ean} no encontrado.`);
@@ -19,4 +19,9 @@ Precio: ${price}
 Categoría: ${categoryName}
 ========================
   `);
+
+  return {
+    ok: true,
+    printer: "Impresora de ticket N° 12453",
+  };
 }
