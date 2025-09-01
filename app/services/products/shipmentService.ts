@@ -39,9 +39,14 @@ export function getTodaysShipmentId(): string {
   return FIXED_SHIPMENT_ID;
 }
 
-export function getShipmentDetails(
-  id: string,
-): { products: { ean: string; name: string; quantity: number }[] } | null {
+export function getShipmentDetails(id: string): {
+  products: {
+    ean: string;
+    name: string;
+    quantity: number;
+    categoryId: number;
+  }[];
+} | null {
   if (id !== FIXED_SHIPMENT_ID) return null;
 
   const productsDetails = todaysShipment.items.map((item) => {

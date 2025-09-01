@@ -22,31 +22,94 @@ export default function MessageText({
 
   const { displayText, quickReplies } = useMemo(() => {
     if (!isUser && text) {
+      // First try to parse the entire text as JSON
       try {
         const parsed = JSON.parse(text);
         if (parsed.quick_replies && Array.isArray(parsed.quick_replies)) {
-          const messageText = parsed.message || text;
           return {
-            displayText: messageText,
+            displayText: parsed.message || "",
             quickReplies: parsed.quick_replies,
           };
         }
       } catch (_e) {
-        const jsonMatch = text.match(/\{[\s\S]*"quick_replies"[\s\S]*\}/);
-        if (jsonMatch) {
-          try {
-            const parsed = JSON.parse(jsonMatch[0]);
-            if (parsed.quick_replies && Array.isArray(parsed.quick_replies)) {
-              const messageText = text.replace(jsonMatch[0], "").trim();
-              return {
-                displayText: messageText || parsed.message || text,
-                quickReplies: parsed.quick_replies,
-              };
+        // If full text isn't JSON, try to find JSON within the text
+        // Use a simpler regex approach
+        const jsonRegex = /\{[^}]*"quick_replies"[^}]*\}/g;
+        const matches = text.match(jsonRegex);
+
+        if (matches) {
+          for (const match of matches) {
+            try {
+              const parsed = JSON.parse(match);
+              if (parsed.quick_replies && Array.isArray(parsed.quick_replies)) {
+                // Remove the JSON part from the display text
+                const messageText = text.replace(match, "").trim();
+                return {
+                  displayText: messageText || parsed.message || "",
+                  quickReplies: parsed.quick_replies,
+                };
+              }
+            } catch (_e2) {
+              // Continue to next match
             }
-          } catch (_e2) {}
+          }
+        }
+
+        // Try a different approach: look for JSON-like structures with line breaks
+        const lines = text.split("\n");
+        for (const line of lines) {
+          if (line.includes('"quick_replies"')) {
+            try {
+              const parsed = JSON.parse(line.trim());
+              if (parsed.quick_replies && Array.isArray(parsed.quick_replies)) {
+                const messageText = text.replace(line, "").trim();
+                return {
+                  displayText: messageText || parsed.message || "",
+                  quickReplies: parsed.quick_replies,
+                };
+              }
+            } catch (_e3) {
+              // Continue
+            }
+          }
+        }
+
+        // Last resort: try to extract JSON manually by finding braces
+        const startIndex = text.indexOf('{"quick_replies"');
+        if (startIndex !== -1) {
+          let braceCount = 0;
+          let endIndex = startIndex;
+
+          for (let i = startIndex; i < text.length; i++) {
+            if (text[i] === "{") braceCount++;
+            if (text[i] === "}") braceCount--;
+
+            if (braceCount === 0) {
+              endIndex = i + 1;
+              break;
+            }
+          }
+
+          if (endIndex > startIndex) {
+            const jsonCandidate = text.substring(startIndex, endIndex);
+
+            try {
+              const parsed = JSON.parse(jsonCandidate);
+              if (parsed.quick_replies && Array.isArray(parsed.quick_replies)) {
+                const messageText = text.replace(jsonCandidate, "").trim();
+                return {
+                  displayText: messageText || parsed.message || "",
+                  quickReplies: parsed.quick_replies,
+                };
+              }
+            } catch (_e4) {
+              // Last attempt failed
+            }
+          }
         }
       }
     }
+
     return {
       displayText: text,
       quickReplies: null,
