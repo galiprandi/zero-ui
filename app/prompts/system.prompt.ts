@@ -1,3 +1,4 @@
+import { modulesPrompt } from "./modules.prompt";
 import { quickReplies } from "./quick-replies.prompt";
 import { ui } from "./ui.prompt";
 
@@ -17,4 +18,6 @@ Acciones que puedes realizar:
 ${quickReplies}
 
 ${ui}
+
+${modulesPrompt}
 `;

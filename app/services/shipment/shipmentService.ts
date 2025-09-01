@@ -1,5 +1,5 @@
 import { getRandomProducts } from "../products/getRandomProducts";
-import type { Product } from "../products/types";
+import type { ProductExtended } from "../products/types";
 
 export const getTodaysShipments = (): ShipmentDetailsDTO[] => {
   console.log("Getting today's mock shipments");
@@ -24,6 +24,10 @@ export function getShipmentDetails(id: string): ShipmentDetailsDTO {
   const trackerLicense = Math.floor(Math.random() * 1000000).toString();
 
   const products = getRandomProducts(10);
+  products.forEach((product) => {
+    product.quantity = Math.floor(Math.random() * 51) + 50;
+  });
+
   return {
     id,
     estimatedTime,
@@ -34,7 +38,7 @@ export function getShipmentDetails(id: string): ShipmentDetailsDTO {
 
 type ShipmentDetailsDTO = {
   id: string;
-  products: Product[];
+  products: ProductExtended[];
   trackerLicense: string;
   estimatedTime: string;
 };

@@ -15,6 +15,7 @@ import {
 } from "ai";
 
 export const maxDuration = 30;
+const model = "gpt-5-nano";
 
 export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();
@@ -45,14 +46,14 @@ export async function POST(req: Request) {
     prevAssistantQuickRepliesCount: prevQuick?.length ?? 0,
     userInputType: typedOrQuick,
     userMessage: lastUserText.slice(0, 200),
-    model: "gpt-4.1-mini",
+    model: model,
     stopWhenSteps: 5,
     systemPromptChars: system.length,
     ts: new Date().toISOString(),
   });
 
   const result = streamText({
-    model: openai("gpt-4.1-mini"),
+    model: openai(model),
     stopWhen: stepCountIs(5),
     system,
 

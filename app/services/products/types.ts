@@ -8,6 +8,7 @@ export interface Product {
   url: string;
 }
 
-export type ProductWithCategory = Product & {
+export type ProductExtended = Product & {
   categoryName: string;
+  quantity: number;
 };
