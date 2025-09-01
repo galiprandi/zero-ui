@@ -1,1 +1,4 @@
-export const initialQuickReplies: string[] = ["🤷‍♀️ ¿Cómo me puedes ayudar?"];
+export const initialQuickReplies: string[] = [
+  "🤷‍♀️ ¿Cómo me puedes ayudar?",
+  "🚚 Recepciones",
+];

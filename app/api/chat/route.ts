@@ -12,7 +12,7 @@ import {
   parseQuickRepliesFromText,
 } from "@/app/lib/logger";
 import { system } from "@/app/prompts/system.prompt";
-import { defaultToolSet } from "@/app/tools/sets";
+import { coreToolSet, shipmentToolSet } from "@/app/tools/sets";
 
 export const maxDuration = 30;
 
@@ -57,7 +57,10 @@ export async function POST(req: Request) {
     system,
 
     messages: convertToModelMessages(messages),
-    tools: defaultToolSet.tools,
+    tools: {
+      ...coreToolSet.tools,
+      ...shipmentToolSet.tools,
+    },
     onFinish: ({ text }) => {
       logAssistantResponse({
         text: text.slice(0, 500),

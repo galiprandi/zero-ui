@@ -50,6 +50,7 @@ export function getShipmentDetails(
       ean: item.ean,
       name: product ? product.name : "Desconocido",
       quantity: item.quantity,
+      categoryId: product ? product.categoryId : 0,
     };
   });
 

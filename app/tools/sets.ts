@@ -1,6 +1,8 @@
 import type { Tool } from "ai";
-import { convertTemperatureTool } from "./weather/convert.temperature";
 import { weatherTool } from "./weather/get.weathr";
+import { convertTemperatureTool } from "./weather/convert.temperature";
+import { getTodaysShipmentsTool } from "./shipment/getTodaysShipments";
+import { listShipmentProductsTool } from "./shipment/listShipmentProducts";
 
 export const toolSets: Record<string, ToolSet> = {
   basic: {
@@ -18,8 +20,18 @@ export const toolSets: Record<string, ToolSet> = {
   },
 };
 
-// Default set to use
-export const defaultToolSet = toolSets.basic;
+// Shipment tool set
+export const shipmentToolSet: ToolSet = {
+  name: "Shipment Tools",
+  description: "Tools for managing shipments and deliveries",
+  tools: {
+    getTodaysShipments: getTodaysShipmentsTool,
+    listShipmentProducts: listShipmentProductsTool,
+  },
+};
+
+// Core set to use
+export const coreToolSet = toolSets.basic;
 
 export interface ToolSet {
   name: string;
