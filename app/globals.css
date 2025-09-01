@@ -6,9 +6,6 @@
   --foreground: #171717;
   --table-border: #e5e7eb;
   --table-hover: #f3f4f6;
-}
-
-@theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
@@ -54,8 +51,6 @@ body {
   padding: 1rem;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
-
-
 
 @media (prefers-color-scheme: dark) {
   .zero-ui {
