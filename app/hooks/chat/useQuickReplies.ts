@@ -1,5 +1,6 @@
 import type { UIMessage } from "@ai-sdk/react";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { initialQuickReplies } from "@/app/config/initialQuickReplies";
 
 export function useQuickReplies(messages: UIMessage[]) {
   const [quickReplies, setQuickReplies] = useState<string[]>([]);
@@ -7,8 +8,7 @@ export function useQuickReplies(messages: UIMessage[]) {
 
   // Load initial quick replies on component mount
   useEffect(() => {
-    const initialOptions = ["🍽️ ¿Qué puedo cenar?", "🥞 ¿Desayuno saludable?"];
-    setQuickReplies(initialOptions);
+    setQuickReplies(initialQuickReplies);
   }, []);
 
   // Clear quick replies when new message arrives
