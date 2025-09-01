@@ -5,7 +5,7 @@
     "price": "250.00",
     "categoryId": 1,
     "description": "Arroz de grano largo para cocinar",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/arroz-gallo-oro"
   },
   {
@@ -14,7 +14,7 @@
     "price": "180.00",
     "categoryId": 2,
     "description": "Leche entera fresca",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/leche-serenisima"
   },
   {
@@ -23,7 +23,7 @@
     "price": "320.00",
     "categoryId": 3,
     "description": "Pan de molde blanco",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/pan-lactal"
   },
   {
@@ -32,7 +32,7 @@
     "price": "450.00",
     "categoryId": 4,
     "description": "Gaseosa cola original",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/coca-cola"
   },
   {
@@ -41,7 +41,7 @@
     "price": "680.00",
     "categoryId": 5,
     "description": "Aceite de oliva extra virgen",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/aceite-cocinero"
   },
   {
@@ -50,7 +50,7 @@
     "price": "95.00",
     "categoryId": 2,
     "description": "Yogur natural sin azúcar",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/yogur-danone"
   },
   {
@@ -59,7 +59,7 @@
     "price": "210.00",
     "categoryId": 1,
     "description": "Pasta spaghetti número 3",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/fideos-matarazzo"
   },
   {
@@ -68,7 +68,7 @@
     "price": "290.00",
     "categoryId": 8,
     "description": "Detergente para lavar ropa",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/jabon-ala"
   },
   {
@@ -77,7 +77,7 @@
     "price": "350.00",
     "categoryId": 7,
     "description": "Manzanas frescas rojas",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/manzanas-rojas"
   },
   {
@@ -86,7 +86,7 @@
     "price": "1250.00",
     "categoryId": 4,
     "description": "Cápsulas de café para máquina Dolce Gusto",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/cafe-nescafe"
   },
   {
@@ -95,7 +95,7 @@
     "price": "180.00",
     "categoryId": 6,
     "description": "Papel higiénico suave",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/papel-higienol"
   },
   {
@@ -104,7 +104,7 @@
     "price": "420.00",
     "categoryId": 2,
     "description": "Huevos frescos de gallinas camperas",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/huevos-color"
   },
   {
@@ -113,7 +113,7 @@
     "price": "280.00",
     "categoryId": 4,
     "description": "Cerveza lager rubia",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/cerveza-quilmes"
   },
   {
@@ -122,7 +122,7 @@
     "price": "150.00",
     "categoryId": 1,
     "description": "Harina de trigo refinada",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/harina-pureza"
   },
   {
@@ -131,7 +131,7 @@
     "price": "520.00",
     "categoryId": 8,
     "description": "Detergente líquido para ropa",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/detergente-ariel"
   },
   {
@@ -140,7 +140,7 @@
     "price": "200.00",
     "categoryId": 7,
     "description": "Plátanos frescos",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/bananas"
   },
   {
@@ -149,7 +149,7 @@
     "price": "360.00",
     "categoryId": 4,
     "description": "Té negro en saquitos",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/te-taragui"
   },
   {
@@ -158,7 +158,7 @@
     "price": "220.00",
     "categoryId": 1,
     "description": "Azúcar blanca refinada",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/azucar-ledesma"
   },
   {
@@ -167,7 +167,7 @@
     "price": "480.00",
     "categoryId": 6,
     "description": "Shampoo para cabello normal",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/shampoo-sedal"
   },
   {
@@ -176,7 +176,7 @@
     "price": "650.00",
     "categoryId": 2,
     "description": "Queso cremoso para untar",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/queso-cremoso"
   },
   {
@@ -185,7 +185,7 @@
     "price": "290.00",
     "categoryId": 12,
     "description": "Galletitas con crema de vainilla",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/galletitas-oreo"
   },
   {
@@ -194,7 +194,7 @@
     "price": "120.00",
     "categoryId": 9,
     "description": "Vinagre de alcohol blanco",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/vinagre-alcohol"
   },
   {
@@ -203,7 +203,7 @@
     "price": "180.00",
     "categoryId": 7,
     "description": "Tomates rojos frescos",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/tomates"
   },
   {
@@ -212,7 +212,7 @@
     "price": "150.00",
     "categoryId": 6,
     "description": "Cepillo dental suave",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/cepillo-colgate"
   },
   {
@@ -221,7 +221,7 @@
     "price": "380.00",
     "categoryId": 2,
     "description": "Manteca para cocinar",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/manteca-serenisima"
   },
   {
@@ -230,7 +230,7 @@
     "price": "90.00",
     "categoryId": 9,
     "description": "Sal fina yodada",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/sal-dos-anclas"
   },
   {
@@ -239,7 +239,7 @@
     "price": "250.00",
     "categoryId": 10,
     "description": "Chocolate con leche",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/chocolate-aguila"
   },
   {
@@ -248,7 +248,7 @@
     "price": "420.00",
     "categoryId": 11,
     "description": "Mayonesa clásica",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/mayonesa-hellmanns"
   },
   {
@@ -257,7 +257,7 @@
     "price": "140.00",
     "categoryId": 7,
     "description": "Cebollas blancas frescas",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/cebollas"
   },
   {
@@ -266,7 +266,7 @@
     "price": "220.00",
     "categoryId": 6,
     "description": "Pasta dental con flúor",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/pasta-colgate"
   },
   {
@@ -275,7 +275,7 @@
     "price": "160.00",
     "categoryId": 11,
     "description": "Salsa de tomate natural",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/salsa-arcor"
   },
   {
@@ -284,7 +284,7 @@
     "price": "120.00",
     "categoryId": 7,
     "description": "Naranjas dulces",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/naranjas"
   },
   {
@@ -293,7 +293,7 @@
     "price": "350.00",
     "categoryId": 6,
     "description": "Desodorante en aerosol",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/desodorante-axe"
   },
   {
@@ -302,7 +302,7 @@
     "price": "280.00",
     "categoryId": 16,
     "description": "Mermelada de durazno",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/mermelada-arcor"
   },
   {
@@ -311,7 +311,7 @@
     "price": "580.00",
     "categoryId": 13,
     "description": "Pollo fresco entero",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/pollo-entero"
   },
   {
@@ -320,7 +320,7 @@
     "price": "430.00",
     "categoryId": 4,
     "description": "Gaseosa lima-limón",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/sprite"
   },
   {
@@ -329,7 +329,7 @@
     "price": "190.00",
     "categoryId": 8,
     "description": "Desinfectante con lavandina",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/lavandina-ayudin"
   },
   {
@@ -338,7 +338,7 @@
     "price": "160.00",
     "categoryId": 7,
     "description": "Limones frescos",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/limones"
   },
   {
@@ -347,7 +347,7 @@
     "price": "550.00",
     "categoryId": 6,
     "description": "Champú anticaspa",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/champu-head-shoulders"
   },
   {
@@ -356,7 +356,7 @@
     "price": "480.00",
     "categoryId": 14,
     "description": "Helado de vainilla",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/helado-vainilla"
   },
   {
@@ -365,7 +365,7 @@
     "price": "320.00",
     "categoryId": 15,
     "description": "Atún en agua al natural",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/atun-gomes"
   },
   {
@@ -374,7 +374,7 @@
     "price": "140.00",
     "categoryId": 11,
     "description": "Puré de tomate concentrado",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/pure-arcor"
   },
   {
@@ -383,7 +383,7 @@
     "price": "100.00",
     "categoryId": 7,
     "description": "Papas blancas frescas",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/papas"
   },
   {
@@ -392,7 +392,7 @@
     "price": "180.00",
     "categoryId": 6,
     "description": "Jabón hidratante",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/jabon-dove"
   },
   {
@@ -401,7 +401,7 @@
     "price": "260.00",
     "categoryId": 12,
     "description": "Galletitas con chips de chocolate",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/galletitas-pepitos"
   },
   {
@@ -410,7 +410,7 @@
     "price": "290.00",
     "categoryId": 11,
     "description": "Mostaza clásica",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/mostaza-savora"
   },
   {
@@ -419,7 +419,7 @@
     "price": "90.00",
     "categoryId": 7,
     "description": "Zanahorias frescas",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/zanahorias"
   },
   {
@@ -428,7 +428,7 @@
     "price": "210.00",
     "categoryId": 6,
     "description": "Crema dental menta",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/crema-closeup"
   },
   {
@@ -437,7 +437,7 @@
     "price": "280.00",
     "categoryId": 2,
     "description": "Mantequilla para untar",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/mantequilla-serenisima"
   },
   {
@@ -446,7 +446,7 @@
     "price": "380.00",
     "categoryId": 11,
     "description": "Ketchup clásico",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/ketchup-hellmanns"
   },
   {
@@ -455,7 +455,7 @@
     "price": "50.00",
     "categoryId": 7,
     "description": "Cabezas de ajo fresco",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/ajo"
   },
   {
@@ -464,7 +464,7 @@
     "price": "340.00",
     "categoryId": 6,
     "description": "Desodorante roll-on",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/desodorante-rexona"
   },
   {
@@ -473,7 +473,7 @@
     "price": "240.00",
     "categoryId": 12,
     "description": "Galletitas dulces",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/galletitas-terrabusi"
   },
   {
@@ -482,7 +482,7 @@
     "price": "150.00",
     "categoryId": 9,
     "description": "Vinagre de vino tinto",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/vinagre-vino"
   },
   {
@@ -491,7 +491,7 @@
     "price": "220.00",
     "categoryId": 7,
     "description": "Peras verdes frescas",
-    "image": "https://placehold.co/70x100.jpg",
+    "image": "https://placehold.co/100x100.jpg",
     "url": "https://vea.com.ar/peras"
   }
 ]

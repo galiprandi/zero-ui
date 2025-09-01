@@ -8,7 +8,7 @@ Card de producto minimal para listado o detalle (sin borde ni fondo, 2 columnas 
 <article class="flex w-full items-start gap-2 my-0 my-[1em]">
   <figure class="m-0 shrink-0">
     <img
-      src="https://placehold.co/56x72.jpg"
+      src="https://placehold.co/100x100.jpg"
       alt="[NOMBRE_DEL_PRODUCTO]"
       class="w-[100px] h-[100px] object-cover rounded-md"
     />
@@ -35,7 +35,7 @@ Tabla de artículos (lista compacta en tabla, sin bordes pesados):
   <tbody>
     <tr class="align-middle">
       <td class="pr-2">
-        <img src="https://placehold.co/56x72.jpg" alt="[NOMBRE_DEL_PRODUCTO]" class="w-[40px] h-[56px] object-cover rounded" />
+        <img src="https://placehold.co/100x100.jpg" alt="[NOMBRE_DEL_PRODUCTO]" class="w-[100px] h-[100px] object-cover rounded" />
       </td>
       <td class="pr-2 max-w-[240px] truncate">[NOMBRE_DEL_PRODUCTO]</td>
       <td class="pr-2 tabular-nums">[CÓDIGO_EAN]</td>

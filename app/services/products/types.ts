@@ -7,3 +7,7 @@ export interface Product {
   image: string;
   url: string;
 }
+
+export type ProductWithCategory = Product & {
+  categoryName: string;
+};

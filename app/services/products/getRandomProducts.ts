@@ -1,11 +1,14 @@
+import categories from "../../data/categories.json";
 import products from "../../data/products.json";
-import type { Product } from "./types";
+import type { ProductWithCategory } from "./types";
 
-export function getRandomProducts(count: number): Product[] {
-  const allProducts = products as Product[];
-  if (count >= allProducts.length) {
-    return allProducts;
-  }
-  const shuffled = allProducts.sort(() => 0.5 - Math.random());
-  return shuffled.slice(0, count);
+export function getRandomProducts(count: number): ProductWithCategory[] {
+  const shuffled = products.sort(() => 0.5 - Math.random());
+  const result = shuffled.slice(0, count).map((product) => ({
+    ...product,
+    categoryName:
+      categories.find((cat) => cat.id === product.categoryId)?.name ??
+      "Sin categoría",
+  }));
+  return result;
 }
