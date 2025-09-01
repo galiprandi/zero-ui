@@ -4,7 +4,8 @@ import { searchByCategory } from "../../services/products/searchByCategory";
 import { logToolExecute, logToolResult } from "../../lib/logger";
 
 export const listProductsByCategoryTool = tool({
-  description: "Listar productos por categoría. Útil para gestionar secciones del supermercado.",
+  description:
+    "Listar productos por categoría. Útil para gestionar secciones del supermercado.",
   inputSchema: z.object({
     categoryId: z.number().describe("ID de la categoría"),
   }),

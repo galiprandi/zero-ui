@@ -4,7 +4,8 @@ import { searchByName } from "../../services/products/searchByName";
 import { logToolExecute, logToolResult } from "../../lib/logger";
 
 export const findProductByNameTool = tool({
-  description: "Buscar productos por nombre parcial. Útil para localizar artículos en el inventario.",
+  description:
+    "Buscar productos por nombre parcial. Útil para localizar artículos en el inventario.",
   inputSchema: z.object({
     query: z.string().describe("Consulta de nombre del producto"),
   }),

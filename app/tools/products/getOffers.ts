@@ -4,7 +4,8 @@ import { getRandomOffers } from "../../services/products/offerService";
 import { logToolExecute, logToolResult } from "../../lib/logger";
 
 export const getOffersTool = tool({
-  description: "Obtener ofertas actuales. Devuelve una lista de productos promocionales.",
+  description:
+    "Obtener ofertas actuales. Devuelve una lista de productos promocionales.",
   inputSchema: z.object({}),
   execute: async () => {
     logToolExecute({

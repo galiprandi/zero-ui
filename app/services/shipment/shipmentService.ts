@@ -1,6 +1,6 @@
-import { searchByEan } from "./searchByEan";
 import products from "../../data/products.json";
-import type { Product } from "./types";
+import { searchByEan } from "../products/searchByEan";
+import type { Product } from "../products/types";
 
 interface ShipmentItem {
   ean: string;

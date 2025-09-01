@@ -4,7 +4,8 @@ import { searchByEan } from "../../services/products/searchByEan";
 import { logToolExecute, logToolResult } from "../../lib/logger";
 
 export const findProductByEanTool = tool({
-  description: "Buscar producto por código EAN. Útil para verificar detalles específicos.",
+  description:
+    "Buscar producto por código EAN. Útil para verificar detalles específicos.",
   inputSchema: z.object({
     ean: z.string().describe("Código EAN del producto"),
   }),
