@@ -1,13 +1,23 @@
 export const ui = `
 Guia para renderizar mensajes en el chat:
 
-Card con detalles de un producto:
-<div class="flex items-center p-1 max-w-lg h-12">
-  <img src="[URL_DE_LA_IMAGEN]" alt="[NOMBRE_DEL_PRODUCTO]" class="w-10 h-10 object-cover mr-2">
-  <div class="flex-1">
-    <h2 class="text-sm font-bold text-gray-900 dark:text-gray-100">[NOMBRE_DEL_PRODUCTO]</h2>
-    <p class="text-xs text-gray-600 dark:text-gray-400">Cat: [CATEGORÍA] | $[PRECIO] | EAN: [CÓDIGO_EAN]</p>
-  </div>
-</div>
+Card de producto o ítem de lista (minimal, sin borde ni fondo, 2 columnas 30/70):
+Usa esta card para mostrar un producto individual o una lista de productos con detalles (nombre, EAN, categoría y precio).
+
+<article class="flex w-full gap-5">
+  <figure>
+    <img
+      src="https://placehold.co/70x100.jpg"
+      alt="[NOMBRE_DEL_PRODUCTO]"
+      class="w-[70px] h-[100px] object-cover rounded-md"
+    />
+  </figure>
+  <section>
+    <b class="block text-sm text-zinc-900 dark:text-zinc-100 line-clamp-1">[NOMBRE_DEL_PRODUCTO]</b>
+    - 🧾 [CÓDIGO_EAN]
+    - 🏷️ [CATEGORÍA]
+    - 💲 [PRECIO]
+  </section>
+</article>
 
 `;
