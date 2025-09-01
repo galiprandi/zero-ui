@@ -14,7 +14,6 @@ export default function Chat() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const lastScrollRef = useRef(Date.now());
   const messagesLengthRef = useRef(messages.length);
-  const [keyboardOffset, setKeyboardOffset] = useState(0);
   const [quickReplies, setQuickReplies] = useState<string[]>([]);
 
   // Load initial quick replies on component mount
@@ -49,73 +48,63 @@ export default function Chat() {
     messagesLengthRef.current = messages.length
   }, [messages.length])
 
-  useEffect(() => {
-    const vv = window.visualViewport
-    if (vv) {
-      const handleResize = () => {
-        const viewport = window.visualViewport;
-        if (viewport) {
-          const heightDiff = window.innerHeight - viewport.height;
-          setKeyboardOffset(heightDiff);
-        }
-      };
-      vv.addEventListener("resize", handleResize);
-      return () => vv.removeEventListener("resize", handleResize);
-    }
-  }, []);
+  
 
   return (
     <div
-      className="flex flex-col w-4/5 max-w-[1120px] mx-auto stretch h-screen"
-      style={{
-        paddingBottom: `${(quickReplies.length ? 160 : 110) + keyboardOffset}px`,
-      }}
+      className="flex flex-col w-full max-w-[1120px] mx-auto h-screen px-[1em] py-[1em]"
     >
-      {messages.map((message) => (
-        <div key={message.id} className="whitespace-pre-wrap">
-          {message.parts.map((part, i) => {
-            const isTool = "toolCallId" in part;
-            const partId = `${message.id}-${i}`;
-            if (isTool)
-              return <ToolDetails part={part} id={`${message.id}-${i}`} />;
-            else
-              switch (part.type) {
-                case "text":
-                  return (
-                    <MessageText
-                      key={partId}
-                      role={message.role}
-                      text={part.text}
-                      id={partId}
-                      onQuickReplies={handleQuickReplies}
-                    />
-                  );
-                default:
-                  return null;
-              }
-          })}
-        </div>
-      ))}
+      <div className="flex-1 overflow-y-auto">
+        {messages.map((message) => (
+          <div key={message.id} className="whitespace-pre-wrap">
+            {message.parts.map((part, i) => {
+              const isTool = "toolCallId" in part;
+              const partId = `${message.id}-${i}`;
+              if (isTool)
+                return <ToolDetails part={part} id={`${message.id}-${i}`} />;
+              else
+                switch (part.type) {
+                  case "text":
+                    return (
+                      <MessageText
+                        key={partId}
+                        role={message.role}
+                        text={part.text}
+                        id={partId}
+                        onQuickReplies={handleQuickReplies}
+                      />
+                    );
+                  default:
+                    return null;
+                }
+            })}
+          </div>
+        ))}
+        <div ref={messagesEndRef} />
+      </div>
 
-      <div ref={messagesEndRef} className="h-0" />
-
-      <QuickReplies replies={quickReplies} onSelect={handleQuickReplySelect} />
-
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          sendMessage({ text: input });
-          setInput("");
-        }}
-      >
-        <input
-          className="fixed dark:bg-zinc-900 w-4/5 max-w-[1120px] p-2 border border-zinc-300 dark:border-zinc-800 rounded shadow-xl left-1/2 transform -translate-x-1/2"
-          style={{ bottom: `${32 + keyboardOffset}px`, marginBottom: 0 }}
-          value={input}
-          placeholder="Say something..."
-          onChange={(e) => setInput(e.target.value)}
+      <div className="p-2">
+        <QuickReplies
+          replies={quickReplies}
+          onSelect={handleQuickReplySelect}
         />
-      </form>
+
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            sendMessage({ text: input });
+            setInput("");
+          }}
+          className="mt-2"
+        >
+          <input
+            className="w-full dark:bg-zinc-900 p-2 border border-zinc-300 dark:border-zinc-800 rounded-full shadow-sm"
+            value={input}
+            placeholder="Say something..."
+            onChange={(e) => setInput(e.target.value)}
+          />
+        </form>
+      </div>
     </div>
   );
 }

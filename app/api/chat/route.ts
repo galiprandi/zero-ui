@@ -1,3 +1,4 @@
+import { system } from '@/app/prompts/system.prompt'
 import { openai } from '@ai-sdk/openai'
 import {
   streamText,
@@ -7,7 +8,6 @@ import {
   stepCountIs,
 } from 'ai'
 import { number, object, string } from 'zod'
-import { SYSTEM_PROMPT } from './system-prompt'
 
 // Allow streaming responses up to 30 seconds
 export const maxDuration = 30
@@ -18,7 +18,7 @@ export async function POST(req: Request) {
   const result = streamText({
     model: openai('gpt-4.1-mini'),
     stopWhen: stepCountIs(5),
-    system: SYSTEM_PROMPT,
+    system,
 
     messages: convertToModelMessages(messages),
     tools: {

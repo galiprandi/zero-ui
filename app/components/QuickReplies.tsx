@@ -8,7 +8,7 @@ export default function QuickReplies({ replies, onSelect }: QuickRepliesProps) {
     if (!replies || replies.length === 0) return null
 
     return (
-        <div className="fixed bottom-22 left-1/2 transform -translate-x-1/2 w-4/5 max-w-[1120px] z-10">
+        <div className="w-full py-2">
             <div className="quick-replies flex gap-2 overflow-x-auto scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
                 {replies.map((reply) => (
                     <button

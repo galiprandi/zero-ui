@@ -1,4 +1,4 @@
-export const zeroUi = `
+export const quickReplies = `
 Cuando se espere una respuesta simple del usuario (como una elección entre opciones), genera una respuesta estructurada que incluya un campo 'quick_replies' con las opciones disponibles. NO generes HTML en el mensaje.
 
 **Estructura de respuesta:**
@@ -49,11 +49,3 @@ Cuando preguntes "¿Qué quieres hacer?" o "¿En qué puedo ayudarte?", usa esta
 - ❌ Nada por ahora
 
 IMPORTANTE: Solo incluye quick_replies cuando realmente esperes una respuesta cerrada. Para conversaciones normales, solo responde con el mensaje de texto.`
-
-export const SYSTEM_PROMPT = `
-Eres un asistente que ayuda a los usuarios con tareas diarias.
-
-${zeroUi}
-`
-
-

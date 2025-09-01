@@ -71,14 +71,14 @@ export default function MessageText({ role, text, id, onQuickReplies }: MessageT
   return (
     <div
       key={id}
-      className={`flex ${isUser ? 'justify-end' : 'justify-start'} my-2`}
+      className={`flex ${isUser ? 'justify-end my-2' : 'justify-start my-0'}`}
     >
       {isUser ? (
-        <div className="block px-4 py-2 rounded-lg shadow-sm break-words bg-blue-100 text-blue-900 leading-snug">
+        <div className="block px-4 py-2 rounded-full shadow-sm break-words bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100 leading-snug">
           <ReactMarkdown remarkPlugins={[remarkGfm]} components={components as any} key={text.length}>{text}</ReactMarkdown>
         </div>
       ) : (
-        <div className="mt-4 text-justify w-full leading-snug">
+        <div className="text-justify w-full leading-snug">
           <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeRaw]} components={components as any}>{displayText}</ReactMarkdown>
         </div>
       )}
