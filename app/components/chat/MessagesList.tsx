@@ -17,7 +17,10 @@ export default function MessagesList({
   return (
     <>
       {messages.map((message) => (
-        <div key={message.id} className="whitespace-pre-wrap">
+        <div
+          key={message.id}
+          className="message whitespace-normal leading-tight break-words"
+        >
           {message.parts.map((part, i) => {
             const isTool = "toolCallId" in part;
             const partId = `${message.id}-${i}`;
