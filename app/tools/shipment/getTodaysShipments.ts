@@ -1,7 +1,7 @@
 import { tool } from "ai";
 import { object } from "zod";
 import { logToolExecute, logToolResult } from "../../lib/logger";
-import { getTodaysShipmentId } from "../../services/products/shipmentService";
+import { getTodaysShipmentId } from "../../services/shipment/shipmentService";
 
 export const getTodaysShipmentsTool = tool({
   description:

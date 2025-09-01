@@ -1,6 +1,6 @@
 import { tool } from "ai";
 import { z } from "zod";
-import { getShipmentDetails } from "../../services/products/shipmentService";
+import { getShipmentDetails } from "../../services/shipment/shipmentService";
 import categories from "../../data/categories.json";
 import { logToolExecute, logToolResult } from "../../lib/logger";
 
