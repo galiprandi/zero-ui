@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Zero-UI Playground 🛠️✨
 
-## Getting Started
+A testing site for a revolutionary concept aimed at replacing static user interfaces with dynamic, adaptive UIs that generate themselves based on user needs and preferences. This project explores how AI and real-time data can create personalized interfaces that evolve with user interactions.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Dynamic UI Generation**: Interfaces that adapt in real-time to user behavior.
+- **User Preference-Based Customization**: Tailored experiences based on individual needs.
+- **AI-Powered Elements**: Leveraging AI to enhance UI components.
+- **Real-Time Adaptation**: Seamless updates without page reloads.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+This project is built with Next.js. To get started:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/zero-ui.git
+   cd zero-ui
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   pnpm install
+   ```
+
+3. Set up environment variables (if any):
+   - Create a `.env.local` file based on `.env.example` (if present).
+   - For database setup, refer to the memory about PostgreSQL configuration.
+
+4. Run the development server:
+   ```bash
+   npm run dev
+   # or
+   pnpm dev
+   ```
+
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the playground.
+
+## Usage
+
+- Interact with the dynamic UI elements.
+- Customize preferences to see how the interface adapts.
+- Test AI-generated components in real-time.
+
+## Tech Stack
+
+- **Framework**: Next.js
+- **Styling**: Tailwind CSS
+- **AI Integration**: AI SDK for OpenAI
+- **Database**: PostgreSQL (local Docker setup)
+- **Linting/Formatting**: Biome
+
+## Contributing
+
+Contributions are welcome! Please:
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Make your changes.
+4. Run tests and linting: `npm run lint`.
+5. Submit a pull request.
+
+## License
+
+This project is private and not licensed for public use.
 
 ## Learn More
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [Next.js Documentation](https://nextjs.org/docs)
+- [AI SDK Documentation](https://ai-sdk.dev)
