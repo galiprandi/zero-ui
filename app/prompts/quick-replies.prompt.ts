@@ -49,8 +49,28 @@ Cuando necesites mostrar opciones rápidas, tu respuesta debe incluir:
   ]
 }
 
+{
+  "message": "Aquí tienes algunas ideas para una cena saludable: Pechuga de pollo a la plancha con espárragos, Salteado de tofu y verduras, Ensalada completa. ¿Quieres que te dé la receta de alguna de estas opciones?",
+  "quick_replies": [
+    "🍗 Pechuga de pollo a la plancha con espárragos",
+    "🥦 Salteado de tofu y verduras",
+    "🥗 Ensalada completa",
+    "❌ Otra opción"
+  ]
+}
 
-IMPORTANTE: Solo incluye quick_replies cuando realmente esperes una respuesta cerrada. Para conversaciones normales, solo responde con el mensaje de texto.`;
+{
+  "message": "¿Quieres que haga algo más con esta receta?",
+  "quick_replies": [
+    "🧾 Ver porciones y calorías",
+    "🍽️ Sugerir acompañamientos",
+    "🔁 Ver otra receta",
+    "❌ Nada más"
+  ]
+}
+
+
+IMPORTANTE: Incluye quick_replies siempre que la respuesta invite a una acción siguiente o sea una pregunta cerrada (por ejemplo: sugerencias/recetas, configuraciones, pasos guiados). Para respuestas meramente informativas y sin call-to-action, responde solo con el campo "message".`;
 
 export const initialQuickReplies = [
   "🎨 Editar imagen",
