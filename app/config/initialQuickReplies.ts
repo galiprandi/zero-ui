@@ -4,5 +4,5 @@ export const initialQuickReplies: string[] = [
   "📂 Ver categorías",
   "🎁 Ver ofertas",
   "🖨️ Imprimir ticket",
-  "❓"
+  "❓",
 ];
