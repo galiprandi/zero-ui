@@ -1,11 +1,11 @@
 import { tool } from "ai";
 import { object } from "zod";
-import { getTodaysShipmentId } from "../../services/products/shipmentService";
 import { logToolExecute, logToolResult } from "../../lib/logger";
+import { getTodaysShipmentId } from "../../services/products/shipmentService";
 
 export const getTodaysShipmentsTool = tool({
   description:
-    "Get information about today's shipments arriving at the branch, including shipment ID and approximate arrival time. Use this tool when the user asks about 'Recepciones', shipments, or deliveries arriving today.",
+    "Get information about today's shipments arriving at the branch, including shipment ID and approximate arrival time. Use this tool when the user asks about '🚚 Recepciones', shipments, or deliveries arriving today.",
   inputSchema: object({}),
   execute: async () => {
     logToolExecute({
