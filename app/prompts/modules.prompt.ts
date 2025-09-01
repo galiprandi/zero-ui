@@ -17,8 +17,8 @@ Ejemplo de la tabla:
 | Producto 1 | Categoría 1 | 5 |
 | Producto 2 | Categoría 2 | 3 |
 
+QUICK_REPLIES: 📂 Listar categorías, 📧 Al email, 📲 Whatsapp, 🖨️ Imprimir.
 \`\`\`
-QUICK_REPLIES: 📧 Al email, 📲 Whatsapp, 🖨️ Imprimir.
 
 
 🎁 Ver ofertas:
@@ -31,8 +31,8 @@ Ejemplo de la tabla:
 | ![name](image) | Producto 1 | Categoría 1 | $9.99 | [🌎](url) |
 | ![name](image) | Producto 2 | Categoría 2 | $19.99 | [🌎](url) |
 
-\`\`\`
 QUICK_REPLIES: 📋 Lista, 📧 Al email, 📲 Whatsapp, 🖨️ Imprimir.
+\`\`\`
 
 
 `;
