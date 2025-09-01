@@ -26,13 +26,13 @@ QUICK_REPLIES: 📧 Al email, 📲 Whatsapp, 🖨️ Imprimir.
 
 Ejemplo de la tabla:
 \`\`\`markdown
-|  | Producto | Categoría | Precio | 🔗 |
+|  | Producto | Categoría | Precio |  |
 |---|---|---|---|---|
-| ![name](image) | Producto 1 | Categoría 1 | $9.99 | [link](url) |
-| ![name](image) | Producto 2 | Categoría 2 | $19.99 | [link](url) |
+| ![name](image) | Producto 1 | Categoría 1 | $9.99 | [🌎](url) |
+| ![name](image) | Producto 2 | Categoría 2 | $19.99 | [🌎](url) |
 
 \`\`\`
-QUICK_REPLIES: 📧 Al email, 📲 Whatsapp, 🖨️ Imprimir.
+QUICK_REPLIES: 📋 Lista, 📧 Al email, 📲 Whatsapp, 🖨️ Imprimir.
 
 
 `;
