@@ -21,7 +21,25 @@ Built with Next.js and Tailwind CSS. Main page is /app/page.tsx, showing chat me
 Tools use the 'ai' library for AI interactions. Each tool has description, inputSchema (zod), and execute function. Examples: findProductByName (searches products), printTicket (prints tickets). Tools are invoked by the AI to perform tasks like database queries or external actions.
 
 ## Quick Replies
-Quick replies are AI-suggested responses in JSON format within model messages. Parsed by MessageText component using regex and JSON.parse. Displayed as buttons, triggering onQuickReplies callback for user interaction.
+Quick replies are AI-suggested responses in a simple line format within model messages: `QUICK_REPLIES: option1, option2, ...`. Parsed by utility functions in `/app/utils/quickRepliesParser.ts`. Displayed as clickable pills in the UI, triggering user selections that send the option text as a new message.
+
+### Functionality and Architecture
+Quick replies enhance user interaction by providing predefined options for common actions.
+
+#### How it Works
+1. **Generation**: The AI includes a `QUICK_REPLIES:` line at the end of responses when offering choices.
+2. **Parsing**: Utility functions extract the options and clean message text.
+3. **Display**: The UI renders the message and options as interactive buttons.
+4. **Interaction**: User selections are sent as new messages, continuing the conversation.
+
+#### Architecture Components
+- **Prompt Guidance**: `/app/prompts/quick-replies.prompt.ts` instructs the AI on format and usage.
+- **Parsing Utilities**: `/app/utils/quickRepliesParser.ts` handles format detection and extraction.
+- **UI Rendering**: `MessageText.tsx` displays messages and pills.
+- **State Management**: `useQuickReplies.ts` hook manages quick reply state.
+- **Configuration**: `/app/config/initialQuickReplies.ts` defines initial options.
+
+This architecture ensures consistent, user-friendly interactions across the application.
 
 ## Code Style Guidelines
 - Use TypeScript for type safety.
