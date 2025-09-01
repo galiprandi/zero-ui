@@ -4,8 +4,7 @@ import { printTicket } from "../../services/printers/ticketService";
 import { logToolExecute, logToolResult } from "../../lib/logger";
 
 export const printTicketTool = tool({
-  description:
-    "Print ticket for a product. Useful for sales receipts.",
+  description: "Print ticket for a product. Useful for sales receipts.",
   inputSchema: z.object({
     ean: z.string().describe("Product EAN code"),
     price: z.string().describe("Product price"),
