@@ -21,6 +21,8 @@ QUICK_REPLIES: opción1, opción2, opción3.
 - Ayuda/Soporte: ❓, ℹ️
 - Confirmación: ✅, 👍
 - Cancelación: ❌, ✗
+- WhatsApp: 📱
+- Email: 📧
 
 **Comportamiento esperado:**
 - El mensaje debe explicar el contexto antes de las opciones
