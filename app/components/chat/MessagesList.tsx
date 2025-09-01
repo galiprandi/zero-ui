@@ -16,8 +16,8 @@ export default function MessagesList({
 }: MessagesListProps) {
   return (
     <>
-      {messages.map((message) => (
-        <div key={message.id} className="whitespace-pre-wrap">
+      {messages.map((message, index) => (
+        <div key={`${message.id}-${index}`} className="whitespace-pre-wrap">
           {message.parts.map((part, i) => {
             const isTool = "toolCallId" in part;
             const partId = `${message.id}-${i}`;

@@ -41,12 +41,14 @@ Cuando necesites mostrar opciones rápidas, tu respuesta debe incluir:
   ]
 }
 
-**Opciones iniciales recomendadas:**
-Cuando preguntes "¿Qué quieres hacer?" o "¿En qué puedo ayudarte?", usa estas opciones:
-- 🎨 Editar imagen
-- 💻 Desarrollo web
-- 📚 Investigación  
-- ❌ Nada por ahora
+{
+  "message": "¿Quieres que te ayude con la preparación paso a paso?",
+  "quick_replies": [
+    "✅ Sí, por favor",
+    "❌ No, gracias"
+  ]
+}
+
 
 IMPORTANTE: Solo incluye quick_replies cuando realmente esperes una respuesta cerrada. Para conversaciones normales, solo responde con el mensaje de texto.`;
 
