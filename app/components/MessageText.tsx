@@ -22,6 +22,24 @@ export default function MessageText({
 
   const { displayText, quickReplies } = useMemo(() => {
     if (!isUser && text) {
+      // Check if there's incomplete quick_replies JSON
+      const startIndex = text.indexOf('{"quick_replies"');
+      if (startIndex !== -1) {
+        let braceCount = 0;
+        for (let i = startIndex; i < text.length; i++) {
+          if (text[i] === "{") braceCount++;
+          if (text[i] === "}") braceCount--;
+          if (braceCount === 0) {
+            // JSON is complete, proceed with parsing
+            break;
+          }
+        }
+        if (braceCount !== 0) {
+          // JSON is incomplete, don't display yet
+          return { displayText: "", quickReplies: null };
+        }
+      }
+
       // First try to parse the entire text as JSON
       try {
         const parsed = JSON.parse(text);
