@@ -69,10 +69,21 @@ Cuando necesites mostrar opciones rápidas, tu respuesta debe incluir:
   ]
 }
 
+{
+  "message": "Aquí tienes las tareas que puedo ayudarte con:",
+  "quick_replies": [
+    "🔍 Buscar producto por nombre",
+    "📊 Buscar producto por EAN",
+    "📂 Listar productos por categoría",
+    "🎁 Ver ofertas actuales",
+    "🖨️ Imprimir ticket de producto"
+  ]
+}
 
 IMPORTANTE: Incluye quick_replies siempre que la respuesta invite a una acción siguiente o sea una pregunta cerrada (por ejemplo: sugerencias/recetas, configuraciones, pasos guiados). Para respuestas meramente informativas y sin call-to-action, responde solo con el campo "message".`;
 
 export const initialQuickReplies = [
+  "❓ ¿Qué tareas puedes hacer?",
   "🎨 Editar imagen",
   "💻 Desarrollo web",
   "📚 Investigación",
