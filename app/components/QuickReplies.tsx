@@ -1,9 +1,5 @@
-interface QuickRepliesProps {
-  replies: string[];
-  onSelect: (reply: string) => void;
-}
 
-export default function QuickReplies({ replies, onSelect }: QuickRepliesProps) {
+export default function QuickReplies({ replies, onSelect, disabled }: QuickRepliesProps) {
   if (!replies || replies.length === 0) return null;
 
   return (
@@ -22,6 +18,8 @@ export default function QuickReplies({ replies, onSelect }: QuickRepliesProps) {
             }}
             className="quick-reply-btn flex-shrink-0 px-3 py-1.5 text-sm font-medium text-gray-200 bg-gray-700 hover:bg-gray-600 active:bg-gray-500 rounded-full border border-gray-600 hover:border-gray-500 transition-all duration-200 whitespace-nowrap shadow-sm"
             type="button"
+            disabled={Boolean(disabled)}
+            aria-disabled={Boolean(disabled)}
           >
             {reply}
           </button>
@@ -29,4 +27,10 @@ export default function QuickReplies({ replies, onSelect }: QuickRepliesProps) {
       </div>
     </div>
   );
+}
+
+interface QuickRepliesProps {
+  replies: string[];
+  onSelect: (reply: string) => void;
+  disabled?: boolean;
 }
