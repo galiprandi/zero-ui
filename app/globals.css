@@ -31,6 +31,13 @@ body {
   overflow: hidden;
 }
 
+* {
+  scrollbar-width: thin;
+  scroll-behavior: smooth;
+  scrollbar-color: var(--table-border) var(--table-hover);
+  box-sizing: border-box;
+}
+
 .zero-ui {
   position: fixed;
   bottom: 6rem;
@@ -47,6 +54,8 @@ body {
   padding: 1rem;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
+
+
 
 @media (prefers-color-scheme: dark) {
   .zero-ui {

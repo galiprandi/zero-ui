@@ -30,9 +30,7 @@ export default function ChatInput({
         <input
           className="w-full dark:bg-zinc-900 p-2 px-5 border border-zinc-300 dark:border-zinc-800 rounded-full shadow-sm"
           value={input}
-          placeholder={
-            isStreaming ? "Esperando respuesta..." : "Escribe algo..."
-          }
+          placeholder={isStreaming ? "Respondiendo..." : "Escribe algo..."}
           onChange={(e) => setInput(e.target.value)}
           disabled={isStreaming}
         />
@@ -46,4 +44,5 @@ interface ChatInputProps {
   onSelect: (reply: string) => void;
   sendMessage: (message: { text: string }) => void;
   isStreaming?: boolean;
+  disabled?: boolean;
 }
