@@ -2,14 +2,13 @@ import { system } from '@/app/prompts/system.prompt'
 import { openai } from '@ai-sdk/openai'
 import {
   streamText,
-  UIMessage,
+  type UIMessage,
   convertToModelMessages,
   tool,
   stepCountIs,
 } from 'ai'
 import { number, object, string } from 'zod'
 
-// Allow streaming responses up to 30 seconds
 export const maxDuration = 30
 
 export async function POST(req: Request) {
