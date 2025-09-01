@@ -1,9 +1,9 @@
-import { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { materialDark as theme } from "react-syntax-highlighter/dist/esm/styles/prism";
-// import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
+import { parseQuickRepliesFromText } from "@/app/utils/quickRepliesParser";
 
 interface MessageTextProps {
   role: string;
@@ -22,112 +22,14 @@ export default function MessageText({
 
   const { displayText, quickReplies } = useMemo(() => {
     if (!isUser && text) {
-      // Check if there's incomplete quick_replies JSON
-      const startIndex = text.indexOf('{"quick_replies"');
-      if (startIndex !== -1) {
-        let braceCount = 0;
-        for (let i = startIndex; i < text.length; i++) {
-          if (text[i] === "{") braceCount++;
-          if (text[i] === "}") braceCount--;
-          if (braceCount === 0) {
-            // JSON is complete, proceed with parsing
-            break;
-          }
-        }
-        if (braceCount !== 0) {
-          // JSON is incomplete, don't display yet
-          return { displayText: "", quickReplies: null };
-        }
-      }
-
-      // First try to parse the entire text as JSON
-      try {
-        const parsed = JSON.parse(text);
-        if (parsed.quick_replies && Array.isArray(parsed.quick_replies)) {
-          return {
-            displayText: parsed.message || "",
-            quickReplies: parsed.quick_replies,
-          };
-        }
-      } catch (_e) {
-        // If full text isn't JSON, try to find JSON within the text
-        // Use a simpler regex approach
-        const jsonRegex = /\{[^}]*"quick_replies"[^}]*\}/g;
-        const matches = text.match(jsonRegex);
-
-        if (matches) {
-          for (const match of matches) {
-            try {
-              const parsed = JSON.parse(match);
-              if (parsed.quick_replies && Array.isArray(parsed.quick_replies)) {
-                // Remove the JSON part from the display text
-                const messageText = text.replace(match, "").trim();
-                return {
-                  displayText: messageText || parsed.message || "",
-                  quickReplies: parsed.quick_replies,
-                };
-              }
-            } catch (_e2) {
-              // Continue to next match
-            }
-          }
-        }
-
-        // Try a different approach: look for JSON-like structures with line breaks
-        const lines = text.split("\n");
-        for (const line of lines) {
-          if (line.includes('"quick_replies"')) {
-            try {
-              const parsed = JSON.parse(line.trim());
-              if (parsed.quick_replies && Array.isArray(parsed.quick_replies)) {
-                const messageText = text.replace(line, "").trim();
-                return {
-                  displayText: messageText || parsed.message || "",
-                  quickReplies: parsed.quick_replies,
-                };
-              }
-            } catch (_e3) {
-              // Continue
-            }
-          }
-        }
-
-        // Last resort: try to extract JSON manually by finding braces
-        const startIndex = text.indexOf('{"quick_replies"');
-        if (startIndex !== -1) {
-          let braceCount = 0;
-          let endIndex = startIndex;
-
-          for (let i = startIndex; i < text.length; i++) {
-            if (text[i] === "{") braceCount++;
-            if (text[i] === "}") braceCount--;
-
-            if (braceCount === 0) {
-              endIndex = i + 1;
-              break;
-            }
-          }
-
-          if (endIndex > startIndex) {
-            const jsonCandidate = text.substring(startIndex, endIndex);
-
-            try {
-              const parsed = JSON.parse(jsonCandidate);
-              if (parsed.quick_replies && Array.isArray(parsed.quick_replies)) {
-                const messageText = text.replace(jsonCandidate, "").trim();
-                return {
-                  displayText: messageText || parsed.message || "",
-                  quickReplies: parsed.quick_replies,
-                };
-              }
-            } catch (_e4) {
-              // Last attempt failed
-            }
-          }
-        }
+      const parsed = parseQuickRepliesFromText(text);
+      if (parsed) {
+        return {
+          displayText: parsed.message,
+          quickReplies: parsed.quickReplies,
+        };
       }
     }
-
     return {
       displayText: text,
       quickReplies: null,

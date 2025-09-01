@@ -2,9 +2,7 @@ export const quickReplies = `
 Cuando se espere una respuesta simple del usuario (como una elección entre opciones), genera una respuesta estructurada que incluya un campo 'quick_replies' con las opciones disponibles. NO generes HTML en el mensaje.
 
 **Estructura de respuesta:**
-Cuando necesites mostrar opciones rápidas, tu respuesta debe incluir:
-- message: El texto del mensaje normal (sin HTML)
-- quick_replies: Array de strings con las opciones disponibles
+Si necesitas opciones rápidas, incluye al final del mensaje una línea: QUICK_REPLIES: opción1, opción2, opción3.
 
 **Reglas para quick_replies:**
 - Máximo 4 opciones
@@ -31,56 +29,24 @@ Cuando necesites mostrar opciones rápidas, tu respuesta debe incluir:
 - El chat permanece limpio sin elementos HTML
 
 **Ejemplo de estructura de salida:**
-{
-  "message": "¿Qué quieres hacer hoy?",
-  "quick_replies": [
-    "🎨 Editar imagen",
-    "💻 Desarrollo web", 
-    "📚 Investigación",
-    "❌ Nada por ahora"
-  ]
-}
+¿Qué quieres hacer hoy?
+QUICK_REPLIES: 🎨 Editar imagen, 💻 Desarrollo web, 📚 Investigación, ❌ Nada por ahora
 
-{
-  "message": "¿Quieres que te ayude con la preparación paso a paso?",
-  "quick_replies": [
-    "✅ Sí, por favor",
-    "❌ No, gracias"
-  ]
-}
+¿Quieres que te ayude con la preparación paso a paso?
+QUICK_REPLIES: ✅ Sí, por favor, ❌ No, gracias
 
-{
-  "message": "Aquí tienes algunas ideas para una cena saludable: Pechuga de pollo a la plancha con espárragos, Salteado de tofu y verduras, Ensalada completa. ¿Quieres que te dé la receta de alguna de estas opciones?",
-  "quick_replies": [
-    "🍗 Pechuga de pollo a la plancha con espárragos",
-    "🥦 Salteado de tofu y verduras",
-    "🥗 Ensalada completa",
-    "❌ Otra opción"
-  ]
-}
+Aquí tienes algunas ideas para una cena saludable: Pechuga de pollo a la plancha con espárragos, Salteado de tofu y verduras, Ensalada completa. ¿Quieres que te dé la receta de alguna de estas opciones?
+QUICK_REPLIES: 🍗 Pechuga de pollo a la plancha con espárragos, 🥦 Salteado de tofu y verduras, 🥗 Ensalada completa, ❌ Otra opción
 
-{
-  "message": "¿Quieres que haga algo más con esta receta?",
-  "quick_replies": [
-    "🧾 Ver porciones y calorías",
-    "🍽️ Sugerir acompañamientos",
-    "🔁 Ver otra receta",
-    "❌ Nada más"
-  ]
-}
+¿Quieres que haga algo más con esta receta?
+QUICK_REPLIES: 🧾 Ver porciones y calorías, 🍽️ Sugerir acompañamientos, 🔁 Ver otra receta, ❌ Nada más
 
-{
-  "message": "Aquí tienes las tareas que puedo ayudarte con:",
-  "quick_replies": [
-    "🔍 Buscar producto por nombre",
-    "📊 Buscar producto por EAN",
-    "📂 Listar productos por categoría",
-    "🎁 Ver ofertas actuales",
-    "🖨️ Imprimir ticket de producto"
-  ]
-}
+Aquí tienes las tareas que puedo ayudarte con:
+QUICK_REPLIES: 🔍 Buscar producto por nombre, 📊 Buscar producto por EAN, 📂 Listar productos por categoría, 🎁 Ver ofertas actuales, 🖨️ Imprimir ticket de producto
 
-IMPORTANTE: Incluye quick_replies siempre que la respuesta invite a una acción siguiente o sea una pregunta cerrada (por ejemplo: sugerencias/recetas, configuraciones, pasos guiados). Para respuestas meramente informativas y sin call-to-action, responde solo con el campo "message".`;
+IMPORTANTE: Incluye QUICK_REPLIES siempre que la respuesta invite a una acción siguiente o sea una pregunta cerrada (por ejemplo: sugerencias/recetas, configuraciones, pasos guiados). Para respuestas meramente informativas y sin call-to-action, responde solo con el mensaje.
+
+`;
 
 export const initialQuickReplies = [
   "❓ ¿Qué tareas puedes hacer?",
