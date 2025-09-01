@@ -48,8 +48,6 @@ body {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-
-
 @media (prefers-color-scheme: dark) {
   .zero-ui {
     background: rgba(31, 41, 55, 0.95);

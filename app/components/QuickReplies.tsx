@@ -1,5 +1,8 @@
-
-export default function QuickReplies({ replies, onSelect, disabled }: QuickRepliesProps) {
+export default function QuickReplies({
+  replies,
+  onSelect,
+  disabled,
+}: QuickRepliesProps) {
   if (!replies || replies.length === 0) return null;
 
   return (
