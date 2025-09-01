@@ -5,6 +5,8 @@ interface Part {
   type: string;
   code?: string;
   language?: string;
+  input?: unknown;
+  output?: unknown;
   [key: string]: unknown;
 }
 
@@ -14,26 +16,49 @@ interface ToolDetailsProps {
 }
 
 export default function ToolDetails({ part, id: _id }: ToolDetailsProps) {
-  let code = "";
-  let language = "javascript";
+  let content: React.ReactNode;
   if (part.type === "code" && part.code) {
-    code = part.code;
-    language = part.language || "javascript";
+    content = (
+      <SyntaxHighlighter
+        language={part.language || "javascript"}
+        style={oneLight}
+        customStyle={{ fontSize: 14, borderRadius: 8, padding: 16 }}
+      >
+        {part.code}
+      </SyntaxHighlighter>
+    );
+  } else if (part.type.startsWith("tool-")) {
+    const toolName = part.type.replace("tool-", "");
+    const params = part.input;
+    const response = part.output;
+    const jsonData = {
+      tool: toolName,
+      parameters: params,
+      response: response,
+    };
+    content = (
+      <pre className="p-1 rounded text-xs overflow-x-auto">
+        {JSON.stringify(jsonData, null, 2)}
+      </pre>
+    );
   } else {
-    code = JSON.stringify(part, null, 2);
-    language = "json";
+    content = (
+      <SyntaxHighlighter
+        language="json"
+        style={oneLight}
+        customStyle={{ fontSize: 14, borderRadius: 8, padding: 16 }}
+      >
+        {JSON.stringify(part, null, 2)}
+      </SyntaxHighlighter>
+    );
   }
   return (
-    <div className="text-right flex justify-end opacity-50">
+    <div className="w-full opacity-50">
       <details>
-        <summary>{part.type} 🧰</summary>
-        <SyntaxHighlighter
-          language={language}
-          style={oneLight}
-          customStyle={{ fontSize: 14, borderRadius: 8, padding: 16 }}
-        >
-          {code}
-        </SyntaxHighlighter>
+        <summary className="text-xs text-gray-500 cursor-pointer">
+          ⚙️ Tool usage
+        </summary>
+        {content}
       </details>
     </div>
   );
