@@ -1,0 +1,27 @@
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0.5rem 0.5rem;
+}
+
+th,
+td {
+  padding: 0.5rem 1rem;
+  text-align: left;
+}
+
+thead th {
+  font-weight: 600;
+}
+
+tbody tr:hover {
+  background-color: var(--table-hover);
+}
+
+/* mobile */
+@media (max-width: 768px) {
+  th,
+  td {
+    padding: 0;
+  }
+}

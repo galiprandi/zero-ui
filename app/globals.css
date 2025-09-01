@@ -1,8 +1,11 @@
 @import "tailwindcss";
+@import "./styles/tables.css";
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --table-border: #e5e7eb;
+  --table-hover: #f3f4f6;
 }
 
 @theme inline {
@@ -16,6 +19,8 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --table-border: #374151;
+    --table-hover: #1f2937;
   }
 }
 
@@ -43,65 +48,11 @@ body {
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0.5rem 0.5rem;
-}
 
-th,
-td {
-  padding: 0.75rem 1rem;
-  border-bottom: 1px solid var(--table-border);
-  text-align: left;
-}
-
-thead th {
-  font-weight: 600;
-}
-
-tbody tr:hover {
-  background-color: var(--table-hover);
-}
 
 @media (prefers-color-scheme: dark) {
   .zero-ui {
     background: rgba(31, 41, 55, 0.95);
     border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
-  table {
-    display: block;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  thead {
-    display: none;
-  }
-
-  table,
-  thead,
-  tbody,
-  tr,
-  td {
-    display: block;
-    width: 100%;
-  }
-
-  td {
-    border: 0;
-    padding: 0.75rem 0.5rem;
-    position: relative;
-    padding-left: 40%;
-  }
-
-  td[data-label]::before {
-    content: attr(data-label);
-    position: absolute;
-    left: 0;
-    width: 40%;
-    padding-left: 0.75rem;
-    font-weight: 600;
   }
 }
