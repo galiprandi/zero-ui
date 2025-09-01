@@ -1,0 +1,102 @@
+const __DEV__ = process.env.NODE_ENV !== "production";
+
+interface LogRequestMetaData {
+  totalMessages: number;
+  lastRole: string | null;
+  lastUserLength: number;
+  prevAssistantHasQuickReplies: boolean;
+  prevAssistantQuickRepliesCount: number;
+  userInputType: string;
+  model: string;
+  stopWhenSteps: number;
+  systemPromptChars: number;
+  ts: string;
+}
+
+interface LogToolExecuteData {
+  toolName: string;
+  input: Record<string, unknown>;
+  ts: string;
+}
+
+interface LogToolResultData {
+  toolName: string;
+  output: Record<string, unknown>;
+  ts: string;
+}
+
+export function logRequestMeta(data: LogRequestMetaData): void {
+  if (__DEV__) {
+    console.debug("[dev][server][chat] request meta", data);
+  }
+}
+
+export function logToolExecute(data: LogToolExecuteData): void {
+  if (__DEV__) {
+    console.debug(`[dev][server][tool] ${data.toolName}.execute`, {
+      input: data.input,
+      ts: data.ts,
+    });
+  }
+}
+
+export function logToolResult(data: LogToolResultData): void {
+  if (__DEV__) {
+    console.debug(`[dev][server][tool] ${data.toolName}.result`, {
+      output: data.output,
+      ts: data.ts,
+    });
+  }
+}
+
+export function getMessageText(msg: unknown): string {
+  try {
+    if (!msg) return "";
+    const m = msg as {
+      content?: unknown;
+      text?: unknown;
+      parts?: unknown;
+    };
+    if (typeof m.content === "string") return m.content;
+    if (Array.isArray(m.content))
+      return (m.content as unknown[]).map((v) => String(v)).join(" ");
+    if (typeof m.text === "string") return m.text;
+    if (Array.isArray(m.parts)) {
+      return (m.parts as unknown[])
+        .map((p) => {
+          const pp = p as { type?: string; text?: unknown };
+          return pp?.type === "text" && typeof pp.text === "string"
+            ? pp.text
+            : "";
+        })
+        .filter((s) => s)
+        .join("\n");
+    }
+    return JSON.stringify((m as Record<string, unknown>) ?? {}, null, 2);
+  } catch {
+    return "";
+  }
+}
+
+export function parseQuickRepliesFromText(text: string): string[] | null {
+  if (!text) return null;
+  try {
+    const parsed = JSON.parse(text);
+    if (parsed.quick_replies && Array.isArray(parsed.quick_replies)) {
+      return parsed.quick_replies as string[];
+    }
+  } catch {
+    const jsonMatch = text.match(/\{[\s\S]*"quick_replies"[\s\S]*\}/);
+    if (jsonMatch) {
+      try {
+        const parsed = JSON.parse(jsonMatch[0]);
+        if (parsed.quick_replies && Array.isArray(parsed.quick_replies)) {
+          return parsed.quick_replies as string[];
+        }
+      } catch {
+        // ignore
+      }
+    }
+  }
+  return null;
+}

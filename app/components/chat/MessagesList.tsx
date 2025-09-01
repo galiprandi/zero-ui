@@ -16,12 +16,13 @@ export default function MessagesList({
 }: MessagesListProps) {
   return (
     <>
-      {messages.map((message, index) => (
-        <div key={`${message.id}-${index}`} className="whitespace-pre-wrap">
+      {messages.map((message) => (
+        <div key={message.id} className="whitespace-pre-wrap">
           {message.parts.map((part, i) => {
             const isTool = "toolCallId" in part;
             const partId = `${message.id}-${i}`;
-            if (isTool) return <ToolDetails part={part} id={partId} />;
+            if (isTool)
+              return <ToolDetails key={partId} part={part} id={partId} />;
             else
               switch (part.type) {
                 case "text":
