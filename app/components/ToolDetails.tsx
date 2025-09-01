@@ -16,6 +16,7 @@ interface ToolDetailsProps {
 }
 
 export default function ToolDetails({ part, id: _id }: ToolDetailsProps) {
+  let toolName = "";
   let content: React.ReactNode;
   if (part.type === "code" && part.code) {
     content = (
@@ -28,7 +29,7 @@ export default function ToolDetails({ part, id: _id }: ToolDetailsProps) {
       </SyntaxHighlighter>
     );
   } else if (part.type.startsWith("tool-")) {
-    const toolName = part.type.replace("tool-", "");
+    toolName = part.type.replace("tool-", "");
     const params = part.input;
     const response = part.output;
     const jsonData = {
@@ -56,7 +57,7 @@ export default function ToolDetails({ part, id: _id }: ToolDetailsProps) {
     <div className="w-full opacity-50">
       <details>
         <summary className="text-xs text-gray-500 cursor-pointer">
-          ⚙️ Tool usage
+          ⚙️ Tool: {toolName}
         </summary>
         {content}
       </details>
