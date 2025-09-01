@@ -10,7 +10,7 @@ interface ToolSet {
 export const usersToolSet: ToolSet = {
   name: "User Tools",
   description:
-    "Tools for retrieving user data, including email, store information.",
+    "Retrieve user data, including store information. Useful for getting details about the current user and their store.",
   tools: {
     getUserData: getUserDataTool,
   },

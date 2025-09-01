@@ -1,2 +1,2 @@
 export const initialQuickReplies =
-  "QUICK_REPLIES: 🚚 Recepciones, 🔍 Buscar producto, 📂 Ver categorías, 🎁 Ver ofertas, 🖨️ Imprimir ticket, ❓";
+  "QUICK_REPLIES: 🚚 Recepciones,  🎁 Ver ofertas, 🔍 Buscar producto, 📂 Ver categorías, 🖨️ Imprimir ticket, ❓";
