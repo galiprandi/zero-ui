@@ -27,7 +27,7 @@ export default function ChatInput({
         className="mt-2"
       >
         <input
-          className="w-full dark:bg-zinc-900 p-2 border border-zinc-300 dark:border-zinc-800 rounded-full shadow-sm"
+          className="w-full dark:bg-zinc-900 p-2 px-5 border border-zinc-300 dark:border-zinc-800 rounded-full shadow-sm"
           value={input}
           placeholder="Escribe algo..."
           onChange={(e) => setInput(e.target.value)}
