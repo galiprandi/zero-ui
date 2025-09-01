@@ -1,9 +1,9 @@
-import type React from "react";
-import { useEffect, useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import ReactMarkdown from "react-markdown";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { materialDark as theme } from "react-syntax-highlighter/dist/esm/styles/prism";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 import { parseQuickRepliesFromText } from "@/app/utils/quickRepliesParser";
 
 interface MessageTextProps {
@@ -108,11 +108,12 @@ export default function MessageText({
           </ReactMarkdown>
         </div>
       ) : (
-        <div className="text-justify w-full leading-tight">
+        <div className="text-justify text-wrap-pretty hyphens-auto w-full leading-tight">
           <ReactMarkdown
             remarkPlugins={[remarkGfm]}
-            // rehypePlugins={[rehypeRaw]}
+            rehypePlugins={[rehypeRaw]}
             components={components}
+            key={text.length}
           >
             {displayText}
           </ReactMarkdown>
