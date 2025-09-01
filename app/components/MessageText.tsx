@@ -1,9 +1,9 @@
-import React from 'react'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { materialDark as theme } from 'react-syntax-highlighter/dist/esm/styles/prism'
+import { useEffect, useMemo } from 'react'
 
 interface MessageTextProps {
   role: string
@@ -15,14 +15,11 @@ interface MessageTextProps {
 export default function MessageText({ role, text, id, onQuickReplies }: MessageTextProps) {
   const isUser = role === 'user'
 
-  // Parse message content and extract quick_replies using useMemo to avoid infinite loops
-  const { displayText, quickReplies } = React.useMemo(() => {
+  const { displayText, quickReplies } = useMemo(() => {
     if (!isUser && text) {
       try {
-        // Try to parse as JSON first
         const parsed = JSON.parse(text)
         if (parsed.quick_replies && Array.isArray(parsed.quick_replies)) {
-          // Extract message and quick_replies
           const messageText = parsed.message || text
           return {
             displayText: messageText,
@@ -30,13 +27,11 @@ export default function MessageText({ role, text, id, onQuickReplies }: MessageT
           }
         }
       } catch (e) {
-        // Check if the text contains a JSON-like structure with quick_replies
         const jsonMatch = text.match(/\{[\s\S]*"quick_replies"[\s\S]*\}/)
         if (jsonMatch) {
           try {
             const parsed = JSON.parse(jsonMatch[0])
             if (parsed.quick_replies && Array.isArray(parsed.quick_replies)) {
-              // Remove the JSON part from display text
               const messageText = text.replace(jsonMatch[0], '').trim()
               return {
                 displayText: messageText || parsed.message || text,
@@ -44,20 +39,17 @@ export default function MessageText({ role, text, id, onQuickReplies }: MessageT
               }
             }
           } catch (e2) {
-            // Not valid JSON, continue with normal rendering
           }
         }
       }
     }
-    // For normal messages or user messages, display as-is
     return {
       displayText: text,
       quickReplies: null
     }
   }, [text, isUser])
 
-  // Call onQuickReplies when quickReplies change
-  React.useEffect(() => {
+  useEffect(() => {
     if (quickReplies && onQuickReplies) {
       onQuickReplies(quickReplies)
     }
