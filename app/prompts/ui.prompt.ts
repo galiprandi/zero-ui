@@ -5,18 +5,18 @@ Nota: Los componentes de presentación deben ser mobile-first y adaptarse a dist
 
 Card de producto minimal para listado o detalle (sin borde ni fondo, 2 columnas 30/70).
 Úsala para mostrar un producto individual o listas largas con datos clave: nombre, EAN, categoría y precio. Imagen fija a la izquierda y texto compacto a la derecha.
-<article class="flex w-full items-center gap-2 my-0 my-[1em]">
+<article class="flex w-full items-start gap-2 my-0 my-[1em]">
   <figure class="m-0 shrink-0">
     <img
       src="https://placehold.co/56x72.jpg"
       alt="[NOMBRE_DEL_PRODUCTO]"
-      class="w-[56px] h-[72px] object-cover rounded-md"
+      class="w-[100px] h-[100px] object-cover rounded-md"
     />
   </figure>
   <section class="min-w-0 leading-none my-0 py-0">
-    <b>[NOMBRE_DEL_PRODUCTO]</b>
-    <div>🧾 [CÓDIGO_EAN]</div>
-    <div>🏷️ [CATEGORÍA]</div>
+    <h3 class="font-bold mb-[5px]">[NOMBRE_DEL_PRODUCTO]</h3>
+    <div class="text-zinc-500">🧾 [CÓDIGO_EAN]</div>
+    <div class="text-zinc-500">🏷️ [CATEGORÍA]</div>
     <b>﹩ [PRECIO]</b>
   </section>
 </article>
