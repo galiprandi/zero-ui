@@ -3,7 +3,7 @@ import type { ProductExtended } from "../products/types";
 
 export const getTodaysShipments = (): ShipmentDetailsDTO[] => {
   console.log("Getting today's mock shipments");
-  const numShipments = Math.floor(Math.random() * 2) + 2; // 2 or 3 shipments
+  const numShipments = Math.floor(Math.random() * 4) + 3; // 3~6 shipments
   const shipments: ShipmentDetailsDTO[] = [];
 
   for (let i = 1; i <= numShipments; i++) {

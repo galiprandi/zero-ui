@@ -1,25 +1,26 @@
 "use client";
 
 import { useChat } from "@ai-sdk/react";
-import { useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import ChatInput from "./components/chat/ChatInput";
 import MessagesList from "./components/chat/MessagesList";
 import { useQuickReplies } from "./hooks/chat/useQuickReplies";
 
 export default function Chat() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
-  const { messages, sendMessage } = useChat();
-  const [isLoading, setIsLoading] = useState(false);
+  const { messages, sendMessage, status } = useChat();
 
   const { quickReplies, handleQuickReplies, handleQuickReplySelect } =
     useQuickReplies(messages);
 
   const wrappedSendMessage = async (message: { text: string }) => {
-    setIsLoading(true);
     await sendMessage(message);
-    setIsLoading(false);
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
+
+  useEffect(() => {
+    console.log(status);
+  }, [status]);
 
   const handleSelect = handleQuickReplySelect(wrappedSendMessage);
 
@@ -39,7 +40,7 @@ export default function Chat() {
         quickReplies={quickReplies}
         onSelect={handleSelect}
         sendMessage={wrappedSendMessage}
-        isStreaming={isLoading}
+        status={status}
       />
     </div>
   );
