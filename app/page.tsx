@@ -1,7 +1,7 @@
 "use client";
 
 import { useChat } from "@ai-sdk/react";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import ChatInput from "./components/chat/ChatInput";
 import MessagesList from "./components/chat/MessagesList";
 import { useQuickReplies } from "./hooks/chat/useQuickReplies";
@@ -17,10 +17,6 @@ export default function Chat() {
     await sendMessage(message);
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   };
-
-  useEffect(() => {
-    console.log(status);
-  }, [status]);
 
   const handleSelect = handleQuickReplySelect(wrappedSendMessage);
 
