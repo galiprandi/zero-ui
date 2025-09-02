@@ -1,27 +1,78 @@
 table {
   width: 100%;
-  border-collapse: separate;
-  margin: 1rem 0;
-}
-
-th,
-td {
-  padding: 0.6rem 0;
-  text-align: left;
-}
-
-thead th {
-  font-weight: 600;
-}
-
-tbody tr:hover {
-  background-color: var(--table-hover);
-}
-
-/* mobile */
-@media (max-width: 768px) {
-  th,
-  td {
-    padding: 0;
+  margin: 20px 0;
+  border-collapse: collapse;
+  table-layout: fixed;
+  
+  
+  & {
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      /* background-color: white; */
+      
+      thead {
+          /* background-color: #f0f0f0; */
+          
+          tr {
+              th {
+                  padding: 12px 8px;
+                  text-align: left;
+                  font-weight: bold;
+                  position: sticky;
+                  top: 0;
+                  z-index: 10;
+                  border-bottom: 1px solid #ddd;
+              }
+          }
+      }
+      
+      tbody {
+          tr {
+              &:hover {
+                  background-color: var(--color-zinc-900);
+              }
+              
+              td {
+                  padding: 12px 8px;
+                  text-align: left;
+                  border-bottom: 1px solid #ddd;
+                  word-wrap: break-word;
+              }
+          }
+      }
+      
+      /* Media queries responsivas anidadas conceptualmente */
+      @media (max-width: 768px) {
+          margin: 10px 0;
+          font-size: 0.9em;
+          
+          thead tr th,
+          tbody tr td {
+              padding: 10px 6px;
+          }
+      }
+      
+      @media (max-width: 480px) {
+          border-radius: 4px;
+          font-size: 0.8em;
+          
+          thead tr th,
+          tbody tr td {
+              padding: 8px 4px;
+          }
+      }
+      
+      @media (max-width: 360px) {
+          font-size: 0.75em;
+          
+          thead tr th,
+          tbody tr td {
+              padding: 6px 3px;
+          }
+      }
   }
+  
+  /* Añadimos el ancho mínimo para evitar problemas en móviles */
+  min-width: 320px;
 }
