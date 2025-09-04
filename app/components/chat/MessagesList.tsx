@@ -1,19 +1,9 @@
-import type { UIMessage } from "@ai-sdk/react";
-import type { RefObject } from "react";
+import { useOneHand } from "../../hooks/useOneHand";
 import MessageText from "../MessageText";
 import ToolDetails from "../ToolDetails";
 
-interface MessagesListProps {
-  messages: UIMessage[];
-  onQuickReplies: (replies: string[]) => void;
-  messagesEndRef: RefObject<HTMLDivElement | null>;
-}
-
-export default function MessagesList({
-  messages,
-  onQuickReplies,
-  messagesEndRef,
-}: MessagesListProps) {
+export default function MessagesList() {
+  const { messages } = useOneHand();
   return (
     <>
       {messages.map((message) => (
@@ -26,25 +16,21 @@ export default function MessagesList({
             const partId = `${message.id}-${i}`;
             if (isTool)
               return <ToolDetails key={partId} part={part} id={partId} />;
-            else
-              switch (part.type) {
-                case "text":
-                  return (
-                    <MessageText
-                      key={partId}
-                      role={message.role}
-                      text={part.text}
-                      id={partId}
-                      onQuickReplies={onQuickReplies}
-                    />
-                  );
-                default:
-                  return null;
-              }
+
+            if (part.type === "text")
+              return (
+                <MessageText
+                  key={partId}
+                  role={message.role}
+                  content={part.text}
+                  id={partId}
+                />
+              );
+
+            return null;
           })}
         </div>
       ))}
-      <div ref={messagesEndRef} />
     </>
   );
 }
