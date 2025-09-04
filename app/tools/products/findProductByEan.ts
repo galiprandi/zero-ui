@@ -19,7 +19,10 @@ export const findProductByEanTool = tool({
     });
 
     const product = searchByEan(ean);
-    const result = { product };
+    const quickRepliesText = product
+      ? `<quick-replies>\n🧠 Consultor de productos, 🖨️ Imprimir ticket, 💲 Actualizar precio\n</quick-replies>`
+      : "";
+    const result = { product, quickRepliesText };
 
     logToolResult({
       toolName: "findProductByEan",
