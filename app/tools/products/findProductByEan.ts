@@ -5,9 +5,11 @@ import { logToolExecute, logToolResult } from "../../lib/logger";
 
 export const findProductByEanTool = tool({
   description:
-    "Search for product by EAN code. Useful for verifying specific details.",
+    "Buscar un producto por su código de barras EAN. Retorna { product } (o null si no existe). Usar cuando el usuario provee/escanea un EAN.",
   inputSchema: z.object({
-    ean: z.string().describe("Product EAN code"),
+    ean: z
+      .string()
+      .describe("Código EAN del producto (solo dígitos), ej.: '7791234567890'"),
   }),
   execute: async ({ ean }) => {
     logToolExecute({

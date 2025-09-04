@@ -5,9 +5,11 @@ import { logToolExecute, logToolResult } from "../../lib/logger";
 
 export const listProductsByCategoryTool = tool({
   description:
-    "List products by category. Useful for managing supermarket sections.",
+    "Listar productos por ID de categoría. Retorna { products }. Usar para navegar por un pasillo/sección específica.",
   inputSchema: z.object({
-    categoryId: z.number().describe("Category ID"),
+    categoryId: z
+      .number()
+      .describe("ID numérico de la categoría (ver listado de categorías)."),
   }),
   execute: async ({ categoryId }) => {
     logToolExecute({

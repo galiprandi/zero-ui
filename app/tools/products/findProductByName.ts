@@ -1,13 +1,15 @@
 import { tool } from "ai";
 import { z } from "zod";
-import { searchByName } from "../../services/products/searchByName";
 import { logToolExecute, logToolResult } from "../../lib/logger";
+import { searchByName } from "../../services/products/searchByName";
 
 export const findProductByNameTool = tool({
   description:
-    "Search for products by partial name. Useful for locating items in the inventory.",
+    "Buscar productos por nombre (parcial o completo). Retorna { products }. Usar cuando el usuario pide por nombre o palabra clave.",
   inputSchema: z.object({
-    query: z.string().describe("Product name query"),
+    query: z
+      .string()
+      .describe("Consulta de búsqueda (nombre parcial o completo), ej.: 'arroz'"),
   }),
   execute: async ({ query }) => {
     logToolExecute({

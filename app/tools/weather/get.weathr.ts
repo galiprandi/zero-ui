@@ -3,9 +3,10 @@ import { object, string } from "zod";
 import { logToolExecute, logToolResult } from "@/app/lib/logger";
 
 export const weatherTool = tool({
-  description: "Get the weather in a location (fahrenheit)",
+  description:
+    "Get current weather for a location. Returns { location, temperature } with temperature in °F.",
   inputSchema: object({
-    location: string().describe("The location to get the weather for"),
+    location: string().describe("City or location name, e.g., 'Buenos Aires'"),
   }),
   execute: async ({ location }) => {
     logToolExecute({

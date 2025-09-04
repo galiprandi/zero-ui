@@ -5,7 +5,7 @@ import {
   parseQuickRepliesFromText,
 } from "@/app/lib/logger";
 import { system } from "@/app/prompts/system.prompt";
-import { tools } from "@/app/tools/sets";
+import { toolSet } from "@/app/tools/sets";
 import { openai } from "@ai-sdk/openai";
 import {
   convertToModelMessages,
@@ -58,7 +58,7 @@ export async function POST(req: Request) {
     system,
 
     messages: convertToModelMessages(messages),
-    tools,
+    tools: toolSet,
     onFinish: ({ text }) => {
       logAssistantResponse({
         text: text.slice(0, 500),

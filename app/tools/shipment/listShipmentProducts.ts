@@ -6,13 +6,13 @@ import { logToolExecute, logToolResult } from "../../lib/logger";
 
 export const listShipmentProductsTool = tool({
   description:
-    "List products in a shipment, either full list or categories only",
+    "Listar el contenido de un envío. Retorna { products } cuando mode='full' o { categories } cuando mode='categories'. Usar luego de seleccionar un ID de envío.",
   inputSchema: z.object({
-    id: z.string().describe("The shipment ID"),
+    id: z.string().describe("ID del envío (ej.: '#A102')"),
     mode: z
       .enum(["full", "categories"])
       .describe(
-        "Mode: 'full' for complete list, 'categories' for category summary",
+        "'full' = listado completo; 'categories' = resumen por categoría",
       ),
   }),
   execute: async ({ id, mode }) => {

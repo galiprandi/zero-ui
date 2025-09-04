@@ -4,10 +4,15 @@ import { printTicket } from "../../services/printers/ticketService";
 import { logToolExecute, logToolResult } from "../../lib/logger";
 
 export const printTicketTool = tool({
-  description: "Print ticket for a product. Useful for sales receipts.",
+  description:
+    "Imprimir un ticket/etiqueta para un producto. Retorna { message }. Usar luego de confirmar el EAN y el precio.",
   inputSchema: z.object({
-    ean: z.string().describe("Product EAN code"),
-    price: z.string().describe("Product price"),
+    ean: z
+      .string()
+      .describe("Código EAN del producto (sólo dígitos), ej.: '7791234567890'"),
+    price: z
+      .string()
+      .describe("Precio a imprimir (string), ej.: '$9.99' o '9,99'."),
   }),
   execute: async ({ ean, price }) => {
     logToolExecute({
@@ -17,7 +22,7 @@ export const printTicketTool = tool({
     });
 
     printTicket(ean, price);
-    const result = { message: "Ticket printed successfully." };
+    const result = { message: "Ticket impreso correctamente." };
 
     logToolResult({
       toolName: "printTicket",

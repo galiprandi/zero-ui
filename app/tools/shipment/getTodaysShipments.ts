@@ -5,7 +5,7 @@ import { getTodaysShipments } from "../../services/shipment/shipmentService";
 
 export const getTodaysShipmentsTool = tool({
   description:
-    "Get information about today's shipments arriving at the branch, including shipment ID and approximate arrival time. Use this tool when the user asks about '🚚 Recepciones', shipments, or deliveries arriving today. It can also be used to show the complete list of products or to check if there are products that require refrigeration and immediate treatment.",
+    "Listar los envíos del día (ID y hora estimada). Retorna { shipments }. Útil para '🚚 Recepciones' o entregas de hoy.",
   inputSchema: object({}),
   execute: async () => {
     logToolExecute({

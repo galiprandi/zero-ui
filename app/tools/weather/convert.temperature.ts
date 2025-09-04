@@ -3,9 +3,10 @@ import { number, object } from "zod";
 import { logToolExecute, logToolResult } from "@/app/lib/logger";
 
 export const convertTemperatureTool = tool({
-  description: "Convert a temperature in fahrenheit to celsius",
+  description:
+    "Convert a temperature from °F to °C. Returns { celsius }. Use after getting weather in °F.",
   inputSchema: object({
-    temperature: number().describe("The temperature in fahrenheit to convert"),
+    temperature: number().describe("Temperature in °F to convert"),
   }),
   execute: async ({ temperature }) => {
     logToolExecute({

@@ -5,11 +5,13 @@ import { logToolExecute, logToolResult } from "../../lib/logger";
 
 export const sendEmailTool = tool({
   description:
-    "Send an email to a recipient. This is a fake service for demonstration purposes.",
+    "Enviar un email con asunto y cuerpo a un destinatario. Retorna el resultado del envío. Usar para exportar salidas largas vía 📧.",
   inputSchema: z.object({
-    to: z.string().describe("Recipient email address"),
-    subject: z.string().describe("Email subject line"),
-    body: z.string().describe("Email body content"),
+    to: z
+      .string()
+      .describe("Dirección de email del destinatario, ej.: 'usuario@dominio.com'"),
+    subject: z.string().describe("Asunto del email (corto)"),
+    body: z.string().describe("Cuerpo del email (se admite Markdown)"),
   }),
   execute: async ({ to, subject, body }) => {
     logToolExecute({

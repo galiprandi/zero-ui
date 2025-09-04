@@ -5,10 +5,12 @@ import { logToolExecute, logToolResult } from "../../lib/logger";
 
 export const sendWhatsAppMessageTool = tool({
   description:
-    "Send a WhatsApp message to a recipient. This is a fake service for demonstration purposes.",
+    "Send a WhatsApp message to a recipient. Returns the sending result. Use to export or share summaries via 📲.",
   inputSchema: z.object({
-    to: z.string().describe("Recipient phone number (with country code)"),
-    message: z.string().describe("Message content"),
+    to: z
+      .string()
+      .describe("Recipient phone (E.164 with country code), e.g. '+5491140012345'"),
+    message: z.string().describe("Message content (Markdown allowed)"),
   }),
   execute: async ({ to, message }) => {
     logToolExecute({
