@@ -12,11 +12,15 @@ export function getProductConsultingByEan(ean: string) {
   // Heurística simple y determinística en base al EAN para demo consistente.
   const seed = Number(ean.slice(-3));
   const storeQty = (seed % 60) + 5; // 5..64
-  const warehouseQty = (seed % 120); // 0..119
+  const warehouseQty = seed % 120; // 0..119
 
   const neighbors = [
     { flag: "Jumbo", store: "5203", quantity: Math.max(0, storeQty - 2) },
-    { flag: "Easy", store: "E504", quantity: Math.max(0, Math.floor(storeQty / 2)) },
+    {
+      flag: "Easy",
+      store: "E504",
+      quantity: Math.max(0, Math.floor(storeQty / 2)),
+    },
     { flag: "Vea", store: "5504", quantity: (storeQty + 3) % 50 },
   ];
 
@@ -28,10 +32,17 @@ export function getProductConsultingByEan(ean: string) {
   next.setDate(now.getDate() + ((seed % 5) + 1));
 
   const lastArrival = { date: last.toISOString(), quantity: (seed % 80) + 10 };
-  const nextArrival = warehouseQty > 0 ? { date: next.toISOString(), quantity: (warehouseQty % 90) + 5 } : null;
+  const nextArrival =
+    warehouseQty > 0
+      ? { date: next.toISOString(), quantity: (warehouseQty % 90) + 5 }
+      : null;
 
   const advice = (() => {
-    if (storeQty === 0 && warehouseQty === 0 && neighbors.every(n => n.quantity === 0)) {
+    if (
+      storeQty === 0 &&
+      warehouseQty === 0 &&
+      neighbors.every((n) => n.quantity === 0)
+    ) {
       return "Sin stock disponible en tienda, cercanas ni CD. Sugerir alternativa.";
     }
     if (storeQty < 10 && nextArrival && nextArrival.quantity > 0) {

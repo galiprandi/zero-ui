@@ -29,7 +29,9 @@ export const consultProductTool = tool({
         if (!iso) return null;
         const target = new Date(iso);
         const now = new Date();
-        const diff = Math.ceil((target.getTime() - now.getTime()) / (1000 * 60 * 60 * 24));
+        const diff = Math.ceil(
+          (target.getTime() - now.getTime()) / (1000 * 60 * 60 * 24),
+        );
         return diff <= 0 ? "hoy" : `${diff} día${diff === 1 ? "" : "s"}`;
       };
       const nextIn = daysTo(inventory.nextArrival?.date ?? null);
@@ -48,7 +50,10 @@ export const consultProductTool = tool({
       } else {
         parts.push("• No hay en centro de distribución");
       }
-      const nearTotal = inventory.neighborhoodStores.reduce((a, b) => a + b.quantity, 0);
+      const nearTotal = inventory.neighborhoodStores.reduce(
+        (a, b) => a + b.quantity,
+        0,
+      );
       if (nearTotal > 0) {
         parts.push(`• En tiendas cercanas: ${nearTotal} u totales`);
       } else {

@@ -13,19 +13,33 @@ export const printShelfLabelTool = tool({
       .describe("Código EAN del producto (sólo dígitos), ej.: '7791234567890'"),
   }),
   execute: async ({ ean }) => {
-    logToolExecute({ toolName: "printShelfLabel", input: { ean }, ts: new Date().toISOString() });
+    logToolExecute({
+      toolName: "printShelfLabel",
+      input: { ean },
+      ts: new Date().toISOString(),
+    });
 
     const product = searchByEan(ean);
     if (!product) {
       const result = { error: "Producto no encontrado por EAN." } as const;
-      logToolResult({ toolName: "printShelfLabel", output: result, ts: new Date().toISOString() });
+      logToolResult({
+        toolName: "printShelfLabel",
+        output: result,
+        ts: new Date().toISOString(),
+      });
       return result;
     }
 
     printLabel(ean);
-    const result = { message: `Fleje impreso para ${product.name} (${ean}).` } as const;
+    const result = {
+      message: `Fleje impreso para ${product.name} (${ean}).`,
+    } as const;
 
-    logToolResult({ toolName: "printShelfLabel", output: result, ts: new Date().toISOString() });
+    logToolResult({
+      toolName: "printShelfLabel",
+      output: result,
+      ts: new Date().toISOString(),
+    });
     return result;
   },
 });
