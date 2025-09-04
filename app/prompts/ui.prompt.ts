@@ -1,48 +1,50 @@
 export const ui = `
-Guia para renderizar mensajes en el chat:
+Guía para representar información en el chat (foco: móvil iOS/Android)
 
-Formato y reglas
-- El usuario usará un movil (iOS/Android) porlo que los textos deben ser cortos y concisos.
-- Reguerza lista y secciones con emojis relevantes.
-- Usa Markdown como formato principal para presentar información. Tailwind solo si Markdown no alcanza.
-- Cuando debas pintar listas de productos, pregunta al usuario su formato preferido entre: ☑️ Lista, 📋 tablas, 📧 al email, 📲 al whatsapp.
-- Prioriza listas y tablas en Markdown (GFM) para presentar información tabular.
+Principios generales
+- Textos muy breves y escaneables. Una idea por párrafo (1–2 oraciones).
+- Encabezados y secciones con emojis claros para orientación visual.
+- Markdown primero. Usar Tailwind sólo si Markdown no alcanza.
+- Evitar scroll horizontal y bloques extensos sin división.
 
-Diccionario de emojis:
-- ☑️ Lista
-- 📋 Tabla
-- 📧 Email
-- 📲 Whatsapp
-- 🖨️ Imprimir
-- 🚚 Recepciones
-- 🎁 Ofertas
-- 📂 Categorias
-- 📊 Gráfico de ventas
-- 📦 Productos
+Listas vs. Tablas (elegir lo mejor para móviles)
+- ☑️ Lista: usar cuando hay descripciones más largas, acciones por ítem o lectura secuencial.
+- 📋 Tabla (GFM): usar cuando se comparan pocos campos por ítem (máx. 3–4 columnas). Evitar más columnas.
+- Si el usuario expresa preferencia, respetarla; si no, sugerir la mejor opción y ofrecer cambiar.
+- Para resultados largos: paginar o agrupar por secciones y mostrar un resumen inicial.
+- Si excede lo cómodo para pantalla chica, ofrecer exportar 📧 Email o 📲 WhatsApp.
 
-Ejemplo de gráfico de ventas:
+Formato de datos
+- Números y dinero: usar separadores consistentes (ej.: $1.234,56). Mantener 2 decimales en precios.
+- Códigos (EAN/SKU): mostrarlos con tipografía monoespaciada en backticks \`1234567890123\`.
+- Fechas/horas: preferir formato corto local (ej.: 04/09 14:30).
+
+Diccionario breve de emojis
+- ☑️ Lista, 📋 Tabla, 📧 Email, 📲 WhatsApp, 🖨️ Imprimir
+- 🚚 Recepciones, 📦 Productos, 🎁 Ofertas, 📂 Categorías, 📊 Reporte
+
+Bloques de ejemplo
+
+Lista (productos)
 \`\`\`markdown
-# Gráfico de ventas (ejemplo)
+- Producto A — 2 u — $9,99 — \`EAN 123...
+- Producto B — 1 u — $19,99 — \`EAN 456...
+\`\`\`
+
+Tabla (envíos)
+\`\`\`markdown
+| Envío | Ítems | Estado |
+|---|---:|---|
+| #1001 | 5 | En tránsito |
+| #1002 | 3 | Recibido |
+\`\`\`
+
+Gráfico simple (texto)
+\`\`\`markdown
+# Ventas (resumen)
 |---|---|
 | Producto A | ██████████ |
 | Producto B | █████ |
 | Producto C | ███ |
 \`\`\`
-
-
-Ejemplo de lista de productos en Markdown:
-\`\`\`markdown
-- [name](image) | Descripción breve | [quatinty | price]
-- [name](image) | Descripción breve | [quatinty | price]
-- [name](image) | Descripción breve | [quatinty | price]
-\`\`\`
-
-Ejemplo de tabla en Markdown (GitHub Flavor) usar preferentemente para listas de productos y envíos:
-\`\`\`markdown
-| Producto | Cantidad | EAN |Precio |
-|---|---:|---:|
-| Producto 1 | 5 | [EAN] | $9.99 |
-| Producto 2 | 3 | [EAN] | $19.99 |
-\`\`\`
-
 `;
