@@ -9,7 +9,9 @@ export const sendEmailTool = tool({
   inputSchema: z.object({
     to: z
       .string()
-      .describe("Dirección de email del destinatario, ej.: 'usuario@dominio.com'"),
+      .describe(
+        "Dirección de email del destinatario, ej.: 'usuario@dominio.com'",
+      ),
     subject: z.string().describe("Asunto del email (corto)"),
     body: z.string().describe("Cuerpo del email (se admite Markdown)"),
   }),

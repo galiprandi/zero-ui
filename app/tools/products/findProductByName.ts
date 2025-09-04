@@ -9,7 +9,9 @@ export const findProductByNameTool = tool({
   inputSchema: z.object({
     query: z
       .string()
-      .describe("Consulta de búsqueda (nombre parcial o completo), ej.: 'arroz'"),
+      .describe(
+        "Consulta de búsqueda (nombre parcial o completo), ej.: 'arroz'",
+      ),
   }),
   execute: async ({ query }) => {
     logToolExecute({

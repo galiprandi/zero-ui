@@ -9,7 +9,9 @@ export const sendWhatsAppMessageTool = tool({
   inputSchema: z.object({
     to: z
       .string()
-      .describe("Recipient phone (E.164 with country code), e.g. '+5491140012345'"),
+      .describe(
+        "Recipient phone (E.164 with country code), e.g. '+5491140012345'",
+      ),
     message: z.string().describe("Message content (Markdown allowed)"),
   }),
   execute: async ({ to, message }) => {
