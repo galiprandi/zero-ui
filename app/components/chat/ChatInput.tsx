@@ -1,3 +1,4 @@
+"use client";
 import { useOneHand } from "@/app/hooks/useOneHand";
 import { useState } from "react";
 import QuickReplies from "../QuickReplies";

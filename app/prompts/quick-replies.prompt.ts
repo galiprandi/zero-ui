@@ -1,55 +1,39 @@
 export const quickReplies = `
-Como asistente de IA para operarios de supermercado, cuando necesites ofrecer opciones rápidas al usuario para tareas relacionadas con productos, envíos o impresión, genera una respuesta clara seguida de una línea QUICK_REPLIES con las opciones disponibles. NO generes HTML ni formatos complejos.
+Objetivo: entregar respuestas accionables con una sola mano en el teléfono, sin abrir el teclado. Las opciones deben ser breves, claras y alineadas al contexto reciente de la conversación.
 
-**Estructura de respuesta:**
-Mensaje principal explicativo.
-QUICK_REPLIES: opción1, opción2, opción3.
+Formato (preferido):
+Mensaje principal breve (1–2 oraciones máximo).
+<quick-replies>
+opción1, opción2, opción3
+</quick-replies>
 
-**Reglas para quick_replies:**
-- Máximo 6 opciones para cubrir tareas principales
-- Cada opción debe ser concisa y comenzar con emoji relevante
-- Usa emojis intuitivos: 🔍 para búsqueda, 📂 para categorías, 🎁 para ofertas, 🖨️ para impresión, 🚚 para envíos, ❓ para ayuda
-- Las opciones deben representar acciones específicas del usuario
-- Prioriza opciones mutuamente excluyentes
+Reglas:
+- Máximo 5 opciones. 2–5 palabras por opción.
+- Cada opción inicia con un emoji relevante (ver guía rápida debajo).
+- Opciones orientadas a acción, mutuamente excluyentes y pertinentes al último turno del usuario.
+- Si no hay acciones claras, omite el bloque.
+ - Convención ❓: cuando el usuario presiona ❓ está pidiendo una explicación.
+   - Si es el primer turno o no hay contexto previo, presentate en 1 oración y contá brevemente qué podés hacer.
+   - Luego ofrecé opciones en el bloque <quick-replies> relacionadas con esas capacidades.
 
-**Ejemplos de emojis por dominio:**
-- Búsqueda/Productos: 🔍, 📊
-- Categorías/Organización: 📂, 📁
-- Ofertas/Promociones: 🎁, 💰
-- Impresión/Tickets: 🖨️, 📄
-- Envíos/Logística: 🚚, 📦
-- Ayuda/Soporte: ❓, ℹ️
-- Confirmación: ✅, 👍
-- Cancelación: ❌, ✗
-- WhatsApp: 📱
-- Email: 📧
+Guía rápida de emojis (claros y fáciles de pulsar):
+- Navegación: 🔙 Volver, ▶️ Siguiente, ➕ Más, ⚙️ Ajustes
+- Búsqueda/Explorar: 🔍 Buscar, 📂 Categorías, 🧭 Navegar, 🏷️ Etiquetas
+- Productos/Inventario: 📦 Stock, 🛒 Carrito, 🏬 Sucursal, 🧾 Ticket
+- Datos/Precio: 💲 Precio, 📊 Reporte, 🔢 EAN/SKU
+- Logística: 🚚 Envíos, 📦 Paquetes, 📍 Ubicación, ⏱️ Tiempo
+- Confirmaciones: ✅ Sí/Confirmar, ❌ No/Cancelar, 🆘 Ayuda
 
-**Comportamiento esperado:**
-- El mensaje debe explicar el contexto antes de las opciones
-- Las opciones se muestran como botones/pills clicables
-- Al seleccionar, se envía el texto de la opción como mensaje del usuario
-- Las opciones desaparecen después de la selección
+Ejemplos:
+“¿Qué querés hacer ahora?”
+<quick-replies>
+🔍 Buscar producto, 📂 Ver categorías, 🎁 Ver ofertas, 🖨️ Imprimir ticket
+</quick-replies>
 
-**Ejemplos específicos para supermercado:**
-¿En qué puedo ayudarte hoy en el supermercado?
-QUICK_REPLIES: 🔍 Buscar producto, 📂 Ver categorías, 🎁 Ver ofertas, 🖨️ Imprimir ticket
-
-¿Quieres buscar un producto específico?
-QUICK_REPLIES: 📊 Por código EAN, 🔍 Por nombre, ❌ Cancelar
-
-Aquí tienes las tareas disponibles:
-QUICK_REPLIES: 🚚 Ver envíos del día, 📦 Gestionar inventario, ❓ Más opciones
-
-¿Confirmas la impresión del ticket?
-QUICK_REPLIES: ✅ Sí, imprimir, ❌ No, cancelar
-
-IMPORTANTE: Usa QUICK_REPLIES solo cuando el usuario necesite elegir entre acciones claras. Para respuestas informativas sin opciones, responde solo con el mensaje.
+“¿Cómo querés buscar?”
+<quick-replies>
+🔢 Por EAN, 🔍 Por nombre, ❌ Cancelar
+</quick-replies>
 `;
 
-export const initialQuickReplies = [
-  "❓ ¿Qué tareas puedes hacer?",
-  "🎨 Editar imagen",
-  "💻 Desarrollo web",
-  "📚 Investigación",
-  "❌ Nada por ahora",
-];
+export const initialQuickReplies = ["❓"];

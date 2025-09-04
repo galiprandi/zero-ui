@@ -1,3 +1,4 @@
+"use client";
 import { Markdown } from "./chat/Markdown";
 
 export default function MessageText({ role, content, id }: MessageTextProps) {
@@ -9,7 +10,7 @@ export default function MessageText({ role, content, id }: MessageTextProps) {
 
   const classNameChild = isUser
     ? "block px-4 py-2 rounded-full shadow-sm break-words bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100 leading-snug text-sm"
-    : "text-justify text-wrap-pretty hyphens-auto w-full leading-tight";
+    : "text-justify text-wrap-pretty hyphens-auto w-full leading-tight text-zinc-900 dark:text-zinc-100";
   return (
     <div key={id} className={ClassContainer}>
       <div className={classNameChild}>

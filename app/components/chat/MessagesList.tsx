@@ -1,4 +1,5 @@
-import { useOneHand } from "../../hooks/useOneHand";
+"use client";
+import { useOneHand } from "@/app/hooks/useOneHand";
 import MessageText from "../MessageText";
 import ToolDetails from "../ToolDetails";
 

@@ -1,4 +1,5 @@
-import { useOneHand } from "../hooks/useOneHand";
+"use client";
+import { useOneHand } from "@/app/hooks/useOneHand";
 
 export default function QuickReplies() {
   const { quickReplies, sendMessage, status } = useOneHand();
