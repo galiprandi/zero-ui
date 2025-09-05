@@ -4,16 +4,19 @@ import { useState } from "react";
 import QuickReplies from "../QuickReplies";
 
 export default function ChatInput() {
-  const { sendMessage, status } = useOneHand();
+  const { sendMessage, status, reasoningText } = useOneHand();
   const [input, setInput] = useState("");
 
   const disable = status !== "ready";
-  const placeholder =
-    status === "submitted"
-      ? "Pensando..."
-      : status === "streaming"
-        ? "Respondiendo..."
-        : "Escribe algo...";
+  const basePlaceholder = "Escribe algo...";
+  const thinking = status === "submitted" || status === "streaming";
+  const reasoningPlaceholder = (() => {
+    if (!thinking) return null;
+    if (!reasoningText) return status === "submitted" ? "Pensando..." : "Respondiendo...";
+    const text = reasoningText.replace(/\s+/g, " ").trim();
+    return text.length > 140 ? `${text.slice(0, 140)}…` : text;
+  })();
+  const placeholder = reasoningPlaceholder ?? basePlaceholder;
 
   return (
     <div className="p-2">
@@ -36,6 +39,7 @@ export default function ChatInput() {
           onChange={({ target: { value } }) => setInput(value)}
           id="chat-input"
           aria-disabled={disable}
+          aria-busy={thinking}
         />
       </form>
     </div>

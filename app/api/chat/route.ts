@@ -15,7 +15,7 @@ import {
 } from "ai";
 
 export const maxDuration = 30;
-const model = "gpt-4.1-nano";
+const model = "gpt-5-nano";
 
 export async function POST(req: Request) {
   const { messages }: { messages: UIMessage[] } = await req.json();

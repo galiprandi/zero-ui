@@ -9,6 +9,9 @@ export function useOneHand() {
   const { messages: rawMessages, sendMessage, status } = useChatContext();
   const { messages, quickReplies } = separateQuickRepliesFromText(rawMessages);
 
+  // Derive latest reasoning text (for placeholder feedback while model is reasoning)
+  const reasoningText = getLatestReasoningText(messages);
+
   // Debug: mantener log para inspeccionar mensajes crudos
   useEffect(() => {
     // eslint-disable-next-line no-console
@@ -27,6 +30,7 @@ export function useOneHand() {
     quickReplies: effectiveQuickReplies,
     sendMessage,
     status,
+    reasoningText,
   };
 }
 
@@ -146,3 +150,20 @@ function parseQuickReplies(text: string): string[] {
 
 type Messages = UIMessage<unknown, UIDataTypes, UITools>[];
 type QuickReplies = string[];
+
+function getLatestReasoningText(messages: Messages): string | null {
+  if (!messages.length) return null;
+  // Find last message that contains a reasoning part
+  for (let i = messages.length - 1; i >= 0; i--) {
+    const m = messages[i];
+    const parts = m.parts ?? [];
+    // Look for the last reasoning part in this message
+    for (let j = parts.length - 1; j >= 0; j--) {
+      const p = parts[j] as { type?: string; text?: unknown };
+      if (p?.type === "reasoning" && typeof p.text === "string") {
+        return p.text;
+      }
+    }
+  }
+  return null;
+}
