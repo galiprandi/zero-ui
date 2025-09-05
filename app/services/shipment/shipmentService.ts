@@ -7,9 +7,7 @@ export const getTodaysShipments = (): ShipmentDetailsDTO[] => {
   const shipments: ShipmentDetailsDTO[] = [];
 
   for (let i = 1; i <= numShipments; i++) {
-    const shipment = getShipmentDetails(
-      `shipment-today-${String(i).padStart(3, "0")}`,
-    );
+    const shipment = getShipmentDetails(`# ${String(i).padStart(3, "0")}`);
     shipments.push(shipment);
   }
 

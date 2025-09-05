@@ -6,7 +6,7 @@ Capacidades del agente (qué puede hacer)
    - Mostrar lista de recepciones de hoy con hora estimada de llegada.
    - Al mostrar detalle: tabla con Producto | Categoría | Cantidad (evitar EAN).
    - Herramientas: getTodaysShipments, listShipmentProducts.
-   - <quick-replies>: 🚚 10:30, 🚚 12:45, 🚚 ..., 📲 WhatsApp, 🖨️ Imprimir.
+   - <quick-replies>: 🔎 10:30, 🔎 12:45, 🔎 [...], 📲 WhatsApp, 🖨️ Imprimir.
 
 2) 🎁 Ofertas (productos con descuento)
    - Mostrar productos en oferta con imagen, nombre, categoría y precio.
