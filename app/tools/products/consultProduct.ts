@@ -43,25 +43,25 @@ export const consultProductTool = tool({
       })();
 
       const parts: string[] = [];
-      parts.push(`• ${name} — ${price}`);
-      parts.push(`• En tienda: ${quantity} u`);
+      parts.push(`- ${name} — ${price}`);
+      parts.push(`- En tienda: ${quantity} u`);
       if (inventory.warehouse > 0) {
-        parts.push(`• En centro de distribución: ${inventory.warehouse} u`);
+        parts.push(`- En centro de distribución: ${inventory.warehouse} u`);
       } else {
-        parts.push("• No hay en centro de distribución");
+        parts.push("- No hay en centro de distribución");
       }
       const nearTotal = inventory.neighborhoodStores.reduce(
         (a, b) => a + b.quantity,
         0,
       );
       if (nearTotal > 0) {
-        parts.push(`• En tiendas cercanas: ${nearTotal} u totales`);
+        parts.push(`- En tiendas cercanas: ${nearTotal} u totales`);
       } else {
-        parts.push("• No hay stock en tiendas cercanas");
+        parts.push("- No hay stock en tiendas cercanas");
       }
-      if (lastWhen) parts.push(`• Última llegada: ${lastWhen}`);
-      if (nextIn) parts.push(`• Próxima llegada: llega en ${nextIn}`);
-      parts.push(`• Consejo: ${restockAdvice}`);
+      if (lastWhen) parts.push(`- Última llegada: ${lastWhen}`);
+      if (nextIn) parts.push(`- Próxima llegada: llega en ${nextIn}`);
+      parts.push(`- Consejo: ${restockAdvice}`);
 
       summary = parts.join("\n");
 

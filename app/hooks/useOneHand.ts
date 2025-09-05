@@ -50,6 +50,33 @@ const separateQuickRepliesFromText = (
     if (m.role !== "assistant") continue;
     const parts = m.parts ?? [];
     let updated = false;
+
+    // 1) Fallback robusto: concatenar todos los textos del mensaje y extraer un único bloque
+    const allText = parts
+      .map((p) => (p as { type?: string; text?: unknown }).text)
+      .filter((t): t is string => typeof t === "string" && t.length > 0)
+      .join("\n");
+    const openAll = TAG_OPEN.exec(allText ?? "");
+    const closeAll = TAG_CLOSE.exec(allText ?? "");
+    if (openAll && closeAll && closeAll.index > openAll.index) {
+      const before = allText.slice(0, openAll.index).trimEnd();
+      const inner = allText
+        .slice(openAll.index + openAll[0].length, closeAll.index)
+        .trim();
+      const after = allText.slice(closeAll.index + closeAll[0].length).trimStart();
+      if (inner) extracted = inner;
+      const sep = before && after ? " " : "";
+      const cleanedText = `${before}${sep}${after}`.trim();
+      const newParts = cleanedText ? [{ type: "text", text: cleanedText }] : [];
+      cleanedMessages = cleanedMessages.map((mm, idx) =>
+        idx === i ? { ...mm, parts: newParts as typeof parts } : mm,
+      );
+      updated = true;
+    }
+
+    if (updated) break;
+
+    // 2) Modo original: intentar por parte
     const newParts = parts
       .map((p) => {
         if (p.type !== "text" || !p.text) return p;
