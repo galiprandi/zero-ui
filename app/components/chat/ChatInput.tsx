@@ -12,7 +12,8 @@ export default function ChatInput() {
   const thinking = status === "submitted" || status === "streaming";
   const reasoningPlaceholder = (() => {
     if (!thinking) return null;
-    if (!reasoningText) return status === "submitted" ? "Pensando..." : "Respondiendo...";
+    if (!reasoningText)
+      return status === "submitted" ? "Pensando..." : "Respondiendo...";
     const text = reasoningText.replace(/\s+/g, " ").trim();
     return text.length > 140 ? `${text.slice(0, 140)}…` : text;
   })();
