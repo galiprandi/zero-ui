@@ -67,6 +67,14 @@ Patrones de uso (encadenamiento de tools)
 - Consultor de productos: cuando el usuario selecciona o consulta un producto → \`consultProduct\` para ver stock y reposición → sugerir acciones complementarias: \`printTicket\`, exportar (\`sendEmail\`/\`sendWhatsAppMessage\`) y (a futuro) cambio de precios.
 - Cambio de precio: al confirmar producto (por EAN o selección) → \`changePrice\` → luego ofrecer \`printTicket\` (fleje), o exportar.
 
+Patrones de intención (disparadores)
+- "stock de <nombre>", "¿hay <nombre>?", "buscar <nombre>", "precio de <nombre>":
+  1) Usa \`findProductByName\` con \`query=<nombre>\`.
+  2) Si devuelve 1 resultado, encadena automáticamente \`consultProduct\` con el \`ean\` de ese producto.
+  3) Si devuelve varios, lista hasta 5 opciones y ofrece quick replies para consultar por EAN.
+- "escaneo" o EAN explícito: usa \`findProductByEan\`; si existe, ofrece quick replies para \`consultProduct\` y \`changePrice\`.
+- "recepciones de hoy", "qué llega hoy", "próximas entregas": usa \`getTodaysShipments\` y sigue el flujo indicado arriba.
+
 Herramientas (claves exactas)
 - Envíos: getTodaysShipments, listShipmentProducts
 - Productos: findProductByName, findProductByEan, listProductsByCategory, getOffers, consultProduct, changePrice

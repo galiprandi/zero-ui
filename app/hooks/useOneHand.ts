@@ -51,36 +51,40 @@ const separateQuickRepliesFromText = (
     const parts = m.parts ?? [];
     let updated = false;
 
-    // 1) Fallback robusto: concatenar todos los textos del mensaje y extraer un único bloque
-    const allTextRaw = parts
-      .map((p) => (p as { type?: string; text?: unknown }).text)
-      .filter((t): t is string => typeof t === "string" && t.length > 0)
-      .join("\n");
-    // Normalización: des-escapar entidades HTML y quitar caracteres invisibles
+    // Normalización compartida
     const normalize = (s: string) =>
       s
         .replaceAll("&lt;", "<")
         .replaceAll("&gt;", ">")
         .replace(/[\u200B-\u200D\uFEFF]/g, "");
-    const allText = normalize(allTextRaw ?? "");
-    const openAll = TAG_OPEN.exec(allText);
-    const closeAll = TAG_CLOSE.exec(allText);
-    if (openAll && closeAll && closeAll.index > openAll.index) {
-      const before = allText.slice(0, openAll.index).trimEnd();
-      const inner = allText
-        .slice(openAll.index + openAll[0].length, closeAll.index)
-        .trim();
-      const after = allText
-        .slice(closeAll.index + closeAll[0].length)
-        .trimStart();
-      if (inner) extracted = inner;
-      const sep = before && after ? " " : "";
-      const cleanedText = `${before}${sep}${after}`.trim();
-      const newParts = cleanedText ? [{ type: "text", text: cleanedText }] : [];
-      cleanedMessages = cleanedMessages.map((mm, idx) =>
-        idx === i ? { ...mm, parts: newParts as typeof parts } : mm,
-      );
-      updated = true;
+
+    // 1) Fallback robusto SOLO si todas las partes son de texto.
+    const hasNonText = parts.some((p) => (p as { type?: string }).type !== "text");
+    if (!hasNonText) {
+      const allTextRaw = parts
+        .map((p) => (p as { type?: string; text?: unknown }).text)
+        .filter((t): t is string => typeof t === "string" && t.length > 0)
+        .join("\n");
+      const allText = normalize(allTextRaw ?? "");
+      const openAll = TAG_OPEN.exec(allText);
+      const closeAll = TAG_CLOSE.exec(allText);
+      if (openAll && closeAll && closeAll.index > openAll.index) {
+        const before = allText.slice(0, openAll.index).trimEnd();
+        const inner = allText
+          .slice(openAll.index + openAll[0].length, closeAll.index)
+          .trim();
+        const after = allText
+          .slice(closeAll.index + closeAll[0].length)
+          .trimStart();
+        if (inner) extracted = inner;
+        const sep = before && after ? " " : "";
+        const cleanedText = `${before}${sep}${after}`.trim();
+        const newParts = cleanedText ? [{ type: "text", text: cleanedText }] : [];
+        cleanedMessages = cleanedMessages.map((mm, idx) =>
+          idx === i ? { ...mm, parts: newParts as typeof parts } : mm,
+        );
+        updated = true;
+      }
     }
 
     if (updated) {
@@ -88,7 +92,7 @@ const separateQuickRepliesFromText = (
       continue;
     }
 
-    // 2) Modo original: intentar por parte
+    // 2) Limpieza por parte: conserva todo lo que no sea texto y limpia solo el texto.
     const newParts = parts
       .map((p) => {
         if (p.type !== "text" || !p.text) return p;

@@ -5,7 +5,33 @@ import { getProductConsultingByEan } from "../../services/products/consultantSer
 
 export const consultProductTool = tool({
   description:
-    "Consultar stock y reposición de un producto por EAN. Retorna { consulting } con stock en tienda, tiendas cercanas, CD y recomendación de reposición.",
+    `Consultar stock y reposición de un producto por EAN. Muestra precio, stock en tienda, tiendas cercanas, 
+    CD y recomendación de reposición.
+
+    Utilizar cuando:
+    - El usuario hace foco en un producto específico: 📦 Consultar stock
+    - El usuario hace foco en un producto sin o con poco inventario: 🚚 Ver recepciones
+
+
+    Formato de salida: Markdown simple, SIN bloques de código.
+    
+    Ejemplo:
+    ## [Nombre del producto]
+    
+    - Precio: $999,99
+    - 📦 Disponibilidad:
+         - 🏪 En tienda: 34 unidades; 
+         - 🏢 CD: 89 unidades; 
+    - 📅 Proxima recepción: 10/09 (94 unidades) 🏢
+
+    <quick-replies>
+    💵 Actualizar precio, 🖨️ Imprimir fleje, 📲 WhatsApp, 
+    </quick-replies>
+
+    Si no hay envíos para hoy, responde:
+    🚚 Próximas recepciones:
+    - No hay envíos programados para hoy.
+    `,
   inputSchema: z.object({
     ean: z
       .string()

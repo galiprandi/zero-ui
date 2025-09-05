@@ -5,7 +5,7 @@ export default function MessageText({ role, content, id }: MessageTextProps) {
   const isUser = role === "user";
 
   const ClassContainer = isUser
-    ? "flex justify-end my-2"
+    ? "flex justify-end"
     : "flex justify-start my-0";
 
   const classNameChild = isUser
