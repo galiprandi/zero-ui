@@ -2,6 +2,7 @@ import { tool } from "ai";
 import { z } from "zod";
 import { logTool } from "../../lib/logger";
 import { getProductConsultingByEan } from "../../services/products/consultantService";
+import { formatConsultingMessage } from "../../services/products/consultingFormatter";
 
 export const consultProductTool = tool({
   description: `
@@ -43,7 +44,14 @@ export const consultProductTool = tool({
   }),
   execute: async ({ ean }) => {
     const toolName = "consultProduct";
-    const output = getProductConsultingByEan(ean);
+    const consulting = getProductConsultingByEan(ean);
+    if (!consulting) {
+      const output = { error: "Producto no encontrado por EAN." } as const;
+      logTool({ toolName, input: { ean }, output });
+      return output;
+    }
+    const message = formatConsultingMessage(consulting as any);
+    const output = { message, consulting } as const;
     logTool({ toolName, input: { ean }, output });
     return output;
   },
