@@ -55,9 +55,9 @@ export const changePriceTool = tool({
       currentNumeric != null ? formatPrice(currentNumeric) : product.price;
 
     if (!newPrice) {
-      const message = `Precio actual de ${product.name}: ${currentLabel}. ¿Cuál es el nuevo precio?`;
+      const promptMessage = `Precio actual de ${product.name}: ${currentLabel}. ¿Cuál es el nuevo precio?`;
       const quickRepliesText = `<quick-replies>\n${["+5%", "+10%", "+20%", "-5%", "Cancelar"].join(", ")}\n</quick-replies>`;
-      const result = { message, quickRepliesText } as const;
+      const result = { message: promptMessage, quickRepliesText } as const;
       logToolResult({
         toolName: "changePrice",
         output: result,
@@ -81,14 +81,15 @@ export const changePriceTool = tool({
 
     // Simular actualización (no hay persistencia). Devolver confirmación.
     const updatedLabel = formatPrice(numeric);
-    const message = `Precio actualizado para ${product.name} (${ean}): ${currentLabel} → ${updatedLabel}.`;
+    const confirmationMessage = `Precio actualizado para ${product.name} (${ean}): ${currentLabel} → ${updatedLabel}.`;
     const quickRepliesText = `<quick-replies>\n${["🏷️ Imprimir fleje", "🧾 Registrar merma", "🔍 Ver producto", "❌ Cancelar"].join(", ")}\n</quick-replies>`;
 
     const result = {
-      message,
+      message: confirmationMessage,
       updatedPrice: updatedLabel,
       quickRepliesText,
     } as const;
+
     logToolResult({
       toolName: "changePrice",
       output: result,

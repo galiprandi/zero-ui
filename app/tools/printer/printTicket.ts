@@ -1,7 +1,7 @@
 import { tool } from "ai";
 import { z } from "zod";
-import { printTicket } from "../../services/printers/ticketService";
 import { logToolExecute, logToolResult } from "../../lib/logger";
+import { printTicket } from "../../services/printers/ticketService";
 
 export const printTicketTool = tool({
   description:
@@ -22,15 +22,12 @@ export const printTicketTool = tool({
     });
 
     printTicket(ean, price);
-    const quickRepliesText = `<quick-replies>\n🔍 Ver producto, 💲 Cambiar precio, 🏷️ Imprimir fleje\n</quick-replies>`;
-    const result = { message: "Ticket impreso correctamente.", quickRepliesText } as const;
-
     logToolResult({
       toolName: "printTicket",
-      output: result,
+      output: { message: "Ticket impreso correctamente." },
       ts: new Date().toISOString(),
     });
 
-    return result;
+    return { message: "Ticket impreso correctamente." };
   },
 });

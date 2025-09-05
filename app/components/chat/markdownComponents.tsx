@@ -1,6 +1,6 @@
 "use client";
-import type { Components } from "react-markdown";
 import type { ComponentPropsWithoutRef } from "react";
+import type { Components } from "react-markdown";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -73,7 +73,9 @@ export const markdownComponents: Components = {
     const { children, className, ...rest } = codeProps;
     if (isInline) {
       return (
-        <code {...rest}>{children}</code>
+        <span {...rest} className="copy-text cursor-pointer">
+          {children}
+        </span>
       );
     }
     // Detect fenced code blocks declared as ```markdown (or md/mdx) and render them as real Markdown
@@ -89,9 +91,7 @@ export const markdownComponents: Components = {
         </div>
       );
     }
-    return (
-      <code {...rest}>{children}</code>
-    );
+    return <code {...rest}>{children}</code>;
   },
   a: ({ node, ...props }) => (
     <a

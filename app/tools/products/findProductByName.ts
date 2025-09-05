@@ -37,7 +37,7 @@ export const findProductByNameTool = tool({
     const products = searchByName(query);
     const quickRepliesText = products.length
       ? `<quick-replies>\n🧠 Consultor de productos, 💲 Cambiar precio, 🖨️ Imprimir ticket\n</quick-replies>`
-      : '';
+      : "";
     const result = { products, quickRepliesText } as const;
 
     logToolResult({

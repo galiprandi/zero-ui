@@ -16,14 +16,14 @@ interface LogRequestMetaData {
 
 interface LogToolExecuteData {
   toolName: string;
-  input: Record<string, unknown>;
-  ts: string;
+  input?: Record<string, unknown>;
+  ts?: string;
 }
 
 interface LogToolResultData {
   toolName: string;
-  output: Record<string, unknown>;
-  ts: string;
+  output?: unknown;
+  ts?: string;
 }
 
 export function logRequestMeta(data: LogRequestMetaData): void {
@@ -32,20 +32,37 @@ export function logRequestMeta(data: LogRequestMetaData): void {
   }
 }
 
-export function logToolExecute(data: LogToolExecuteData): void {
+export const logTool = (data: {
+  toolName: string;
+  input?: Record<string, unknown>;
+  output?: unknown;
+}) => {
+  if (!__DEV__) return;
+  console.debug(`[dev][server][tool] ${data.toolName}`, data);
+};
+
+export function logToolExecute({
+  toolName,
+  input = {},
+  ts = new Date().toISOString(),
+}: LogToolExecuteData): void {
   if (__DEV__) {
-    console.debug(`[dev][server][tool] ${data.toolName}.execute`, {
-      input: data.input,
-      ts: data.ts,
+    console.debug(`[dev][server][tool] ${toolName}.execute`, {
+      input,
+      ts,
     });
   }
 }
 
-export function logToolResult(data: LogToolResultData): void {
+export function logToolResult({
+  toolName,
+  output,
+  ts = new Date().toISOString(),
+}: LogToolResultData): void {
   if (__DEV__) {
-    console.debug(`[dev][server][tool] ${data.toolName}.result`, {
-      output: data.output,
-      ts: data.ts,
+    console.debug(`[dev][server][tool] ${toolName}.result`, {
+      output,
+      ts,
     });
   }
 }

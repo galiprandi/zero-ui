@@ -1,6 +1,6 @@
 import { tool } from "ai";
 import { object } from "zod";
-import { logToolExecute, logToolResult } from "../../lib/logger";
+import { logTool } from "../../lib/logger";
 import { getTodaysShipments } from "../../services/shipment/shipmentService";
 
 export const getTodaysShipmentsTool = tool({
@@ -48,20 +48,9 @@ export const getTodaysShipmentsTool = tool({
     `,
   inputSchema: object({}),
   execute: async () => {
-    logToolExecute({
-      toolName: "getTodaysShipments",
-      input: {},
-      ts: new Date().toISOString(),
-    });
-
-    const result = { shipments: getTodaysShipments() };
-
-    logToolResult({
-      toolName: "getTodaysShipments",
-      output: result,
-      ts: new Date().toISOString(),
-    });
-
-    return result;
+    const toolName = "getTodaysShipments";
+    const output = getTodaysShipments();
+    logTool({ toolName, output });
+    return output;
   },
 });

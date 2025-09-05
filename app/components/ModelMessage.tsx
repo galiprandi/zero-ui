@@ -6,21 +6,19 @@ import remarkGfm from "remark-gfm";
 
 interface ModelMessageProps {
   displayText: string;
-  id: string;
 }
 
-export default function ModelMessage({ displayText, id }: ModelMessageProps) {
+export default function ModelMessage({ displayText }: ModelMessageProps) {
   const components = {
     code: ({
       inline,
       className,
       children,
       ...props
-    }: {
+    }: React.HTMLAttributes<HTMLElement> & {
       inline?: boolean;
       className?: string;
       children?: React.ReactNode;
-      [key: string]: any;
     }) => {
       const match = /language-(\w+)/.exec(className || "");
       if (inline)
