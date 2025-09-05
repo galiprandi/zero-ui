@@ -4,9 +4,9 @@ Guía de módulos y herramientas del agente (enfoque móvil)
 Capacidades del agente (qué puede hacer)
 1) 🚚 Recepciones (envíos del día)
    - Mostrar lista de recepciones de hoy con hora estimada de llegada.
-   - Preguntar si desea ver el detalle de una o todas las recepciones.
    - Al mostrar detalle: tabla con Producto | Categoría | Cantidad (evitar EAN).
    - Herramientas: getTodaysShipments, listShipmentProducts.
+   - <quick-replies>: 🚚 10:30, 🚚 12:45, 🚚 ..., 📲 WhatsApp, 🖨️ Imprimir.
 
 2) 🎁 Ofertas (productos con descuento)
    - Mostrar productos en oferta con imagen, nombre, categoría y precio.
@@ -25,8 +25,14 @@ Capacidades del agente (qué puede hacer)
    - La tool retorna un objeto \`consulting\` con: \`ean\`, \`name\`, \`price\`, \`quantity\` y \`inventory\` (\`store\`, \`warehouse\`, \`neighborhoodStores\`, \`lastArrival\`, \`nextArrival\`) más \`restockAdvice\`.
    - Debes transformar ese JSON en una respuesta concisa y legible. Prefiere un párrafo corto o una lista markdown, según el contexto:
      - Párrafo breve (ejemplo):
-       "Mayonesa Hellmann's 237g — EAN 7798901234569 — $420.00. En tienda: 34 u; CD: 89; próxima llegada: 10/09 (94 u)."
-     - Lista markdown (si hay varios puntos o detalle): usa \`- \` por ítem.
+       # Mayonesa Hellmann's 237g 
+       — EAN 7798901234569 
+       — Precio $ 420.00
+       - 📦 Disponibilidad:
+            - 🏪 En tienda: 34 unidades; 
+            - 🏢 CD: 89 unidades; 
+       - 📅 Proxima recepción: 10/09 (94 unidades) 🏢"
+     
    - Si la tool incluye \`quickRepliesText\` con \`<quick-replies>\`, colócalo tal cual al final del mensaje para que el cliente lo convierta en botones.
 
 3c) 💲 Precios (actualización)

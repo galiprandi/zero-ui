@@ -52,12 +52,19 @@ const separateQuickRepliesFromText = (
     let updated = false;
 
     // 1) Fallback robusto: concatenar todos los textos del mensaje y extraer un único bloque
-    const allText = parts
+    const allTextRaw = parts
       .map((p) => (p as { type?: string; text?: unknown }).text)
       .filter((t): t is string => typeof t === "string" && t.length > 0)
       .join("\n");
-    const openAll = TAG_OPEN.exec(allText ?? "");
-    const closeAll = TAG_CLOSE.exec(allText ?? "");
+    // Normalización: des-escapar entidades HTML y quitar caracteres invisibles
+    const normalize = (s: string) =>
+      s
+        .replaceAll("&lt;", "<")
+        .replaceAll("&gt;", ">")
+        .replace(/[\u200B-\u200D\uFEFF]/g, "");
+    const allText = normalize(allTextRaw ?? "");
+    const openAll = TAG_OPEN.exec(allText);
+    const closeAll = TAG_CLOSE.exec(allText);
     if (openAll && closeAll && closeAll.index > openAll.index) {
       const before = allText.slice(0, openAll.index).trimEnd();
       const inner = allText
@@ -76,13 +83,16 @@ const separateQuickRepliesFromText = (
       updated = true;
     }
 
-    if (updated) break;
+    if (updated) {
+      // No cortar aquí: seguir para limpiar posibles bloques anteriores también
+      continue;
+    }
 
     // 2) Modo original: intentar por parte
     const newParts = parts
       .map((p) => {
         if (p.type !== "text" || !p.text) return p;
-        const text = p.text;
+        const text = normalize(p.text);
         // Try block format first using regex exec to get indices safely
         const open = TAG_OPEN.exec(text);
         const close = TAG_CLOSE.exec(text);
@@ -106,7 +116,6 @@ const separateQuickRepliesFromText = (
       cleanedMessages = cleanedMessages.map((mm, idx) =>
         idx === i ? { ...mm, parts: newParts } : mm,
       );
-      break;
     }
   }
 
