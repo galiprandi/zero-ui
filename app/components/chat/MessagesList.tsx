@@ -3,11 +3,23 @@ import { demoMessages } from "@/app/data/messages";
 import { useOneHand } from "@/app/hooks/useOneHand";
 import MessageText from "../MessageText";
 import ToolDetails from "../ToolDetails";
+import { useEffect, useRef } from "react";
 
 export default function MessagesList() {
   const { messages } = useOneHand();
 
   const list = messages.length > 0 ? messages : demoMessages;
+  const endRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    // Scroll to the bottom when the list of messages changes
+    endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+    // Focus the chat input after scrolling
+    const input = document.getElementById(
+      "chat-input",
+    ) as HTMLInputElement | null;
+    input?.focus();
+  });
   return (
     <>
       {list.map((message) => (
@@ -36,6 +48,7 @@ export default function MessagesList() {
           })}
         </div>
       ))}
+      <div ref={endRef} />
     </>
   );
 }

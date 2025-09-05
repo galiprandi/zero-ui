@@ -6,10 +6,9 @@ import remarkGfm from "remark-gfm";
 
 interface UserMessageProps {
   text: string;
-  id: string;
 }
 
-export default function UserMessage({ text, id }: UserMessageProps) {
+export default function UserMessage({ text }: UserMessageProps) {
   const components = {
     code: ({
       inline,
@@ -20,7 +19,7 @@ export default function UserMessage({ text, id }: UserMessageProps) {
       inline?: boolean;
       className?: string;
       children?: React.ReactNode;
-      [key: string]: any;
+      [key: string]: unknown;
     }) => {
       const match = /language-(\w+)/.exec(className || "");
       if (inline)
@@ -63,7 +62,9 @@ export default function UserMessage({ text, id }: UserMessageProps) {
     <div className="block px-4 py-2 rounded-full shadow-sm break-words bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100 leading-snug text-sm text-justify text-wrap-pretty hyphens-auto">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
-        components={components}
+        components={
+          components as unknown as import("react-markdown").Components
+        }
         key={text.length}
       >
         {text}

@@ -3,6 +3,7 @@ import { z } from "zod";
 import { logTool } from "../../lib/logger";
 import { getProductConsultingByEan } from "../../services/products/consultantService";
 import { formatConsultingMessage } from "../../services/products/consultingFormatter";
+import type { ConsultingLike } from "../../services/products/consultingFormatter";
 
 export const consultProductTool = tool({
   description: `
@@ -50,7 +51,7 @@ export const consultProductTool = tool({
       logTool({ toolName, input: { ean }, output });
       return output;
     }
-    const message = formatConsultingMessage(consulting as any);
+    const message = formatConsultingMessage(consulting as ConsultingLike);
     const output = { message, consulting } as const;
     logTool({ toolName, input: { ean }, output });
     return output;

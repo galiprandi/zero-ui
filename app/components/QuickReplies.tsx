@@ -9,7 +9,7 @@ export default function QuickReplies() {
   return (
     <div className="w-full py-2">
       <div
-        className="quick-replies flex gap-2 overflow-x-auto scrollbar-hide items-center justify-center"
+        className="quick-replies flex gap-2 overflow-x-auto scrollbar-hide items-center"
         style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
       >
         {quickReplies.map((reply) => (

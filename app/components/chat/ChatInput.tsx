@@ -34,7 +34,8 @@ export default function ChatInput() {
           value={input}
           placeholder={placeholder}
           onChange={({ target: { value } }) => setInput(value)}
-          disabled={disable}
+          id="chat-input"
+          aria-disabled={disable}
         />
       </form>
     </div>

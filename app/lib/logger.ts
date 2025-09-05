@@ -100,7 +100,7 @@ export function parseQuickRepliesFromText(text: string): string[] | null {
   if (!text) return null;
   // 1) Canonical <quick-replies> block (preferred)
   const tagMatch = text.match(/<quick-replies>([\s\S]*?)<\/quick-replies>/i);
-  if (tagMatch && tagMatch[1]) {
+  if (tagMatch?.[1]) {
     const inner = tagMatch[1]
       .split(/\n|\r/)
       .map((l) => l.trim())
