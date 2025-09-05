@@ -1,6 +1,6 @@
 import { tool } from "ai";
 import { z } from "zod";
-import { logToolExecute, logToolResult } from "../../lib/logger";
+import { logTool } from "../../lib/logger";
 import { getProductConsultingByEan } from "../../services/products/consultantService";
 
 export const requestRestockTool = tool({
@@ -20,35 +20,22 @@ export const requestRestockTool = tool({
       ),
   }),
   execute: async ({ ean, quantity }) => {
-    logToolExecute({
-      toolName: "requestRestock",
-      input: { ean, quantity },
-      ts: new Date().toISOString(),
-    });
+    const toolName = "requestRestock";
 
     const consulting = getProductConsultingByEan(ean);
     if (!consulting) {
-      const result = { error: "Producto no encontrado por EAN." } as const;
-      logToolResult({
-        toolName: "requestRestock",
-        output: result,
-        ts: new Date().toISOString(),
-      });
-      return result;
+      const output = { error: "Producto no encontrado por EAN." } as const;
+      logTool({ toolName, input: { ean, quantity }, output });
+      return output;
     }
 
     const { name, inventory } = consulting;
 
     if (inventory.warehouse > 0) {
       const message = `El centro de distribución tiene ${inventory.warehouse} u de ${name}. Conviene solicitar al CD en lugar de tiendas cercanas.`;
-      const quickRepliesText = `<quick-replies>\nSolicitar al CD, 🏬 Ver tiendas cercanas, ❌ Cancelar\n</quick-replies>`;
-      const result = { message, quickRepliesText } as const;
-      logToolResult({
-        toolName: "requestRestock",
-        output: result,
-        ts: new Date().toISOString(),
-      });
-      return result;
+      const output = { message } as const;
+      logTool({ toolName, input: { ean, quantity }, output });
+      return output;
     }
 
     const near = inventory.neighborhoodStores
@@ -58,14 +45,9 @@ export const requestRestockTool = tool({
 
     if (nearTotal === 0) {
       const message = `No hay stock en tiendas cercanas ni en CD para ${name}. Se sugiere alternativa o consulta a proveedor.`;
-      const quickRepliesText = `<quick-replies>\n🔍 Buscar alternativa, 🧾 Registrar merma, ❌ Cancelar\n</quick-replies>`;
-      const result = { message, quickRepliesText } as const;
-      logToolResult({
-        toolName: "requestRestock",
-        output: result,
-        ts: new Date().toISOString(),
-      });
-      return result;
+      const output = { message } as const;
+      logTool({ toolName, input: { ean, quantity }, output });
+      return output;
     }
 
     const suggested =
@@ -92,19 +74,12 @@ export const requestRestockTool = tool({
       );
 
     const message = lines.join("\n");
-    const quickRepliesText = `<quick-replies>\n🏷️ Imprimir fleje, 🧾 Registrar merma, 📧 Email, 📲 WhatsApp\n</quick-replies>`;
-    const result = {
+    const output = {
       message,
       requested: suggested,
       picks,
-      quickRepliesText,
     } as const;
-
-    logToolResult({
-      toolName: "requestRestock",
-      output: result,
-      ts: new Date().toISOString(),
-    });
-    return result;
+    logTool({ toolName, input: { ean, quantity }, output });
+    return output;
   },
 });

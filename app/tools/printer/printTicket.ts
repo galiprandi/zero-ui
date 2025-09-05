@@ -1,6 +1,6 @@
 import { tool } from "ai";
 import { z } from "zod";
-import { logToolExecute, logToolResult } from "../../lib/logger";
+import { logTool } from "../../lib/logger";
 import { printTicket } from "../../services/printers/ticketService";
 
 export const printTicketTool = tool({
@@ -15,19 +15,10 @@ export const printTicketTool = tool({
       .describe("Precio a imprimir (string), ej.: '$9.99' o '9,99'."),
   }),
   execute: async ({ ean, price }) => {
-    logToolExecute({
-      toolName: "printTicket",
-      input: { ean, price },
-      ts: new Date().toISOString(),
-    });
-
+    const toolName = "printTicket";
     printTicket(ean, price);
-    logToolResult({
-      toolName: "printTicket",
-      output: { message: "Ticket impreso correctamente." },
-      ts: new Date().toISOString(),
-    });
-
-    return { message: "Ticket impreso correctamente." };
+    const output = { message: "Ticket impreso correctamente." } as const;
+    logTool({ toolName, input: { ean, price }, output });
+    return output;
   },
 });

@@ -1,7 +1,7 @@
 import { tool } from "ai";
 import { z } from "zod";
 import { sendEmail } from "../../services/emails/sendEmail";
-import { logToolExecute, logToolResult } from "../../lib/logger";
+import { logTool } from "../../lib/logger";
 
 export const sendEmailTool = tool({
   description:
@@ -16,20 +16,9 @@ export const sendEmailTool = tool({
     body: z.string().describe("Cuerpo del email (se admite Markdown)"),
   }),
   execute: async ({ to, subject, body }) => {
-    logToolExecute({
-      toolName: "sendEmail",
-      input: { to, subject, body },
-      ts: new Date().toISOString(),
-    });
-
-    const result = sendEmail({ to, subject, body });
-
-    logToolResult({
-      toolName: "sendEmail",
-      output: result,
-      ts: new Date().toISOString(),
-    });
-
-    return result;
+    const toolName = "sendEmail";
+    const output = sendEmail({ to, subject, body });
+    logTool({ toolName, input: { to, subject }, output });
+    return output;
   },
 });

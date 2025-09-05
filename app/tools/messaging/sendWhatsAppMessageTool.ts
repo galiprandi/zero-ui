@@ -1,7 +1,7 @@
 import { tool } from "ai";
 import { z } from "zod";
 import { sendWhatsAppMessage } from "../../services/whatsapp/sendMessage";
-import { logToolExecute, logToolResult } from "../../lib/logger";
+import { logTool } from "../../lib/logger";
 
 export const sendWhatsAppMessageTool = tool({
   description:
@@ -15,20 +15,9 @@ export const sendWhatsAppMessageTool = tool({
     message: z.string().describe("Message content (Markdown allowed)"),
   }),
   execute: async ({ to, message }) => {
-    logToolExecute({
-      toolName: "sendWhatsAppMessage",
-      input: { to, message },
-      ts: new Date().toISOString(),
-    });
-
-    const result = sendWhatsAppMessage({ to, message });
-
-    logToolResult({
-      toolName: "sendWhatsAppMessage",
-      output: result,
-      ts: new Date().toISOString(),
-    });
-
-    return result;
+    const toolName = "sendWhatsAppMessage";
+    const output = sendWhatsAppMessage({ to, message });
+    logTool({ toolName, input: { to }, output });
+    return output;
   },
 });

@@ -1,6 +1,6 @@
 import { tool } from "ai";
 import { z } from "zod";
-import { logToolExecute, logToolResult } from "../../lib/logger";
+import { logTool } from "../../lib/logger";
 import { searchByName } from "../../services/products/searchByName";
 
 export const findProductByNameTool = tool({
@@ -28,24 +28,10 @@ export const findProductByNameTool = tool({
       ),
   }),
   execute: async ({ query }) => {
-    logToolExecute({
-      toolName: "findProductByName",
-      input: { query },
-      ts: new Date().toISOString(),
-    });
-
+    const toolName = "findProductByName";
     const products = searchByName(query);
-    const quickRepliesText = products.length
-      ? `<quick-replies>\n🧠 Consultor de productos, 💲 Cambiar precio, 🖨️ Imprimir ticket\n</quick-replies>`
-      : "";
-    const result = { products, quickRepliesText } as const;
-
-    logToolResult({
-      toolName: "findProductByName",
-      output: result,
-      ts: new Date().toISOString(),
-    });
-
-    return result;
+    const output = { products } as const;
+    logTool({ toolName, input: { query }, output });
+    return output;
   },
 });

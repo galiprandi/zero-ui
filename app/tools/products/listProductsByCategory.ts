@@ -1,7 +1,7 @@
 import { tool } from "ai";
 import { z } from "zod";
 import { searchByCategory } from "../../services/products/searchByCategory";
-import { logToolExecute, logToolResult } from "../../lib/logger";
+import { logTool } from "../../lib/logger";
 
 export const listProductsByCategoryTool = tool({
   description:
@@ -12,22 +12,9 @@ export const listProductsByCategoryTool = tool({
       .describe("ID numérico de la categoría (ver listado de categorías)."),
   }),
   execute: async ({ categoryId }) => {
-    logToolExecute({
-      toolName: "listProductsByCategory",
-      input: { categoryId },
-      ts: new Date().toISOString(),
-    });
-
-    const products = searchByCategory(categoryId);
-    const quickRepliesText = `<quick-replies>\n📧 Al email, 📲 WhatsApp, 🖨️ Imprimir\n</quick-replies>`;
-    const result = { products, quickRepliesText } as const;
-
-    logToolResult({
-      toolName: "listProductsByCategory",
-      output: result,
-      ts: new Date().toISOString(),
-    });
-
-    return result;
+    const toolName = "listProductsByCategory";
+    const output = { products: searchByCategory(categoryId) } as const;
+    logTool({ toolName, input: { categoryId }, output });
+    return output;
   },
 });

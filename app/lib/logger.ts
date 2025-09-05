@@ -34,7 +34,7 @@ export function logRequestMeta(data: LogRequestMetaData): void {
 
 export const logTool = (data: {
   toolName: string;
-  input?: Record<string, unknown>;
+  input?: unknown;
   output?: unknown;
 }) => {
   if (!__DEV__) return;

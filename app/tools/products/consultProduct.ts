@@ -24,6 +24,15 @@ export const consultProductTool = tool({
     - Markdown simple. Lista con: Precio, Disponibilidad (tienda/CD/tiendas cercanas), Próxima recepción, Recomendación.
     - Agregar bloque <quick-replies> con acciones al final.
 
+    Siempre debes devolver el siguiente formato de respuesta:
+    **Nombre del producto**
+    — EAN 7798901234569
+    — Precio $ 420.00
+    - 📦 Disponibilidad:
+         - 🏪 En tienda: 34 unidades; 
+         - 🏢 CD: 89 unidades; 
+    - 📅 Proxima recepción: 10/09 (94 unidades) 🏢
+    
     Herramientas complementarias:
     - findProductByName, changePrice, printTicket, getTodaysShipments, sendEmail, sendWhatsAppMessage.
   `,
@@ -35,7 +44,7 @@ export const consultProductTool = tool({
   execute: async ({ ean }) => {
     const toolName = "consultProduct";
     const output = getProductConsultingByEan(ean);
-    logTool({ toolName, output });
+    logTool({ toolName, input: { ean }, output });
     return output;
   },
 });

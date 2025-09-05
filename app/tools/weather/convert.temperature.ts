@@ -1,6 +1,6 @@
 import { tool } from "ai";
 import { number, object } from "zod";
-import { logToolExecute, logToolResult } from "@/app/lib/logger";
+import { logTool } from "@/app/lib/logger";
 
 export const convertTemperatureTool = tool({
   description:
@@ -9,20 +9,9 @@ export const convertTemperatureTool = tool({
     temperature: number().describe("Temperature in °F to convert"),
   }),
   execute: async ({ temperature }) => {
-    logToolExecute({
-      toolName: "convertTemperature",
-      input: { temperature },
-      ts: new Date().toISOString(),
-    });
-    const celsius = Math.round((temperature - 32) * (5 / 9));
-    const out = {
-      celsius,
-    };
-    logToolResult({
-      toolName: "convertTemperature",
-      output: out,
-      ts: new Date().toISOString(),
-    });
+    const toolName = "convertTemperature";
+    const out = { celsius: Math.round((temperature - 32) * (5 / 9)) } as const;
+    logTool({ toolName, input: { temperature }, output: out });
     return out;
   },
 });

@@ -5,6 +5,7 @@ import {
   useContext,
   useEffect,
   useState,
+  useCallback,
   type ReactNode,
 } from "react";
 
@@ -22,13 +23,13 @@ interface ToastState {
 export function UIProvider({ children }: { children: ReactNode }) {
   const [toasts, setToasts] = useState<ToastState[]>([]);
 
-  const toast = (message: string) => {
+  const toast = useCallback((message: string) => {
     const id = Math.random().toString(36).slice(2, 11);
     setToasts((prev) => [...prev, { id, message }]);
     setTimeout(() => {
       setToasts((prev) => prev.filter((t) => t.id !== id));
     }, 2000);
-  };
+  }, []);
 
   // Global click handler for copy-to-clipboard on .copy-text and <code>
   useEffect(() => {
@@ -61,7 +62,7 @@ export function UIProvider({ children }: { children: ReactNode }) {
 
     document.addEventListener("click", handleClick, true);
     return () => document.removeEventListener("click", handleClick, true);
-  }, []);
+  }, [toast]);
 
   return (
     <UIContext.Provider value={{ toast }}>

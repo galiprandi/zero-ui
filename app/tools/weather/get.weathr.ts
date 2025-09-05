@@ -1,6 +1,6 @@
 import { tool } from "ai";
 import { object, string } from "zod";
-import { logToolExecute, logToolResult } from "@/app/lib/logger";
+import { logTool } from "@/app/lib/logger";
 
 export const weatherTool = tool({
   description:
@@ -9,21 +9,12 @@ export const weatherTool = tool({
     location: string().describe("City or location name, e.g., 'Buenos Aires'"),
   }),
   execute: async ({ location }) => {
-    logToolExecute({
-      toolName: "weather",
-      input: { location },
-      ts: new Date().toISOString(),
-    });
-    const temperature = Math.round(Math.random() * (90 - 32) + 32);
+    const toolName = "weather";
     const out = {
       location,
-      temperature,
-    };
-    logToolResult({
-      toolName: "weather",
-      output: out,
-      ts: new Date().toISOString(),
-    });
+      temperature: Math.round(Math.random() * (90 - 32) + 32),
+    } as const;
+    logTool({ toolName, input: { location }, output: out });
     return out;
   },
 });

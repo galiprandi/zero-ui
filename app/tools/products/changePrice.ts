@@ -1,21 +1,9 @@
 import { tool } from "ai";
 import { z } from "zod";
-import { logToolExecute, logToolResult } from "../../lib/logger";
-import { searchByEan } from "../../services/products/searchByEan";
+import { logTool } from "../../lib/logger";
+import { changePriceService } from "../../services/products/priceService";
 
-function parsePrice(input: string) {
-  // Acepta formatos como "$9.99", "9,99", "9.99"
-  const cleaned = input.replace(/[^0-9.,]/g, "").replace(",", ".");
-  const value = Number.parseFloat(cleaned);
-  return Number.isFinite(value) ? value : null;
-}
-
-function formatPrice(value: number) {
-  return new Intl.NumberFormat("es-AR", {
-    style: "currency",
-    currency: "ARS",
-  }).format(value);
-}
+// Logic moved to services/products/priceService.ts
 
 export const changePriceTool = tool({
   description:
@@ -32,69 +20,9 @@ export const changePriceTool = tool({
       ),
   }),
   execute: async ({ ean, newPrice }) => {
-    logToolExecute({
-      toolName: "changePrice",
-      input: { ean, newPrice },
-      ts: new Date().toISOString(),
-    });
-
-    const product = searchByEan(ean);
-    if (!product) {
-      const result = { error: "Producto no encontrado por EAN." } as const;
-      logToolResult({
-        toolName: "changePrice",
-        output: result,
-        ts: new Date().toISOString(),
-      });
-      return result;
-    }
-
-    // Precio actual desde dataset (string), intentamos parsear a número para normalizar
-    const currentNumeric = parsePrice(product.price);
-    const currentLabel =
-      currentNumeric != null ? formatPrice(currentNumeric) : product.price;
-
-    if (!newPrice) {
-      const promptMessage = `Precio actual de ${product.name}: ${currentLabel}. ¿Cuál es el nuevo precio?`;
-      const quickRepliesText = `<quick-replies>\n${["+5%", "+10%", "+20%", "-5%", "Cancelar"].join(", ")}\n</quick-replies>`;
-      const result = { message: promptMessage, quickRepliesText } as const;
-      logToolResult({
-        toolName: "changePrice",
-        output: result,
-        ts: new Date().toISOString(),
-      });
-      return result;
-    }
-
-    const numeric = parsePrice(newPrice);
-    if (numeric == null || numeric <= 0) {
-      const result = {
-        error: "Precio inválido. Ingresá un número mayor a 0 (ej.: 1234.56).",
-      } as const;
-      logToolResult({
-        toolName: "changePrice",
-        output: result,
-        ts: new Date().toISOString(),
-      });
-      return result;
-    }
-
-    // Simular actualización (no hay persistencia). Devolver confirmación.
-    const updatedLabel = formatPrice(numeric);
-    const confirmationMessage = `Precio actualizado para ${product.name} (${ean}): ${currentLabel} → ${updatedLabel}.`;
-    const quickRepliesText = `<quick-replies>\n${["🏷️ Imprimir fleje", "🧾 Registrar merma", "🔍 Ver producto", "❌ Cancelar"].join(", ")}\n</quick-replies>`;
-
-    const result = {
-      message: confirmationMessage,
-      updatedPrice: updatedLabel,
-      quickRepliesText,
-    } as const;
-
-    logToolResult({
-      toolName: "changePrice",
-      output: result,
-      ts: new Date().toISOString(),
-    });
-    return result;
+    const toolName = "changePrice";
+    const output = changePriceService({ ean, newPrice });
+    logTool({ toolName, input: { ean, newPrice }, output });
+    return output;
   },
 });

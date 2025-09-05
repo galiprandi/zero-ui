@@ -2,7 +2,7 @@ import { tool } from "ai";
 import { z } from "zod";
 import { getShipmentDetails } from "../../services/shipment/shipmentService";
 import categories from "../../data/categories.json";
-import { logToolExecute, logToolResult } from "../../lib/logger";
+import { logTool } from "../../lib/logger";
 
 export const listShipmentProductsTool = tool({
   description:
@@ -16,30 +16,21 @@ export const listShipmentProductsTool = tool({
       ),
   }),
   execute: async ({ id, mode }) => {
-    logToolExecute({
-      toolName: "listShipmentProducts",
-      input: { id, mode },
-      ts: new Date().toISOString(),
-    });
+    const toolName = "listShipmentProducts";
 
     const details = getShipmentDetails(id);
     if (!details) {
-      const result = { error: "Envío no encontrado" };
-      logToolResult({
-        toolName: "listShipmentProducts",
-        output: result,
-        ts: new Date().toISOString(),
-      });
-      return result;
+      const output = { error: "Envío no encontrado" } as const;
+      logTool({ toolName, input: { id, mode }, output });
+      return output;
     }
 
-    let result: {
+    let output: {
       products?: unknown;
       categories?: { name: string; totalQuantity: number }[];
-      quickRepliesText?: string;
     };
     if (mode === "full") {
-      result = { products: details.products };
+      output = { products: details.products };
     } else {
       // Group by category
       const categoryCounts: Record<string, number> = {};
@@ -57,19 +48,10 @@ export const listShipmentProductsTool = tool({
           totalQuantity: count,
         }),
       );
-      result = { categories: categoriesList };
+      output = { categories: categoriesList };
     }
 
-    // Add canonical quick replies for export
-    const quickRepliesText = `<quick-replies>\n📧 Al email, 📲 WhatsApp, 🖨️ Imprimir\n</quick-replies>`;
-    result.quickRepliesText = quickRepliesText;
-
-    logToolResult({
-      toolName: "listShipmentProducts",
-      output: result,
-      ts: new Date().toISOString(),
-    });
-
-    return result;
+    logTool({ toolName, input: { id, mode }, output });
+    return output;
   },
 });

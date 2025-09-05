@@ -1,6 +1,6 @@
 import { tool } from "ai";
 import { z } from "zod";
-import { logToolExecute, logToolResult } from "../../lib/logger";
+import { logTool } from "../../lib/logger";
 import { getRandomOffers } from "../../services/products/offerService";
 
 export const getOffersTool = tool({
@@ -18,19 +18,9 @@ export const getOffersTool = tool({
     `,
   inputSchema: z.object({}),
   execute: async () => {
-    logToolExecute({
-      toolName: "getOffers",
-      input: {},
-      ts: new Date().toISOString(),
-    });
-
-    const offers = getRandomOffers();
-    logToolResult({
-      toolName: "getOffers",
-      output: { offers },
-      ts: new Date().toISOString(),
-    });
-
-    return offers;
+    const toolName = "getOffers";
+    const output = { offers: getRandomOffers() };
+    logTool({ toolName, output });
+    return output;
   },
 });
