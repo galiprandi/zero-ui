@@ -7,7 +7,11 @@ export interface ConsultingLike {
   inventory: {
     store: number;
     warehouse: number;
-    neighborhoodStores?: Array<{ store: string; flag?: string; quantity: number }>;
+    neighborhoodStores?: Array<{
+      store: string;
+      flag?: string;
+      quantity: number;
+    }>;
     nextArrival?:
       | string
       | {
@@ -24,16 +28,22 @@ export function formatConsultingMessage(consulting: ConsultingLike): string {
   lines.push(`    — EAN ${consulting.ean}`);
   lines.push(`    — Precio ${consulting.price}`);
   lines.push(`    - 📦 Disponibilidad:`);
-  lines.push(`         - 🏪 En tienda: ${consulting.inventory.store} unidades; `);
+  lines.push(
+    `         - 🏪 En tienda: ${consulting.inventory.store} unidades; `,
+  );
   lines.push(`         - 🏢 CD: ${consulting.inventory.warehouse} unidades; `);
 
-  const near = consulting.inventory.neighborhoodStores?.filter((s) => s.quantity > 0) ?? [];
+  const near =
+    consulting.inventory.neighborhoodStores?.filter((s) => s.quantity > 0) ??
+    [];
   if (near.length) {
     const quantities = near.map((s) => s.quantity);
     const min = Math.min(...quantities);
     const max = Math.max(...quantities);
     if (Number.isFinite(min) && Number.isFinite(max)) {
-      lines.push(`         - 🏬 Tiendas cercanas: entre ${min} y ${max} unidades; `);
+      lines.push(
+        `         - 🏬 Tiendas cercanas: entre ${min} y ${max} unidades; `,
+      );
     }
   }
 
@@ -42,7 +52,8 @@ export function formatConsultingMessage(consulting: ConsultingLike): string {
     if (typeof na === "string") {
       lines.push(`    - 📅 Proxima recepción: ${na}`);
     } else {
-      const qty = typeof na.quantity === "number" ? ` (${na.quantity} unidades)` : "";
+      const qty =
+        typeof na.quantity === "number" ? ` (${na.quantity} unidades)` : "";
       const src = "source" in na && na.source ? ` ${na.source}` : "";
       lines.push(`    - 📅 Proxima recepción: ${na.date}${qty}${src}`);
     }
