@@ -1,9 +1,10 @@
 "use client";
 import { demoMessages } from "@/app/data/messages";
 import { useOneHand } from "@/app/hooks/useOneHand";
+import { useEffect, useRef } from "react";
 import MessageText from "../MessageText";
 import ToolDetails from "../ToolDetails";
-import { useEffect, useRef } from "react";
+
 
 export default function MessagesList() {
   const { messages } = useOneHand();
@@ -12,9 +13,7 @@ export default function MessagesList() {
   const endRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
-    // Scroll to the bottom when the list of messages changes
     endRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
-    // Focus the chat input after scrolling
     const input = document.getElementById(
       "chat-input",
     ) as HTMLInputElement | null;
@@ -22,6 +21,7 @@ export default function MessagesList() {
   });
   return (
     <>
+
       {list.map((message) => (
         <div
           key={message.id}

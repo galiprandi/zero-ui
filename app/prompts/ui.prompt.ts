@@ -10,13 +10,14 @@ Principios generales
 - 📋 Tabla (GFM): usar cuando se comparan pocos campos por ítem (máx. 3–4 columnas). Evitar más columnas.
 
 Si debes presentar info de 1 a 4 solo item, hazlo así:
- **Nombre del producto**
-    — EAN 7798901234569
-    — Precio $ 420.00
-    - 📦 Disponibilidad:
-         - 🏪 En tienda: 34 unidades; 
-         - 🏢 CD: 89 unidades; 
-    - 📅 Proxima recepción: 10/09 (94 unidades) 🏢
+#### Arroz Gallo Oro 1kg
+* EAN: 7791234567890  
+* Precio: $ 250.00  
+* 📦 Disponibilidad:  
+   - 🏪 En tienda: 55 unidades;  
+   - 🏢 CD: 50 unidades;  
+   - 🏬 Tiendas cercanas: entre 8 y 53 unidades;  
+* 📅 Proxima recepción: el 06/09, 55 unidades llegarán desde el centro de distribución
 
 quick replies: Consultar stock, Cambiar precio, Imprimir fleje
 
@@ -29,14 +30,5 @@ Si debes presentar info de más de 4 items, hazlo así:
 | Nombre | Precio | Stock | <code>1234567890123</code> |
 | Nombre | Precio | Stock | <code>1234567890123</code> |
 
-cuando utlices la herramienta consultProduct, debes devolver el siguiente formato de respuesta:
-
-**Nombre del producto**
-    — EAN 7798901234569
-    — Precio $ 420.00
-    - 📦 Disponibilidad:
-         - 🏪 En tienda: 34 unidades; 
-         - 🏢 CD: 89 unidades; 
-    - 📅 Proxima recepción: 10/09 (94 unidades) 🏢
-
+cuando utlices la herramienta consultProduct, debes devolver la info en el formato indicado arriba
 `;

@@ -2,8 +2,6 @@ import { tool } from "ai";
 import { z } from "zod";
 import { logTool } from "../../lib/logger";
 import { getProductConsultingByEan } from "../../services/products/consultantService";
-import { formatConsultingMessage } from "../../services/products/consultingFormatter";
-import type { ConsultingLike } from "../../services/products/consultingFormatter";
 
 export const consultProductTool = tool({
   description: `
@@ -25,15 +23,6 @@ export const consultProductTool = tool({
     Como presentar al usuario los datos:
     - Markdown simple. Lista con: Precio, Disponibilidad (tienda/CD/tiendas cercanas), Próxima recepción, Recomendación.
     - Agregar bloque <quick-replies> con acciones al final.
-
-    Siempre debes devolver el siguiente formato de respuesta:
-    **Nombre del producto**
-    — EAN 7798901234569
-    — Precio $ 420.00
-    - 📦 Disponibilidad:
-         - 🏪 En tienda: 34 unidades; 
-         - 🏢 CD: 89 unidades; 
-    - 📅 Proxima recepción: 10/09 (94 unidades) 🏢
     
     Herramientas complementarias:
     - findProductByName, changePrice, printTicket, getTodaysShipments, sendEmail, sendWhatsAppMessage.
@@ -45,14 +34,7 @@ export const consultProductTool = tool({
   }),
   execute: async ({ ean }) => {
     const toolName = "consultProduct";
-    const consulting = getProductConsultingByEan(ean);
-    if (!consulting) {
-      const output = { error: "Producto no encontrado por EAN." } as const;
-      logTool({ toolName, input: { ean }, output });
-      return output;
-    }
-    const message = formatConsultingMessage(consulting as ConsultingLike);
-    const output = { message, consulting } as const;
+    const output = getProductConsultingByEan(ean);
     logTool({ toolName, input: { ean }, output });
     return output;
   },
