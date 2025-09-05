@@ -4,8 +4,7 @@ import { logToolExecute, logToolResult } from "../../lib/logger";
 import { searchByName } from "../../services/products/searchByName";
 
 export const findProductByNameTool = tool({
-  description:
-    `Buscar productos por nombre (parcial o completo). Retorna { products }.
+  description: `Buscar productos por nombre (parcial o completo). Retorna { products }.
 
     Cuándo usar (dispara esta herramienta):
     - El usuario pide por nombre o palabra clave: "mayonesa", "arroz gallo", "oreo".

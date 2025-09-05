@@ -59,7 +59,9 @@ const separateQuickRepliesFromText = (
         .replace(/[\u200B-\u200D\uFEFF]/g, "");
 
     // 1) Fallback robusto SOLO si todas las partes son de texto.
-    const hasNonText = parts.some((p) => (p as { type?: string }).type !== "text");
+    const hasNonText = parts.some(
+      (p) => (p as { type?: string }).type !== "text",
+    );
     if (!hasNonText) {
       const allTextRaw = parts
         .map((p) => (p as { type?: string; text?: unknown }).text)
@@ -79,7 +81,9 @@ const separateQuickRepliesFromText = (
         if (inner) extracted = inner;
         const sep = before && after ? " " : "";
         const cleanedText = `${before}${sep}${after}`.trim();
-        const newParts = cleanedText ? [{ type: "text", text: cleanedText }] : [];
+        const newParts = cleanedText
+          ? [{ type: "text", text: cleanedText }]
+          : [];
         cleanedMessages = cleanedMessages.map((mm, idx) =>
           idx === i ? { ...mm, parts: newParts as typeof parts } : mm,
         );

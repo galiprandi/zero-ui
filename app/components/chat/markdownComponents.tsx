@@ -84,7 +84,9 @@ export const markdownComponents: Components = {
     const lang = (className || "").toString();
     const isMarkdownBlock = /language-(markdown|md|mdx)/i.test(lang);
     if (isMarkdownBlock) {
-      const content = Array.isArray(children) ? children.join("") : String(children ?? "");
+      const content = Array.isArray(children)
+        ? children.join("")
+        : String(children ?? "");
       return (
         <div className={`block w-full p-2 ${base}`}>
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>

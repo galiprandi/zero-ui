@@ -17,8 +17,7 @@ export default function MessagesList() {
         >
           {message.parts.map((part, i) => {
             const isTool =
-              typeof part.type === "string" &&
-              part.type.startsWith("tool-");
+              typeof part.type === "string" && part.type.startsWith("tool-");
             const partId = `${message.id}-${i}`;
             if (isTool)
               return <ToolDetails key={partId} part={part} id={partId} />;

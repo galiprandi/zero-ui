@@ -4,8 +4,7 @@ import { logToolExecute, logToolResult } from "../../lib/logger";
 import { getProductConsultingByEan } from "../../services/products/consultantService";
 
 export const consultProductTool = tool({
-  description:
-    `Consultar stock y reposición de un producto por EAN. Muestra precio, stock en tienda, tiendas cercanas, 
+  description: `Consultar stock y reposición de un producto por EAN. Muestra precio, stock en tienda, tiendas cercanas, 
     CD y recomendación de reposición.
 
     Utilizar cuando:
