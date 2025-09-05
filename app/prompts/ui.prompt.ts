@@ -77,4 +77,3 @@ Ejemplo:
 # 5. Herramientas
 Cuando uses la herramienta \`consultProduct\`, responde utilizando exactamente el formato de la sección 2.
 `;
-
