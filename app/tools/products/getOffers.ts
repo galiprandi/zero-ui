@@ -5,7 +5,7 @@ import { logToolExecute, logToolResult } from "../../lib/logger";
 
 export const getOffersTool = tool({
   description:
-    "Obtener productos en oferta actuales. Retorna { offers }. Usar para mostrar '🎁 Ofertas' con imagen, nombre, categoría y precio.",
+    "🎁 Ofertas — Obtener productos en oferta actuales.\n\nCuándo usar: cuando el usuario pide 'ofertas', 'promos' o necesita ver descuentos.\nCuándo NO usar: si solicitó un producto específico por EAN o por nombre (usar findProductByEan/findProductByName).\nContrato de salida: retorna { offers } (array de productos con imagen|name|category|price).\nFormato de salida: renderizar tabla/lista Markdown breve, mobile-first.\nQuick replies: ofrecer exportación (Email, WhatsApp, Imprimir) al final con <quick-replies>.",
   inputSchema: z.object({}),
   execute: async () => {
     logToolExecute({
@@ -15,7 +15,8 @@ export const getOffersTool = tool({
     });
 
     const offers = getRandomOffers();
-    const result = { offers };
+    const quickRepliesText = `<quick-replies>\n📧 Al email, 📲 WhatsApp, 🖨️ Imprimir\n</quick-replies>`;
+    const result = { offers, quickRepliesText } as const;
 
     logToolResult({
       toolName: "getOffers",

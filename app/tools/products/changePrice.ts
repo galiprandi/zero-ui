@@ -19,7 +19,7 @@ function formatPrice(value: number) {
 
 export const changePriceTool = tool({
   description:
-    "Actualizar el precio de un producto. Si no se envía nuevo precio, responde con el precio actual y solicita el nuevo precio.",
+    "💲 Cambiar precio — Actualiza el precio de un producto.\n\nCuándo usar: cuando el usuario pide cambiar/actualizar precio de un producto ya identificado por EAN.\nCuándo NO usar: si no se conoce el EAN (usar findProductByEan/findProductByName).\nContrato: si falta newPrice, retorna { message, quickRepliesText } pidiendo nuevo precio; si se envía y es válido, retorna { message, updatedPrice, quickRepliesText }; si no existe, { error }.\nFormato: Markdown simple, mobile-first.\nQuick replies: sugerir acciones posteriores (imprimir fleje, registrar merma, ver producto, cancelar) en bloque <quick-replies> al final.",
   inputSchema: z.object({
     ean: z
       .string()

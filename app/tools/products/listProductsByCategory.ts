@@ -5,7 +5,7 @@ import { logToolExecute, logToolResult } from "../../lib/logger";
 
 export const listProductsByCategoryTool = tool({
   description:
-    "Listar productos por ID de categoría. Retorna { products }. Usar para navegar por un pasillo/sección específica.",
+    "📂 Listar por categoría — Muestra productos de una categoría.\n\nCuándo usar: cuando el usuario pide navegar por un rubro/pasillo o selecciona una categoría.\nCuándo NO usar: si pide un producto específico por EAN o por nombre (usar findProductByEan/findProductByName).\nContrato de salida: retorna { products }.\nFormato: lista breve o tabla compacta, mobile-first.\nQuick replies: ofrecer acciones de exportación y navegación al final con <quick-replies>.",
   inputSchema: z.object({
     categoryId: z
       .number()
@@ -19,7 +19,8 @@ export const listProductsByCategoryTool = tool({
     });
 
     const products = searchByCategory(categoryId);
-    const result = { products };
+    const quickRepliesText = `<quick-replies>\n📧 Al email, 📲 WhatsApp, 🖨️ Imprimir\n</quick-replies>`;
+    const result = { products, quickRepliesText } as const;
 
     logToolResult({
       toolName: "listProductsByCategory",

@@ -5,7 +5,7 @@ import { logToolExecute, logToolResult } from "../../lib/logger";
 
 export const sendEmailTool = tool({
   description:
-    "Enviar un email con asunto y cuerpo a un destinatario. Retorna el resultado del envío. Usar para exportar salidas largas vía 📧.",
+    "📧 Email — Enviar un email con asunto y cuerpo a un destinatario.\n\nCuándo usar: para exportar salidas largas (recepciones, listados, ofertas).\nCuándo NO usar: si el usuario prefiere WhatsApp o impresión.\nContrato de salida: retorna el resultado del envío.\nFormato: el cuerpo puede ser Markdown simple.",
   inputSchema: z.object({
     to: z
       .string()

@@ -81,6 +81,22 @@ export function getMessageText(msg: unknown): string {
 
 export function parseQuickRepliesFromText(text: string): string[] | null {
   if (!text) return null;
+  // 1) Canonical <quick-replies> block (preferred)
+  const tagMatch = text.match(/<quick-replies>([\s\S]*?)<\/quick-replies>/i);
+  if (tagMatch && tagMatch[1]) {
+    const inner = tagMatch[1]
+      .split(/\n|\r/)
+      .map((l) => l.trim())
+      .filter(Boolean)
+      .join(" ");
+    const items = inner
+      .split(",")
+      .map((s) => s.trim())
+      .filter((s) => s.length > 0);
+    return items.length ? items : null;
+  }
+
+  // 2) Legacy JSON with quick_replies
   try {
     const parsed = JSON.parse(text);
     if (parsed.quick_replies && Array.isArray(parsed.quick_replies)) {
@@ -95,7 +111,7 @@ export function parseQuickRepliesFromText(text: string): string[] | null {
           return parsed.quick_replies as string[];
         }
       } catch {
-        // ignore
+        // ignore JSON parse fallback errors
       }
     }
   }

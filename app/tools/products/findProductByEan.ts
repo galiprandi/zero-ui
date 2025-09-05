@@ -5,7 +5,7 @@ import { logToolExecute, logToolResult } from "../../lib/logger";
 
 export const findProductByEanTool = tool({
   description:
-    "Buscar un producto por su código de barras EAN. Retorna { product } (o null si no existe). Usar cuando el usuario provee/escanea un EAN.",
+    "🔎 Buscar por EAN — Busca un producto por su código de barras.\n\nCuándo usar: cuando el usuario escanea/proporciona un EAN explícito.\nCuándo NO usar: si pide por nombre o categoría (usar findProductByName/listProductsByCategory).\nContrato de salida: retorna { product } o { product: null } si no existe.\nFormato: responder de forma breve, y si hay product, sugerir acciones con <quick-replies> (consultar, imprimir, cambiar precio).",
   inputSchema: z.object({
     ean: z
       .string()

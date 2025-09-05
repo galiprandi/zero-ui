@@ -6,7 +6,7 @@ import { logToolExecute, logToolResult } from "../../lib/logger";
 
 export const listShipmentProductsTool = tool({
   description:
-    "Listar el contenido de un envío. Retorna { products } cuando mode='full' o { categories } cuando mode='categories'. Usar luego de seleccionar un ID de envío.",
+    "📦 Contenido de envío — Lista productos o categorías de un envío.\n\nCuándo usar: luego de seleccionar un ID de envío desde 'Recepciones'.\nCuándo NO usar: si aún no se confirmó el ID (usar getTodaysShipments).\nContrato: cuando mode='full' retorna { products }; cuando mode='categories' retorna { categories }.\nFormato: tabla/lista breve. Evitar mostrar EAN en tablas de recepción.\nQuick replies: ofrecer exportación (Email/WhatsApp/Imprimir) al final con <quick-replies>.",
   inputSchema: z.object({
     id: z.string().describe("ID del envío (ej.: '#A102')"),
     mode: z
@@ -36,6 +36,7 @@ export const listShipmentProductsTool = tool({
     let result: {
       products?: unknown;
       categories?: { name: string; totalQuantity: number }[];
+      quickRepliesText?: string;
     };
     if (mode === "full") {
       result = { products: details.products };
@@ -58,6 +59,10 @@ export const listShipmentProductsTool = tool({
       );
       result = { categories: categoriesList };
     }
+
+    // Add canonical quick replies for export
+    const quickRepliesText = `<quick-replies>\n📧 Al email, 📲 WhatsApp, 🖨️ Imprimir\n</quick-replies>`;
+    result.quickRepliesText = quickRepliesText;
 
     logToolResult({
       toolName: "listShipmentProducts",

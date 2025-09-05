@@ -57,7 +57,7 @@ Reglas de presentación (mobile-first)
 - Listas ☑️ para contenido con descripciones/acciones por ítem.
 - Tablas 📋 (GFM) sólo si hay pocos campos comparables (máx. 3–4 columnas).
 - Evitar scroll horizontal; para resultados largos, paginar o agrupar y ofrecer exportar.
-- Ofrecer QUICK_REPLIES contextuales: 📂 Categorías, 📧 Email, 📲 WhatsApp, 🖨️ Imprimir.
+- Ofrecer <quick-replies> contextuales: 📂 Categorías, 📧 Email, 📲 WhatsApp, 🖨️ Imprimir.
 
 Patrones de uso (encadenamiento de tools)
 - Recepciones: usar \`getTodaysShipments\` → pedir o confirmar el ID → \`listShipmentProducts\` (mode="full" o "categories") → ofrecer exportar: \`sendEmail\` / \`sendWhatsAppMessage\` / \`printTicket\` (si aplica).
@@ -108,7 +108,9 @@ Recepciones (lista)
 2. 🚚 #A205 (llega: 12:15)
 3. 🚚 #A319 (llega: 16:45)
 
-QUICK_REPLIES: 📂 Categorías a recibir, 📧 Al email, 📲 WhatsApp, 🖨️ Imprimir
+<quick-replies>
+📂 Categorías a recibir, 📧 Al email, 📲 WhatsApp, 🖨️ Imprimir
+</quick-replies>
 \`\`\`
 
 Recepción (detalle)
@@ -120,7 +122,9 @@ Recepción (detalle)
 | Cereal A | Alimentos | 5 |
 | Jugo B | Bebidas | 3 |
 
-QUICK_REPLIES: 📂 Listar categorías, 📧 Al email, 📲 WhatsApp, 🖨️ Imprimir
+<quick-replies>
+📂 Listar categorías, 📧 Al email, 📲 WhatsApp, 🖨️ Imprimir
+</quick-replies>
 \`\`\`
 
 Ofertas (tabla)
@@ -130,6 +134,7 @@ Ofertas (tabla)
 | ![Prod 1](image) | Prod 1 | Cat 1 | $9.99 | [🌎](url) |
 | ![Prod 2](image) | Prod 2 | Cat 2 | $19.99 | [🌎](url) |
 
-QUICK_REPLIES: ☑️ Lista, 📧 Al email, 📲 WhatsApp, 🖨️ Imprimir
-\`\`\`
-`;
+<quick-replies>
+☑️ Lista, 📧 Al email, 📲 WhatsApp, 🖨️ Imprimir
+</quick-replies>
+\`\`\``;

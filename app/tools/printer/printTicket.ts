@@ -5,7 +5,7 @@ import { logToolExecute, logToolResult } from "../../lib/logger";
 
 export const printTicketTool = tool({
   description:
-    "Imprimir un ticket/etiqueta para un producto. Retorna { message }. Usar luego de confirmar el EAN y el precio.",
+    "🖨️ Imprimir ticket — Imprime un ticket/etiqueta para un producto.\n\nCuándo usar: luego de confirmar EAN y precio.\nCuándo NO usar: si no se identificó el producto o el precio.\nContrato: retorna { message }.\nFormato: mensaje breve confirmando la impresión.\nQuick replies: sugerir siguientes pasos (ver producto, cambiar precio, imprimir fleje).",
   inputSchema: z.object({
     ean: z
       .string()
@@ -22,7 +22,8 @@ export const printTicketTool = tool({
     });
 
     printTicket(ean, price);
-    const result = { message: "Ticket impreso correctamente." };
+    const quickRepliesText = `<quick-replies>\n🔍 Ver producto, 💲 Cambiar precio, 🏷️ Imprimir fleje\n</quick-replies>`;
+    const result = { message: "Ticket impreso correctamente.", quickRepliesText } as const;
 
     logToolResult({
       toolName: "printTicket",

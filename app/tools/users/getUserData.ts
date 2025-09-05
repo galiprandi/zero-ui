@@ -5,7 +5,7 @@ import { getUserData } from "../../services/users/getUserData";
 
 export const getUserDataTool = tool({
   description:
-    "Get current user and store information. Returns { userData } with email, WhatsApp and store fields. Use to personalize outputs or prepare exports.",
+    "👤 Datos de usuario/tienda — Obtiene información del usuario y la tienda.\n\nCuándo usar: para personalizar respuestas o preparar exportaciones (email/WhatsApp).\nContrato: retorna { userData } con email, whatsapp y store.\nFormato: la tool devuelve JSON; el asistente debe renderizar un texto breve si corresponde.",
   inputSchema: z.object({}),
   execute: async () => {
     logToolExecute({

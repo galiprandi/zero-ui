@@ -4,13 +4,13 @@ import { logToolExecute, logToolResult } from "@/app/lib/logger";
 
 export const convertTemperatureTool = tool({
   description:
-    "Convert a temperature from °F to °C. Returns { celsius }. Use after getting weather in °F.",
+    "🌡️ Convertir temperatura — Convierte de °F a °C.\n\nCuándo usar: después de consultar el clima en °F.\nContrato: retorna { celsius } (entero redondeado).",
   inputSchema: object({
     temperature: number().describe("Temperature in °F to convert"),
   }),
   execute: async ({ temperature }) => {
     logToolExecute({
-      toolName: "convertFahrenheitToCelsius",
+      toolName: "convertTemperature",
       input: { temperature },
       ts: new Date().toISOString(),
     });
@@ -19,7 +19,7 @@ export const convertTemperatureTool = tool({
       celsius,
     };
     logToolResult({
-      toolName: "convertFahrenheitToCelsius",
+      toolName: "convertTemperature",
       output: out,
       ts: new Date().toISOString(),
     });

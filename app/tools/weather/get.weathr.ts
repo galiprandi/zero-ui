@@ -4,7 +4,7 @@ import { logToolExecute, logToolResult } from "@/app/lib/logger";
 
 export const weatherTool = tool({
   description:
-    "Get current weather for a location. Returns { location, temperature } with temperature in °F.",
+    "⛅ Clima — Obtiene el clima actual para una ubicación.\n\nCuándo usar: cuando el usuario solicita el clima y puede ser relevante para operaciones (logística, horarios).\nContrato: retorna { location, temperature } con temperature en °F. Usar convertTemperature si se necesita en °C.",
   inputSchema: object({
     location: string().describe("City or location name, e.g., 'Buenos Aires'"),
   }),

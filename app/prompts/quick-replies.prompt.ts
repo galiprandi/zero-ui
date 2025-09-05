@@ -36,4 +36,4 @@ Ejemplos:
 </quick-replies>
 `;
 
-export const initialQuickReplies = ["❓", "🧠 Consultor", "🚚 Recepciones"];
+export const initialQuickReplies = ["❓", "🧠 Consultor", "🚚 Recepciones", "🎁 Ofertas"];

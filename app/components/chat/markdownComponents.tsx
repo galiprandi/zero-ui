@@ -70,14 +70,10 @@ export const markdownComponents: Components = {
     type CodeProps = ComponentPropsWithoutRef<"code"> & { inline?: boolean };
     const codeProps = props as CodeProps;
     const isInline = !!codeProps.inline;
-    const { children, className } = codeProps;
-    const base =
-      "rounded bg-zinc-100 text-zinc-900 dark:bg-zinc-800 dark:text-zinc-100";
+    const { children, className, ...rest } = codeProps;
     if (isInline) {
       return (
-        <code className={`px-1 py-0.5 ${base}`} {...codeProps}>
-          {children}
-        </code>
+        <code {...rest}>{children}</code>
       );
     }
     // Detect fenced code blocks declared as ```markdown (or md/mdx) and render them as real Markdown
@@ -88,18 +84,13 @@ export const markdownComponents: Components = {
         ? children.join("")
         : String(children ?? "");
       return (
-        <div className={`block w-full p-2 ${base}`}>
+        <div>
           <ReactMarkdown remarkPlugins={[remarkGfm]}>{content}</ReactMarkdown>
         </div>
       );
     }
     return (
-      <code
-        className={`block w-full p-2 overflow-x-auto ${base}`}
-        {...codeProps}
-      >
-        {children}
-      </code>
+      <code {...rest}>{children}</code>
     );
   },
   a: ({ node, ...props }) => (

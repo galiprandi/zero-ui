@@ -6,7 +6,7 @@ import { searchByEan } from "../../services/products/searchByEan";
 
 export const printShelfLabelTool = tool({
   description:
-    "Imprimir un fleje/etiqueta de góndola para un producto. Retorna { message }.",
+    "🏷️ Imprimir fleje — Imprime una etiqueta de góndola para un producto.\n\nCuándo usar: cuando el usuario quiere re-etiquetar en góndola.\nCuándo NO usar: si el producto no está identificado por EAN.\nContrato: retorna { message }.\nFormato: mensaje breve confirmando la impresión.",
   inputSchema: z.object({
     ean: z
       .string()
@@ -31,8 +31,10 @@ export const printShelfLabelTool = tool({
     }
 
     printLabel(ean);
+    const quickRepliesText = `<quick-replies>\n🔍 Ver producto, 💲 Cambiar precio, 🖨️ Imprimir ticket\n</quick-replies>`;
     const result = {
       message: `Fleje impreso para ${product.name} (${ean}).`,
+      quickRepliesText,
     } as const;
 
     logToolResult({

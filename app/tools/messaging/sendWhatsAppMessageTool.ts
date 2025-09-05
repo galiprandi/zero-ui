@@ -5,7 +5,7 @@ import { logToolExecute, logToolResult } from "../../lib/logger";
 
 export const sendWhatsAppMessageTool = tool({
   description:
-    "Send a WhatsApp message to a recipient. Returns the sending result. Use to export or share summaries via 📲.",
+    "📲 WhatsApp — Enviar un mensaje por WhatsApp.\n\nCuándo usar: para compartir/resumir resultados (recepciones, ofertas, listados).\nCuándo NO usar: si el usuario no indicó destinatario o prefiere email/impresión.\nContrato de salida: retorna el resultado del envío.\nFormato: el cuerpo del mensaje puede ser Markdown simple.",
   inputSchema: z.object({
     to: z
       .string()
