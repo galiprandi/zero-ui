@@ -63,7 +63,9 @@ const separateQuickRepliesFromText = (
       const inner = allText
         .slice(openAll.index + openAll[0].length, closeAll.index)
         .trim();
-      const after = allText.slice(closeAll.index + closeAll[0].length).trimStart();
+      const after = allText
+        .slice(closeAll.index + closeAll[0].length)
+        .trimStart();
       if (inner) extracted = inner;
       const sep = before && after ? " " : "";
       const cleanedText = `${before}${sep}${after}`.trim();
