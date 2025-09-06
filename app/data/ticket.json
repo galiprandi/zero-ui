@@ -1,86 +1,86 @@
 {
-    "type": "sale",
-    "status": "invoiced",
-    "dataFrom": "NCR_AR",
-    "created": "2025-05-21T08:39:08",
-    "currency": "ARS",
-    "subtotal": 2360.67,
-    "discounts": 0,
-    "total": 2360.67,
-    "store": {
-        "id": "5202",
-        "name": "Jumbo Martinez"
+  "type": "sale",
+  "status": "invoiced",
+  "dataFrom": "NCR_AR",
+  "created": "2025-05-21T08:39:08",
+  "currency": "ARS",
+  "subtotal": 2360.67,
+  "discounts": 0,
+  "total": 2360.67,
+  "store": {
+    "id": "5202",
+    "name": "Jumbo Martinez"
+  },
+  "source": {
+    "workstation": "60",
+    "sequence": "5",
+    "employee": "99520260",
+    "cashier": "1",
+    "cashierName": "SCO 60"
+  },
+  "itemsCount": 2,
+  "items": [
+    {
+      "sequence": 1,
+      "sku": "11120960083",
+      "ean": "07790263119634",
+      "sourceName": "Galletitas OKEBON",
+      "name": "Galletitas Okebon Molino Natural Avena Y Cacao 240 Gr",
+      "department": "11",
+      "departmentName": "Comestibles",
+      "quantityUnit": "Unidad",
+      "quantity": 1,
+      "unitPrice": 1800,
+      "totalPrice": 1800,
+      "discounts": 0,
+      "finalPrice": 1800,
+      "discountsDetails": []
     },
-    "source": {
-        "workstation": "60",
-        "sequence": "5",
-        "employee": "99520260",
-        "cashier": "1",
-        "cashierName": "SCO 60"
+    {
+      "sequence": 2,
+      "sku": "23110155009",
+      "ean": "00000000099220",
+      "sourceName": "Pera elegida",
+      "name": "Pera Por Kg",
+      "department": "23",
+      "departmentName": "Vegetales",
+      "quantityUnit": "Kg",
+      "quantity": 0.33,
+      "unitPrice": 1699,
+      "totalPrice": 560.67,
+      "discounts": 0,
+      "finalPrice": 560.67,
+      "discountsDetails": []
+    }
+  ],
+  "departments": [
+    {
+      "id": "S_COM",
+      "name": "Comestibles",
+      "items": 1,
+      "quantity": 1,
+      "subtotal": 1800,
+      "discounts": 0,
+      "total": 1800
     },
-    "itemsCount": 2,
-    "items": [
-        {
-            "sequence": 1,
-            "sku": "11120960083",
-            "ean": "07790263119634",
-            "sourceName": "Galletitas OKEBON",
-            "name": "Galletitas Okebon Molino Natural Avena Y Cacao 240 Gr",
-            "department": "11",
-            "departmentName": "Comestibles",
-            "quantityUnit": "Unidad",
-            "quantity": 1,
-            "unitPrice": 1800,
-            "totalPrice": 1800,
-            "discounts": 0,
-            "finalPrice": 1800,
-            "discountsDetails": []
-        },
-        {
-            "sequence": 2,
-            "sku": "23110155009",
-            "ean": "00000000099220",
-            "sourceName": "Pera elegida",
-            "name": "Pera Por Kg",
-            "department": "23",
-            "departmentName": "Vegetales",
-            "quantityUnit": "Kg",
-            "quantity": 0.33,
-            "unitPrice": 1699,
-            "totalPrice": 560.67,
-            "discounts": 0,
-            "finalPrice": 560.67,
-            "discountsDetails": []
-        }
-    ],
-    "departments": [
-        {
-            "id": "S_COM",
-            "name": "Comestibles",
-            "items": 1,
-            "quantity": 1,
-            "subtotal": 1800,
-            "discounts": 0,
-            "total": 1800
-        },
-        {
-            "id": "S_VEG",
-            "name": "Vegetales",
-            "items": 1,
-            "quantity": 1,
-            "subtotal": 560.67,
-            "discounts": 0,
-            "total": 560.67
-        }
-    ],
-    "payments": [
-        {
-            "type": "Billetera",
-            "detailN1": "Cuenta DNI",
-            "detailN2": " (1 pago).",
-            "amount": 2360.67
-        }
-    ],
-    "customer": null,
-    "loyalty": null
+    {
+      "id": "S_VEG",
+      "name": "Vegetales",
+      "items": 1,
+      "quantity": 1,
+      "subtotal": 560.67,
+      "discounts": 0,
+      "total": 560.67
+    }
+  ],
+  "payments": [
+    {
+      "type": "Billetera",
+      "detailN1": "Cuenta DNI",
+      "detailN2": " (1 pago).",
+      "amount": 2360.67
+    }
+  ],
+  "customer": null,
+  "loyalty": null
 }
