@@ -1,14 +1,12 @@
 "use client";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { oneLight } from "react-syntax-highlighter/dist/cjs/styles/prism";
-import { Markdown } from "./chat/Markdown";
 
 interface Part {
   type: string;
-  code?: string;
-  language?: string;
   input?: unknown;
+  parameters?: unknown;
   output?: unknown;
+  result?: unknown;
+  errorText?: unknown;
   [key: string]: unknown;
 }
 
@@ -17,60 +15,40 @@ interface ToolDetailsProps {
   id: string;
 }
 
-export default function ToolDetails({ part, id: _id }: ToolDetailsProps) {
-  let toolName = "";
-  let content: React.ReactNode;
-  if (part.type === "code" && part.code) {
-    const lang = (part.language || "").toString().toLowerCase();
-    if (lang === "markdown" || lang === "md" || lang === "mdx") {
-      content = (
-        <div className="text-sm">
-          <Markdown content={part.code} id={_id} />
-        </div>
-      );
-    } else {
-      content = (
-        <SyntaxHighlighter
-          language={part.language || "javascript"}
-          style={oneLight}
-          customStyle={{ fontSize: 14, borderRadius: 8, padding: 16 }}
-        >
-          {part.code}
-        </SyntaxHighlighter>
-      );
-    }
-  } else if (part.type.startsWith("tool-")) {
-    toolName = part.type.replace("tool-", "");
-    const params = part.input;
-    const response = part.output;
-    const jsonData = {
-      tool: toolName,
-      parameters: params,
-      response: response,
-    };
-    content = (
-      <pre className="p-1 rounded text-xs overflow-x-auto">
-        {JSON.stringify(jsonData, null, 2)}
-      </pre>
-    );
-  } else {
-    content = (
-      <SyntaxHighlighter
-        language="json"
-        style={oneLight}
-        customStyle={{ fontSize: 14, borderRadius: 8, padding: 16 }}
-      >
-        {JSON.stringify(part, null, 2)}
-      </SyntaxHighlighter>
-    );
-  }
+export default function ToolDetails({ part }: ToolDetailsProps) {
+  const isTool = typeof part.type === "string" && part.type.startsWith("tool-");
+  const toolName = isTool ? part.type.replace("tool-", "") : "tool";
+
+  const parameters = (part.input ?? part.parameters) as unknown;
+  const response = (part.output ?? part.result ?? part.errorText) as unknown;
+  const hasError = Boolean(part.errorText);
+
   return (
     <div className="w-full">
-      <details>
-        <summary className="text-[11px] text-zinc-500 cursor-pointer select-none">
-          ⚙️ Tool: {toolName || "output"}
+      <details className="group">
+        <summary className="inline-flex items-center gap-1 text-[11px] text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 cursor-pointer select-none">
+          <span aria-hidden>⚙️</span>
+          <span className="font-medium">{toolName}</span>
+          {hasError ? (
+            <span className="ml-1 text-[10px] text-red-500">error</span>
+          ) : null}
+          <span className="ml-1 text-[10px] text-zinc-400 group-open:hidden">ver</span>
+          <span className="ml-1 text-[10px] text-zinc-400 hidden group-open:inline">ocultar</span>
         </summary>
-        <div className="mt-1">{content}</div>
+        <div className="mt-1 rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-2 space-y-2">
+          <section>
+            <div className="mb-1 text-[10px] uppercase tracking-wide text-zinc-500">Parámetros</div>
+            <pre className="text-xs overflow-x-auto">
+              {JSON.stringify(parameters ?? null, null, 2)}
+            </pre>
+          </section>
+          <section>
+            <div className="mb-1 text-[10px] uppercase tracking-wide text-zinc-500">Respuesta</div>
+            <pre className="text-xs overflow-x-auto">
+              {JSON.stringify(response ?? null, null, 2)}
+            </pre>
+          </section>
+        </div>
       </details>
     </div>
   );
