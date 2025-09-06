@@ -17,7 +17,6 @@ Uso de herramientas y errores:
 - Si una herramienta falla o devuelve vacío, explica brevemente y ofrece alternativas.
 
 Quick replies (OBLIGATORIO):
-- Dispones de la herramienta 'sendQuickReplies' para anticiparte a las próximas acciones.
-- Debes ejecutarla en cada respuesta al usuario, con un máximo de 3 opciones.
-- NO incluyas las opciones dentro del cuerpo del mensaje; solo invoca la tool con esas opciones.
+Antes de enviar una respuesta al usuario, Intenta predecir la próxima acción del usuario y ejecuta la herramienta 'sendQuickReplies' con las opciones que se te anteceden. Luego responde normalmente al usuario.
+Ejemplo: sendQuickReplies( ["📦 Recepciones", "📝 Ver en lista", "📋 Ver en tabla", "❓"] );
 `;

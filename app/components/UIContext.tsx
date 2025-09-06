@@ -2,26 +2,18 @@
 
 import {
   createContext,
+  useCallback,
   useContext,
   useEffect,
   useState,
-  useCallback,
   type ReactNode,
 } from "react";
 
-interface UIContextValue {
-  toast: (message: string) => void;
-}
-
 const UIContext = createContext<UIContextValue | undefined>(undefined);
-
-interface ToastState {
-  id: string;
-  message: string;
-}
 
 export function UIProvider({ children }: { children: ReactNode }) {
   const [toasts, setToasts] = useState<ToastState[]>([]);
+  const [quickReplies, setQuickReplies] = useState<string[]>([]);
 
   const toast = useCallback((message: string) => {
     const id = Math.random().toString(36).slice(2, 11);
@@ -64,10 +56,13 @@ export function UIProvider({ children }: { children: ReactNode }) {
     return () => document.removeEventListener("click", handleClick, true);
   }, [toast]);
 
+  const clearQuickReplies = useCallback(() => {
+    setQuickReplies([]);
+  }, []);
+
   return (
-    <UIContext.Provider value={{ toast }}>
+    <UIContext.Provider value={{ toast, quickReplies, clearQuickReplies }}>
       {children}
-      {/* Toast container */}
       <div
         style={{
           position: "fixed",
@@ -109,4 +104,15 @@ export function useUI() {
     throw new Error("useUI must be used within a UIProvider");
   }
   return context;
+}
+
+interface UIContextValue {
+  toast: (message: string) => void;
+  quickReplies: string[];
+  clearQuickReplies: () => void;
+}
+
+interface ToastState {
+  id: string;
+  message: string;
 }

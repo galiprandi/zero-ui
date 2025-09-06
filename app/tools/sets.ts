@@ -7,6 +7,7 @@ import { shipmentToolSet } from "./shipment/toolset";
 import { usersToolSet } from "./users/toolset";
 import { weatherToolSet } from "./weather/toolset";
 import { ticketToolSet } from "./ticket/toolset";
+import { uiToolSet } from "./ui/toolset";
 
 export const toolSet: ToolSet = {
   ...emailsToolSet,
@@ -16,4 +17,5 @@ export const toolSet: ToolSet = {
   ...shipmentToolSet,
   ...usersToolSet,
   ...ticketToolSet,
+  ...uiToolSet,
 };

@@ -1,28 +1,17 @@
 "use client";
 
-interface Part {
-  type: string;
-  input?: unknown;
-  parameters?: unknown;
-  output?: unknown;
-  result?: unknown;
-  errorText?: unknown;
-  [key: string]: unknown;
-}
+import { ToolUIPart, UITools } from "ai";
 
-interface ToolDetailsProps {
-  part: Part;
-  id: string;
-}
-
-export default function ToolDetails({ part }: ToolDetailsProps) {
+export default function ToolDetails({ part }: { part: ToolUIPart<UITools> }) {
   const isTool = typeof part.type === "string" && part.type.startsWith("tool-");
   const toolName = isTool ? part.type.replace("tool-", "") : "tool";
 
-  const parameters = (part.input ?? part.parameters) as unknown;
-  const response = (part.output ?? part.result ?? part.errorText) as unknown;
-  const hasError = Boolean(part.errorText);
+  console.log(part);
 
+  const input = part.input;
+  const output = part.output;
+  const hasError = false; // Boolean(part.errorText);
+  if (!isTool) return null;
   return (
     <div className="w-full">
       <details className="group">
@@ -33,27 +22,27 @@ export default function ToolDetails({ part }: ToolDetailsProps) {
             <span className="ml-1 text-[10px] text-red-500">error</span>
           ) : null}
           <span className="ml-1 text-[10px] text-zinc-400 group-open:hidden">
-            ver
+            +
           </span>
           <span className="ml-1 text-[10px] text-zinc-400 hidden group-open:inline">
-            ocultar
+            -
           </span>
         </summary>
         <div className="mt-1 rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-2 space-y-2">
           <section>
             <div className="mb-1 text-[10px] uppercase tracking-wide text-zinc-500">
-              Parámetros
+              Parameters:
             </div>
             <pre className="text-xs overflow-x-auto">
-              {JSON.stringify(parameters ?? null, null, 2)}
+              {JSON.stringify(input ?? null, null, 2)}
             </pre>
           </section>
           <section>
             <div className="mb-1 text-[10px] uppercase tracking-wide text-zinc-500">
-              Respuesta
+              Response:
             </div>
             <pre className="text-xs overflow-x-auto">
-              {JSON.stringify(response ?? null, null, 2)}
+              {JSON.stringify(output ?? null, null, 2)}
             </pre>
           </section>
         </div>
