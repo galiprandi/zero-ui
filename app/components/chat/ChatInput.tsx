@@ -1,23 +1,16 @@
 "use client";
-import { useOneHand } from "@/app/hooks/useOneHand";
+import { useChatContext } from "@/app/providers/ChatProvider";
 import { useState } from "react";
 import QuickReplies from "../QuickReplies";
 
 export default function ChatInput() {
-  const { sendMessage, status, reasoningText } = useOneHand();
+  const { status, sendMessage, clearQuickReplies } = useChatContext();
   const [input, setInput] = useState("");
 
   const disable = status !== "ready";
   const basePlaceholder = "Escribe algo...";
   const thinking = status === "submitted" || status === "streaming";
-  const reasoningPlaceholder = (() => {
-    if (!thinking) return null;
-    if (!reasoningText)
-      return status === "submitted" ? "Pensando..." : "Respondiendo...";
-    const text = reasoningText.replace(/\s+/g, " ").trim();
-    return text.length > 140 ? `${text.slice(0, 140)}…` : text;
-  })();
-  const placeholder = reasoningPlaceholder ?? basePlaceholder;
+  const placeholder = thinking ? "Pensando..." : basePlaceholder;
 
   return (
     <div className="p-2">
@@ -28,8 +21,9 @@ export default function ChatInput() {
           e.preventDefault();
           if (disable) return;
           if (!input.trim()) return;
-          sendMessage({ text: input });
+          clearQuickReplies();
           setInput("");
+          sendMessage({ text: input });
         }}
         className="mt-2"
       >

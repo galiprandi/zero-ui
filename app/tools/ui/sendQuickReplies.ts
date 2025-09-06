@@ -15,6 +15,6 @@ export const sendQuickReplies = tool({
   }),
   execute: async ({ replies }) => {
     console.log(`===============> Quick replies: ${replies.join(", ")}`);
-    return "Quick replies enviadas al usuario";
+    return { message: "Quick replies enviadas al usuario", replies };
   },
 });

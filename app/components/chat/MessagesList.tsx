@@ -1,13 +1,14 @@
 "use client";
 import { demoMessages } from "@/app/data/messages";
-import { useOneHand } from "@/app/hooks/useOneHand";
+import { useChatContext } from "@/app/providers/ChatProvider";
 import type { TextUIPart, ToolUIPart, UITools } from "ai";
 import { useEffect, useRef } from "react";
 import MessageText from "../MessageText";
 import ToolDetails from "../ToolDetails";
 
+
 export default function MessagesList() {
-  const { messages } = useOneHand();
+  const { messages } = useChatContext();
 
   const list = messages.length > 0 ? messages : demoMessages;
   const endRef = useRef<HTMLDivElement | null>(null);
@@ -46,6 +47,11 @@ export default function MessagesList() {
                     role={message.role as string}
                     part={part as TextUIPart}
                   />
+                );
+              }
+              case "reasoning": {
+                return (
+                  <div key={`${message.id}-reasoning-${idx}`}>{part.text}</div>
                 );
               }
               default:

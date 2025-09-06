@@ -6,11 +6,9 @@ export default function ToolDetails({ part }: { part: ToolUIPart<UITools> }) {
   const isTool = typeof part.type === "string" && part.type.startsWith("tool-");
   const toolName = isTool ? part.type.replace("tool-", "") : "tool";
 
-  console.log(part);
-
   const input = part.input;
   const output = part.output;
-  const hasError = false; // Boolean(part.errorText);
+  const hasError = false;
   if (!isTool) return null;
   return (
     <div className="w-full">

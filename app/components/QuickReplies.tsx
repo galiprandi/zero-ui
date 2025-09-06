@@ -1,10 +1,10 @@
 "use client";
-import { useOneHand } from "@/app/hooks/useOneHand";
+import { useChatContext } from "@/app/providers/ChatProvider";
 
 export default function QuickReplies() {
-  const { quickReplies, sendMessage, status } = useOneHand();
+  const { sendMessage, status, quickReplies } = useChatContext();
 
-  const disabled = status !== "ready";
+  if (status !== "ready") return null;
 
   return (
     <div className="w-full py-2">
@@ -22,8 +22,7 @@ export default function QuickReplies() {
             }}
             className="quick-reply-btn flex-shrink-0 px-3 py-1.5 text-sm font-medium text-gray-200 bg-gray-700 hover:bg-gray-600 active:bg-gray-500 rounded-full border border-gray-600 hover:border-gray-500 transition-all duration-200 whitespace-nowrap shadow-sm"
             type="button"
-            disabled={disabled}
-            aria-disabled={disabled}
+
           >
             {reply}
           </button>
