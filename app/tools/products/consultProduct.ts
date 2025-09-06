@@ -22,7 +22,6 @@ export const consultProductTool = tool({
 
     Como presentar al usuario los datos:
     - Markdown simple. Lista con: Precio, Disponibilidad (tienda/CD/tiendas cercanas), Próxima recepción, Recomendación.
-    - Agregar bloque <quick-replies> con acciones al final.
     
     Herramientas complementarias:
     - findProductByName, changePrice, printTicket, getTodaysShipments, sendEmail, sendWhatsAppMessage.

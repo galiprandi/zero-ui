@@ -17,9 +17,6 @@ export const findProductByEanTool = tool({
     Cuando NO usar:
     - Si pide por nombre o categoría (usar findProductByName/listProductsByCategory).
 
-    Como presentar al usuario los datos:
-    - Respuesta breve. Si hay product, incluir <quick-replies> con acciones.
-
     Herramientas complementarias:
     - consultProduct, changePrice, printTicket, printShelfLabel.
   `,

@@ -28,23 +28,6 @@ export const getTodaysShipmentsTool = tool({
     Contrato de datos (lo que te entrego):
     - { shipments }: Array<{ id: string; estimatedTime: string; products: Product[]; ... }>
     - estimatedTime viene en formato HH:MM (24h). Usa ese valor sin modificar salvo agregar "hs".
-
-    Quick replies (una sola línea al final):
-    - Al menos dos accesos directos: "🔎 Ver HH:MMhs", separados por coma, usando las dos primeras horas listadas.
-    - Puedes agregar "📲 WhatsApp" y "🖨️ Imprimir".
-
-    Ejemplo:
-    🚚 Próximas recepciones:
-    - 10:30hs — Envío #001 — 64 productos
-    - 12:45hs — Envío #002 — 12 productos
-
-    <quick-replies>
-    🔎 Ver 10:30hs, 🔎 Ver 12:45hs, 📲 WhatsApp, 🖨️ Imprimir
-    </quick-replies>
-
-    Vacío (si no hay envíos hoy):
-    🚚 Próximas recepciones:
-    - No hay envíos programados para hoy.
     `,
   inputSchema: object({}),
   execute: async () => {

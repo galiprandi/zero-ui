@@ -1,11 +1,11 @@
 import { tool } from "ai";
 import { z } from "zod";
-import { searchByCategory } from "../../services/products/searchByCategory";
 import { logTool } from "../../lib/logger";
+import { searchByCategory } from "../../services/products/searchByCategory";
 
 export const listProductsByCategoryTool = tool({
   description:
-    "📂 Listar por categoría — Muestra productos de una categoría.\n\nCuándo usar: cuando el usuario pide navegar por un rubro/pasillo o selecciona una categoría.\nCuándo NO usar: si pide un producto específico por EAN o por nombre (usar findProductByEan/findProductByName).\nContrato de salida: retorna { products }.\nFormato: lista breve o tabla compacta, mobile-first.\nQuick replies: ofrecer acciones de exportación y navegación al final con <quick-replies>.",
+    "📂 Listar por categoría — Muestra productos de una categoría.\n\nCuándo usar: cuando el usuario pide navegar por un rubro/pasillo o selecciona una categoría.\nCuándo NO usar: si pide un producto específico por EAN o por nombre (usar findProductByEan/findProductByName).\nContrato de salida: retorna { products }.\nFormato: lista breve o tabla compacta, mobile-first.",
   inputSchema: z.object({
     categoryId: z
       .number()

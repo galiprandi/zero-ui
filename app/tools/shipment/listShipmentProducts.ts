@@ -1,12 +1,12 @@
 import { tool } from "ai";
 import { z } from "zod";
-import { getShipmentDetails } from "../../services/shipment/shipmentService";
 import categories from "../../data/categories.json";
 import { logTool } from "../../lib/logger";
+import { getShipmentDetails } from "../../services/shipment/shipmentService";
 
 export const listShipmentProductsTool = tool({
   description:
-    "📦 Contenido de envío — Lista productos o categorías de un envío.\n\nCuándo usar: luego de seleccionar un ID de envío desde 'Recepciones'.\nCuándo NO usar: si aún no se confirmó el ID (usar getTodaysShipments).\nContrato: cuando mode='full' retorna { products }; cuando mode='categories' retorna { categories }.\nFormato: tabla/lista breve. Evitar mostrar EAN en tablas de recepción.\nQuick replies: ofrecer exportación (Email/WhatsApp/Imprimir) al final con <quick-replies>.",
+    "📦 Contenido de envío — Lista productos o categorías de un envío.\n\nCuándo usar: luego de seleccionar un ID de envío desde 'Recepciones'.\nCuándo NO usar: si aún no se confirmó el ID (usar getTodaysShipments).\nContrato: cuando mode='full' retorna { products }; cuando mode='categories' retorna { categories }.\nFormato: tabla/lista breve. Evitar mostrar EAN en tablas de recepción.",
   inputSchema: z.object({
     id: z.string().describe("ID del envío (ej.: '#A102')"),
     mode: z

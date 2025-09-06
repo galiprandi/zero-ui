@@ -18,7 +18,6 @@ export const findProductByNameTool = tool({
     Presentación (Markdown simple):
     - Si hay 1 resultado: puedes encadenar consultProduct automáticamente con su EAN.
     - Si hay varios: lista hasta 5 opciones como "- [Nombre] — EAN <ean> — [Categoría]".
-    - Agrega quick replies al final con <quick-replies> para continuar (consultar, cambiar precio, imprimir).
     `,
   inputSchema: z.object({
     query: z
