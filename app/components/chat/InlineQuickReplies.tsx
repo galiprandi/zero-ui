@@ -5,7 +5,9 @@ interface InlineQuickRepliesProps {
   replies: string[];
 }
 
-export default function InlineQuickReplies({ replies }: InlineQuickRepliesProps) {
+export default function InlineQuickReplies({
+  replies,
+}: InlineQuickRepliesProps) {
   const { sendMessage, status } = useOneHand();
   const disabled = status !== "ready";
 

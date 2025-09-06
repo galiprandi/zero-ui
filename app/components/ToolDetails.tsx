@@ -32,18 +32,26 @@ export default function ToolDetails({ part }: ToolDetailsProps) {
           {hasError ? (
             <span className="ml-1 text-[10px] text-red-500">error</span>
           ) : null}
-          <span className="ml-1 text-[10px] text-zinc-400 group-open:hidden">ver</span>
-          <span className="ml-1 text-[10px] text-zinc-400 hidden group-open:inline">ocultar</span>
+          <span className="ml-1 text-[10px] text-zinc-400 group-open:hidden">
+            ver
+          </span>
+          <span className="ml-1 text-[10px] text-zinc-400 hidden group-open:inline">
+            ocultar
+          </span>
         </summary>
         <div className="mt-1 rounded-md border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 p-2 space-y-2">
           <section>
-            <div className="mb-1 text-[10px] uppercase tracking-wide text-zinc-500">Parámetros</div>
+            <div className="mb-1 text-[10px] uppercase tracking-wide text-zinc-500">
+              Parámetros
+            </div>
             <pre className="text-xs overflow-x-auto">
               {JSON.stringify(parameters ?? null, null, 2)}
             </pre>
           </section>
           <section>
-            <div className="mb-1 text-[10px] uppercase tracking-wide text-zinc-500">Respuesta</div>
+            <div className="mb-1 text-[10px] uppercase tracking-wide text-zinc-500">
+              Respuesta
+            </div>
             <pre className="text-xs overflow-x-auto">
               {JSON.stringify(response ?? null, null, 2)}
             </pre>
