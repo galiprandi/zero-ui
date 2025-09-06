@@ -1,6 +1,6 @@
 "use client";
 
-import { ToolUIPart, UITools } from "ai";
+import type { ToolUIPart, UITools } from "ai";
 
 export default function ToolDetails({ part }: { part: ToolUIPart<UITools> }) {
   const isTool = typeof part.type === "string" && part.type.startsWith("tool-");

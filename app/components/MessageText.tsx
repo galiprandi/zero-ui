@@ -2,7 +2,13 @@
 import type { TextUIPart } from "ai";
 import { Markdown } from "./chat/Markdown";
 
-export default function MessageText({ part, role }: { part: TextUIPart, role: string }) {
+export default function MessageText({
+  part,
+  role,
+}: {
+  part: TextUIPart;
+  role: string;
+}) {
   const isUser = role === "user";
 
   const ClassContainer = isUser
