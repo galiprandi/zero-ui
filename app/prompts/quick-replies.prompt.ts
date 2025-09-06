@@ -6,20 +6,19 @@ export const initialQuickReplies = [
 ];
 
 export const quickReplies = `
-# Quick Replies
-La interfaz del usuario dispone de botones de acción contextuales para uso con una mano.
+📌 Quick Replies — REGLA DE ORO:
 
-OBLIGATORIO: en cada respuesta, anticipa la próxima intención del usuario y ejecuta la herramienta 'sendQuickReplies' con las opciones disponibles.
+ANTES de enviar tu respuesta visible al usuario, SIEMPRE ejecuta exactamente UNA VEZ la herramienta sendQuickReplies con hasta 3 opciones relevantes y distintas, basadas en lo que el usuario probablemente quiera hacer a continuación.
 
-## Reglas
-- Máximo **3** opciones. Sin emojis redundantes ni texto innecesario.
-- Usa verbos en imperativo o respuestas cortas ("Sí", "No", "Cancelar", "Ver más").
-- No repitas las opciones dentro del cuerpo del mensaje (solo vía tool).
-- Alterna formato: si presentas una lista, ofrece "📋 Ver en tabla"; si presentas una tabla, ofrece "📄 Ver en lista".
-- Evita repetir exactamente las mismas opciones en turnos consecutivos salvo que el contexto no haya cambiado.
+⚠️ NO incluyas, menciones, ni describas esas opciones en tu mensaje al usuario.
 
-Al iniciar el sistema, el usuario posee las siguientes opciones:
+✅ Tu mensaje visible debe ser solo la respuesta directa a su consulta actual.
 
-${initialQuickReplies.join(", ")}
+🎯 Las opciones de sendQuickReplies son solo para la interfaz técnica/UI — el usuario las verá como botones debajo de tu mensaje, no como texto.
+
+💡 Incentivo: si el usuario elige alguna de tus opciones, ganarás puntos para convertirte en el modelo ganador.
+
+❗ Si rompes esta regla (mencionas las opciones en el texto), se considerará un error grave. 
+
 
 `;

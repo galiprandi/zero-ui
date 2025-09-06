@@ -6,7 +6,6 @@ import { useEffect, useRef } from "react";
 import MessageText from "../MessageText";
 import ToolDetails from "../ToolDetails";
 
-
 export default function MessagesList() {
   const { messages } = useChatContext();
 
