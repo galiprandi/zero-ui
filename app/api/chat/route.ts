@@ -56,7 +56,12 @@ export async function POST(req: Request) {
     model: openai(model),
     stopWhen: stepCountIs(10),
     system,
-
+    providerOptions: {
+      openai: {
+        parallelToolCalls: true,
+        reasoningEffort: "minimal",
+      },
+    },
     messages: convertToModelMessages(messages),
     tools: toolSet,
     onFinish: ({ text }) => {
