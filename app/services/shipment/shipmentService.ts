@@ -21,22 +21,27 @@ export function getShipmentDetails(id: string): ShipmentDetailsDTO {
   const estimatedTime = `${hour.toString().padStart(2, "0")}:${minute.toString().padStart(2, "0")}`;
   const trackerLicense = Math.floor(Math.random() * 1000000).toString();
 
-  const products = getRandomProducts(10);
-  products.forEach((product) => {
-    product.quantity = Math.floor(Math.random() * 51) + 50;
+  const products: ShipmentProduct[] = getRandomProducts(10).map((product) => {
+    const quantity = Math.floor(Math.random() * 51) + 50;
+    const { ean: _ean, categoryId: _categoryId, ...rest } = product;
+    return { ...rest, quantity };
   });
 
   return {
     id,
-    estimatedTime,
+    driverName: "Juan Pérez",
     products,
     trackerLicense,
+    estimatedTime,
   };
 }
 
+type ShipmentProduct = Omit<ProductExtended, "ean" | "categoryId">;
+
 type ShipmentDetailsDTO = {
   id: string;
-  products: ProductExtended[];
+  driverName: string;
+  products: ShipmentProduct[];
   trackerLicense: string;
   estimatedTime: string;
 };
