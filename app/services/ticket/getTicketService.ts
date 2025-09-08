@@ -13,7 +13,7 @@ export function getTicket(_ticketNumber: string) {
   const products = getRandomProducts(5);
   // Prefer workstation as the visible checkout identifier; fallback to cashier
   const checkoutNumber = String(
-    ticketMock.source?.workstation ?? ticketMock.source?.cashier ?? ""
+    ticketMock.source?.workstation ?? ticketMock.source?.cashier ?? "",
   );
   return { ...ticketMock, products, checkoutNumber };
 }
