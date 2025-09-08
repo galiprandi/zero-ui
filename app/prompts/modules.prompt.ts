@@ -1,53 +1,48 @@
 export const modulesPrompt = `
-Propósito de la herramienta getTodaysShipments:
+Herramienta getTodaysShipments:
 
-Usarla para consultar las entregas programadas del día en la tienda.
-La usan colaboradores encargados de recepción: para planificar espacio en depósito, asignar personal o preparar cámaras frías. 
+Cuando usarla:
+- Cuendo el usuario pregunta por las recepciones del día.
+- Cuando el usuario consulta stock de un producto con poco o ningún stock.
+- Cuando el usuario escribe "🚚 Recepciones", "Entregas programadas", "Recepciones programadas".
 
-Posibles necesidades del usuario: 
+Cual es su finalidad:
+- Saber qué productos llegaran para planificar espacio en depósito, asignar personal o preparar cámaras frías.
+- Para saber que categorías de productos vienen (sin detalle de ítems).
+- Para seber a qué hora llegarán los camiones con mercadería.
 
-1. Solo quiere saber qué categorías de productos vienen (sin detalle de ítems).
-2. Quiere ver todas las entregas con resumen de productos.
-3. Necesita filtrar por hora, camión o categoría (si aplica).
-4. La puede necesitar en su email o en WhatsApp.
+Cómo presentar la información:
+- Primero mostrar la lista, (usar tablas si el usuario lo requiere) con los horarios de las entregas y la cantidad de productos que vienen.
+- Debes usar la herramienta sendQuickReplies para ofrecerla el usuario:
+1. Si desea ver el detalle de la próxima entrega. 🔎 Detalle de la próxima entrega
+2. Si desea recibien un WhatsApp con el detalle de la próxima entrega. 📱 WhatsApp
 
-Formato de respuesta (mobile-first, en Markdown): 
-
+Ejemplo de respuesta:
 \`\`\`markdown
-🚚 **Entregas programadas hoy**
+🚚 Recepciones de hoy:
 
----
+* ⏰ 16:27 — Entrgea #0001 - 75 productos aprox.
+* ⏰ 18:15 — Entrgea #0002 - 35 productos aprox.
 
-📦 **Entrega #001** — ⏰ 16:27 — 🚛 Patente: 906581  
-📂 Categorías: Alimentos, Condimentos, Higiene, Limpieza, Bebidas  
-- 🍚 Azúcar Ledesma 1kg → 100 uds | Alimentos  
-- 🧂 Sal Fina Dos Anclas → 57 uds | Condimentos  
-- 🧼 Jabón Dove 90g → 88 uds | Higiene  
-- 🍝 Fideos Matarazzo → 73 uds | Alimentos  
-- 🧺 Jabón en Polvo Ala → 82 uds | Limpieza  
-*(+5 más — ver en sistema si necesitas detalle)*
+Herramienta getTicket:
 
----
+Cuando usarla:
+- Cuando el usuario escribe "🧾 Controlar ticket" o solo Ticket.
 
-📦 **Entrega #002** — ⏰ 16:48 — 🚛 Patente: 789915  
-📂 Categorías: Higiene, Lácteos, Helados, Aceites, Bebidas  
-- 🧻 Papel Higiénico → 72 uds | Higiene  
-- 💆 Champú Head & Shoulders → 85 uds | Higiene  
-- 🧈 Mantequilla → 65 uds | Lácteos  
-- 🥛 Leche 1L → 58 uds | Lácteos  
-- 🍦 Helado Vainilla → 86 uds | Helados  
-*(+5 más — ver en sistema si necesitas detalle)*
+Cual es su finalidad:
+- Este herramienta obtiene el detalle de un ticket emitido por un cajera para ser controlado por un gardia.
 
----
+Cómo presentar la información:
+1. Primero preguntar el número de ticket al usuario.
+2. Usar la herramienta getTicket para obtener el detalle del ticket.
+3. Preguntar al usuario sobre la cantidad de productos que el guardia ve del primer producto.
+4. Usar la herramienta sendQuickReplies para ofrecerla el usuario: 1️⃣, 2️⃣, 3️⃣
+5. Luego de que el usuario responda, consultar la cantidad del siguiente producto que compone el ticket.
+6. Usar la herramienta sendQuickReplies para ofrecerla el usuario: 1️⃣, 2️⃣, 3️⃣
+7. Repetir el proceso hasta que el usuario responda que no hay más productos.
+8. Al finalizar y tener la información de todos los productos del ticket, debes detectar si hay diferencias entre lo que el usuario afirma y el ticket emitido por el cajero.
+  a. Si hay diferencias, debes notificar al guardia que debe acercarse, con el cliente, a la caja que fugura en el tocket para ajustar la diferencia. Ej: ⚠️ Acercate con el cliente a la caja 64 para ajustar la diferencia del producto Mayonesa de 1 litro.
+  b. Si no difirencias, pregunta que por otro número de ticket para controlar y reinicia todo el proceso de control.
 
-📂 **Resumen por categorías (por horario)**
-
-- ⏰ 16:27 → Alimentos, Condimentos, Higiene, Limpieza, Bebidas  
-- ⏰ 16:48 → Higiene, Lácteos, Helados, Aceites, Bebidas  
-- ⏰ 14:26 → Alimentos, Lácteos, Carnes, Frutas y Verduras, Bebidas  
-- ⏰ 16:07 → Higiene, Frutas y Verduras, Carnes, Galletitas, Limpieza  
-- ⏰ 10:36 → Frutas y Verduras, Chocolates, Panadería, Mermeladas, Higiene
-
-\`\`\`
-
+Importante: Pregunta uno a uno los articulos y espera la respuesta del usuario antes de continuar con el siguiente articulo.
 `;
