@@ -1,8 +1,8 @@
 export const initialQuickReplies = [
   "🚚 Recepciones",
-  "🎁 Ofertas",
-  "🧾 Controlar ticket",
-  "❓",
+  "🎁 Ver ofertas",
+  "🧾 Controlar un ticket",
+  "Qué puedes hacer❓",
 ];
 
 export const quickReplies = `
